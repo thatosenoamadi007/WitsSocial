@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/createAcc"
+            android:layout_width="159dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="87dp"
+            android:fontFamily="@font/ubuntu_bold"
+            android:gravity="left"
+            android:text="Create Account"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/usernameSignup"
+            android:layout_width="335dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/createAcc"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="45dp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:hint="username"
+            android:textColor="@color/black"
+            android:textColorHint="#000000"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/passwordSignUp"
+            android:layout_width="335dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/usernameSignup"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="45dp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="#000000"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/confirmPasswordSignUp"
+            android:layout_width="335dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/passwordSignUp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="42dp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="#000000"
+            android:textSize="20dp"
+            android:autofillHints="" />
+
+        <Button
+            android:id="@+id/signUpBtn"
+            android:layout_width="321dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/confirmPasswordSignUp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="44dp"
+            android:text="SIGN UP" />
+
+        <TextView
+            android:id="@+id/goToLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/signUpBtn"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="185dp"
+            android:layout_marginTop="28dp"
+            android:text="LOGIN"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
