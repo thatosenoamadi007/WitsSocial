@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/posts_timeline"
+        android:title="Posts"
+        android:icon="@drawable/ic_posts_icon"/>
+
+    <item
+        android:id="@+id/add_post"
+        android:title="Add Post"
+        android:icon="@drawable/add_post_icon"/>
+    <item
+        android:id="@+id/chat"
+        android:title="Search"
+        android:icon="@drawable/search_icon"/>
+
+    <item
+        android:id="@+id/account"
+        android:title="Account"
+        android:icon="@drawable/ic_account"/>
+
+</menu>

@@ -3,6 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/bg_edittext.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/ic_account.xml" value="0.13" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/ic_attach_insidemessage.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/ic_back.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/ic_posts_icon.xml" value="0.13" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/ic_send_message_insidemessage.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/layout_decorator.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/message_container_bg2.xml" value="0.13" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/message_contaner_bg.xml" value="0.13" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/search_icon.xml" value="0.13" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/search_view_bg.xml" value="0.13" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/selector.xml" value="0.13" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_inside_message.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_search_users.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/message_container.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/messageapperance.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/menu/bottom_navigation.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/user/AndroidStudioProjects/WitsSocial_/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/user/AndroidStudioProjects/WitsSocial_/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/WitsSocial_/app/src/main/res/layout/activity_profile.xml" value="0.1" />

@@ -37,7 +37,7 @@ public class login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            startActivity(new Intent(login.this, Profile.class));
+                            startActivity(new Intent(login.this, SearchUsers.class));
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
