@@ -47,7 +47,8 @@
         android:inputType="textPassword"
         android:textColorHint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/loginUsername"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/logInBtn"
