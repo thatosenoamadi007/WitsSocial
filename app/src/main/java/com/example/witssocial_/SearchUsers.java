@@ -58,13 +58,16 @@ public class SearchUsers extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.posts_timeline:
-                    //startActivity(new Intent(getApplicationContext(),PostsTimeline.class));
+                    startActivity(new Intent(getApplicationContext(),home_activity.class));
                     return true;
                 case R.id.account:
-                    //startActivity(new Intent(getApplicationContext(),UserAccount.class));
+                    startActivity(new Intent(getApplicationContext(),Profile.class));
                     return true;
                 case R.id.add_post:
-                    //startActivity(new Intent(getApplicationContext(),AddPost.class));
+                    startActivity(new Intent(getApplicationContext(),add_post.class));
+                    return true;
+                case R.id.chat:
+                    //startActivity(new Intent(getApplicationContext(),SearchUsers.class));
                     return true;
             }
             return false;

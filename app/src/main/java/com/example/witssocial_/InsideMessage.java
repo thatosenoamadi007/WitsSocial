@@ -45,7 +45,7 @@ public class InsideMessage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inside_message);
 
-        //initialze elements on the top bar or action bar
+        //initialize elements on the top bar or action bar
         initializeTopBarElement();
 
         //fetches messages from the firebase database and displays them
