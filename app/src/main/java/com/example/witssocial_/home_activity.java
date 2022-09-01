@@ -29,7 +29,7 @@ public class home_activity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.homerecview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("AllPost"),Post.class).build();
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
         recyclerView.getRecycledViewPool().clear();
         mainAdapter= new home_adapter(options);
         recyclerView.setAdapter(mainAdapter);
