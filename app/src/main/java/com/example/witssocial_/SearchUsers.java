@@ -28,7 +28,7 @@ import java.util.Locale;
 
 public class SearchUsers extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    SearchView searchView;
+    SearchView searchView; 
     RecyclerView recyclerView;
     messagesAdapter mainAdapter;
     @Override
