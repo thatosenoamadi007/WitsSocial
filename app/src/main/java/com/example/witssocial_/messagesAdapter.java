@@ -76,7 +76,7 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user, messagesAdapt
         for(String w:words){
             String first=w.substring(0,1);
             String afterfirst=w.substring(1);
-            capitalizeWord+=first.toUpperCase()+afterfirst+" ";
+            capitalizeWord+=first.toUpperCase(Locale.ROOT)+afterfirst+" ";
         }
         return capitalizeWord.trim();
     }
