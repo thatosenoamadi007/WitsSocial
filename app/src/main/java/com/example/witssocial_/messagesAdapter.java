@@ -70,7 +70,7 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user, messagesAdapt
 
     }
 
-    String capitalizeWord(String str){
+    /*String capitalizeWord(String str){
         String words[]=str.split("\\s");
         String capitalizeWord="";
         for(String w:words){
@@ -79,5 +79,5 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user, messagesAdapt
             capitalizeWord+=first.toUpperCase(Locale.ROOT)+afterfirst+" ";
         }
         return capitalizeWord.trim();
-    }
+    }*/
 }
