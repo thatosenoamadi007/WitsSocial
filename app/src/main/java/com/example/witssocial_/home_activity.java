@@ -25,6 +25,8 @@ public class home_activity extends AppCompatActivity {
 
         bottomNavigationbar();
 
+        //----------------------------
+
         firebaseAuth = FirebaseAuth.getInstance();
 
         recyclerView = (RecyclerView) findViewById(R.id.homerecview);
