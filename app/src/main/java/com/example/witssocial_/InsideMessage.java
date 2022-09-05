@@ -75,7 +75,7 @@ public class InsideMessage extends AppCompatActivity {
         String currentDateTime=get_CurrentDateTime();
 
         //add to the database that conatins all the chat history
-        messageObject messageObject=new messageObject(FirebaseAuth.getInstance().getCurrentUser().getEmail(),name.toLowerCase(),message_content,currentDateTime);
+        messageObject messageObject=new messageObject(FirebaseAuth.getInstance().getCurrentUser().getEmail(),name.toLowerCase(Locale.ROOT),message_content,currentDateTime);
         String branch1=FirebaseAuth.getInstance().getCurrentUser().getEmail().toString().replace("@","").replace(".","");
         String branch2=name.replace("@","").replace(".","");
         saveToChatHistory(name,currentDateTime,messageObject,branch1,branch2);
