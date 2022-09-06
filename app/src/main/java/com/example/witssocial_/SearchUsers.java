@@ -56,19 +56,24 @@ public class SearchUsers extends AppCompatActivity {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.chat);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()){
-                case R.id.posts_timeline:
-                    startActivity(new Intent(getApplicationContext(),home_activity.class));
-                    return true;
-                case R.id.account:
-                    startActivity(new Intent(getApplicationContext(),Profile.class));
-                    return true;
-                case R.id.add_post:
-                    startActivity(new Intent(getApplicationContext(),add_post.class));
-                    return true;
-                case R.id.chat:
-                    //startActivity(new Intent(getApplicationContext(),SearchUsers.class));
-                    return true;
+            if (item.getItemId() == R.id.posts_timeline) {
+                Intent intent = new Intent (SearchUsers.this, home_activity.class);
+                startActivity(intent);
+                return true;
+            }
+            if (item.getItemId() == R.id.account) {
+                Intent intent = new Intent (SearchUsers.this, Profile.class);
+                startActivity(intent);
+                return true;
+            }
+            if (item.getItemId() == R.id.add_post) {
+                Intent intent = new Intent (SearchUsers.this, add_post.class);
+                startActivity(intent);
+                return true;
+            }
+            if (item.getItemId() == R.id.chat) {
+               // Intent intent = new Intent (SearchUsers.this, SearchUsers.class);
+                //startActivity(intent);
             }
             return false;
         });
