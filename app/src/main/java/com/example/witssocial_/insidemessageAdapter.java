@@ -69,12 +69,12 @@ public class insidemessageAdapter extends FirebaseRecyclerAdapter<messageObject,
 
         //check who is the sender and the recipient, and arranges the layout
         if(model.getSender_id().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString())){
-            Drawable d = context.getResources().getDrawable(R.drawable.message_container_bg2);
+            @SuppressLint("UseCompatLoadingForDrawables") Drawable d = context.getResources().getDrawable(R.drawable.message_container_bg2);
             holder.change_color.setBackground(d);
             holder.change_gravity.setGravity(Gravity.END);
 
         }else{
-            Drawable d = context.getResources().getDrawable(R.drawable.message_contaner_bg);
+            @SuppressLint("UseCompatLoadingForDrawables") Drawable d = context.getResources().getDrawable(R.drawable.message_contaner_bg);
             holder.change_color.setBackground(d);
             holder.change_gravity.setGravity(Gravity.START);
         }
