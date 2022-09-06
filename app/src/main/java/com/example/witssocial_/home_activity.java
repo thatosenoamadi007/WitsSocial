@@ -65,6 +65,7 @@ public class home_activity extends AppCompatActivity {
             if (item.getItemId() == R.id.chat) {
                Intent intent = new Intent (home_activity.this, SearchUsers.class);
                 startActivity(intent);
+                return true;
             }
             return false;
         });
