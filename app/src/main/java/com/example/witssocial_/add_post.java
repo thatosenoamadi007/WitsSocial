@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,6 +38,7 @@ public class add_post extends AppCompatActivity {
     private StorageReference storageRef;
     private home_adapter mainAdapter;
     private RecyclerView recyclerView;
+    BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +46,12 @@ public class add_post extends AppCompatActivity {
 
         addPost = findViewById(R.id.choosePost);
         caption = findViewById(R.id.caption);
+        caption = findViewById(R.id.makecaption);
         storage = FirebaseStorage.getInstance();
         postBtn = findViewById(R.id.postBtn);
         storageRef=storage.getReference();
+
+        bottomNavigationbar();
 
         addPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +67,34 @@ public class add_post extends AppCompatActivity {
         intent.setType("*/*");
         intent.setAction((intent.ACTION_GET_CONTENT));
         startActivityForResult(Intent.createChooser(intent,"SELECT POST"),10);
+    }
+
+    private void bottomNavigationbar() {
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.add_post);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+           if (item.getItemId() == R.id.posts_timeline) {
+                Intent intent = new Intent (add_post.this, home_activity.class);
+                startActivity(intent);
+                return true;
+            }
+            if (item.getItemId() == R.id.account) {
+                Intent intent = new Intent (add_post.this, Profile.class);
+                startActivity(intent);
+                return true;
+            }
+            if (item.getItemId() == R.id.add_post) {
+                //Intent intent = new Intent (add_post.this, add_post.class);
+               // startActivity(intent);
+                return true;
+            }
+            if (item.getItemId() == R.id.chat) {
+               Intent intent = new Intent (add_post.this, SearchUsers.class);
+                startActivity(intent);
+                return true;
+            }
+            return false;
+        });
     }
 
     @Override
@@ -117,6 +150,12 @@ public class add_post extends AppCompatActivity {
         recyclerView.getRecycledViewPool().clear();
         mainAdapter = new home_adapter(options);
         recyclerView.setAdapter(mainAdapter);
+            
+
+    }
+}
+
+
             
 
     }

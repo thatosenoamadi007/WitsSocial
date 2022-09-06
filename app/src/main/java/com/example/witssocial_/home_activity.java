@@ -1,5 +1,5 @@
 package com.example.witssocial_;
-// Look at this activity
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +19,8 @@ public class home_activity extends AppCompatActivity {
     private RecyclerView recyclerView;
     public BottomNavigationView bottomNavigationView;
     private home_adapter mainAdapter;
+    private home_adapter mainAdapter;
+    BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,15 @@ public class home_activity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.homerecview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("AllPost"),Post.class).build();
+        bottomNavigationbar();
+
+        //----------------------------
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        recyclerView = (RecyclerView) findViewById(R.id.homerecview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
         recyclerView.getRecycledViewPool().clear();
         mainAdapter= new home_adapter(options);
         recyclerView.setAdapter(mainAdapter);
@@ -66,4 +77,38 @@ public class home_activity extends AppCompatActivity {
         super.onStop();
         mainAdapter.stopListening();
     }
+}
+    private void bottomNavigationbar() {
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.posts_timeline);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+           if (item.getItemId() == R.id.posts_timeline) {
+               // Intent intent = new Intent (home_activity.this, home_activity.class);
+               // startActivity(intent);
+               // return true;
+            }
+            if (item.getItemId() == R.id.account) {
+                Intent intent = new Intent (home_activity.this, Profile.class);
+                startActivity(intent);
+                return true;
+            }
+            if (item.getItemId() == R.id.add_post) {
+                Intent intent = new Intent (home_activity.this, add_post.class);
+                startActivity(intent);
+                return true;
+            }
+            if (item.getItemId() == R.id.chat) {
+               Intent intent = new Intent (home_activity.this, SearchUsers.class);
+                startActivity(intent);
+                return true;
+            }
+            return false;
+        });
+    }
+
+    /*@Override
+    protected void onStop() {
+        super.onStop();
+        mainAdapter.stopListening();
+    }*/
 }
