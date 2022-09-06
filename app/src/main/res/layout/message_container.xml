@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
     android:id="@+id/change_gravity"
     android:layout_marginTop="10dp"
     android:layout_marginLeft="10dp"
