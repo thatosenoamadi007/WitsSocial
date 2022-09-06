@@ -11,4 +11,8 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
     }
+
+    public int add(int num1, int num2){
+        return num1 + num2;
+    }
 }

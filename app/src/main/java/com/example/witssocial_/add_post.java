@@ -45,6 +45,7 @@ public class add_post extends AppCompatActivity {
         setContentView(R.layout.activity_add_post);
 
         addPost = findViewById(R.id.choosePost);
+        caption = findViewById(R.id.caption);
         caption = findViewById(R.id.makecaption);
         storage = FirebaseStorage.getInstance();
         postBtn = findViewById(R.id.postBtn);
@@ -143,6 +144,16 @@ public class add_post extends AppCompatActivity {
 
                         }
                     });
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Posts").child(FirebaseAuth.getInstance().getCurrentUser().getUid()),Post.class)
+                .build();
+        recyclerView.getRecycledViewPool().clear();
+        mainAdapter = new home_adapter(options);
+        recyclerView.setAdapter(mainAdapter);
+            
+
+    }
+}
 
 
             
