@@ -42,7 +42,7 @@
             android:hint="username"
             android:textColor="@color/black"
             android:textColorHint="#000000"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/passwordSignUp"
@@ -57,7 +57,7 @@
             android:inputType="textPassword"
             android:textColor="@color/black"
             android:textColorHint="#000000"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/confirmPasswordSignUp"
@@ -72,7 +72,7 @@
             android:inputType="textPassword"
             android:textColor="@color/black"
             android:textColorHint="#000000"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:autofillHints="" />
 
         <Button
