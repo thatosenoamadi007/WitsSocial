@@ -8,14 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class home_activity extends AppCompatActivity {
-    private FirebaseAuth firebaseAuth;
-    private RecyclerView recyclerView;
     private home_adapter mainAdapter;
     BottomNavigationView bottomNavigationView;
     @Override
@@ -27,9 +23,7 @@ public class home_activity extends AppCompatActivity {
 
         //----------------------------
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        recyclerView = (RecyclerView) findViewById(R.id.homerecview);
+        RecyclerView recyclerView = findViewById(R.id.homerecview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
         recyclerView.getRecycledViewPool().clear();
@@ -47,11 +41,7 @@ public class home_activity extends AppCompatActivity {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.posts_timeline);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-           if (item.getItemId() == R.id.posts_timeline) {
-               // Intent intent = new Intent (home_activity.this, home_activity.class);
-               // startActivity(intent);
-               // return true;
-            }
+            item.getItemId();
             if (item.getItemId() == R.id.account) {
                 Intent intent = new Intent (home_activity.this, Profile.class);
                 startActivity(intent);
@@ -71,9 +61,4 @@ public class home_activity extends AppCompatActivity {
         });
     }
 
-    /*@Override
-    protected void onStop() {
-        super.onStop();
-        mainAdapter.stopListening();
-    }*/
 }

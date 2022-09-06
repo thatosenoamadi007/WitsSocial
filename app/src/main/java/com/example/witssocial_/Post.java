@@ -15,6 +15,7 @@ public class Post {
         this.username=username;
     }
 
+
     public void setPost(String post){
         this.post=post;
     }
