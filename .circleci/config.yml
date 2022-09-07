@@ -31,8 +31,3 @@ jobs:
           destination: reports
       - store_test_results:
           path: app/build/test-results
-workflows:
-  upload-to-codecov:
-    jobs:
-      - checkout
-      - codecov/upload
