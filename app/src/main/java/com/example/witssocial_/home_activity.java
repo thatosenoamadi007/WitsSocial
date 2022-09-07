@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class home_activity extends AppCompatActivity {
 
-   
+   //find all views in activity
     private RecyclerView recyclerView;
     public BottomNavigationView bottomNavigationView;
     private home_adapter mainAdapter;
@@ -25,7 +25,7 @@ public class home_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+         //initlise the recycler view, layout manager and firebase recycler options
         recyclerView = (RecyclerView) findViewById(R.id.homerecview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("AllPost"),Post.class).build();
@@ -35,6 +35,9 @@ public class home_activity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.homerecview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        
+       
+       //set recyclerview to the main adapter
         recyclerView.getRecycledViewPool().clear();
         mainAdapter= new home_adapter(options);
         recyclerView.setAdapter(mainAdapter);
@@ -51,7 +54,7 @@ public class home_activity extends AppCompatActivity {
         super.onStop();
         mainAdapter.stopListening();
     }
-
+     //fuction to navigate the bottom navigation menu
     private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.posts_timeline);
