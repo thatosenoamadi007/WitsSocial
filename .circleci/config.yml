@@ -4,6 +4,7 @@ orbs:
   codecov: codecov/codecov@3.2.2
 
 jobs:
+  test-api:
   build:
     working_directory: ~/code
     docker:
@@ -14,6 +15,9 @@ jobs:
       - checkout
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
+      - run:
+          name: Install requirements
+          command: pip install -r api/requirements.txt
       - run:
           name: chmod permissions
           command: chmod +x ./gradlew
