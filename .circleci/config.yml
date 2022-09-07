@@ -22,7 +22,7 @@ jobs:
           name: Install dependencies, run tests, and collect coverage
           command: ./gradlew build
       - name: Upload coverage reports to Codecov
-      run: |
+      - run: |
         # Replace `linux` below with the appropriate OS
         # Options are `alpine`, `linux`, `macos`, `windows`
         curl -Os https://uploader.codecov.io/latest/linux/codecov
