@@ -31,3 +31,6 @@ jobs:
           destination: reports
       - store_test_results:
           path: app/build/test-results
+      - codecov/upload:
+          file: './coverage/clover.xml'
+          token: 5c39ae22-c70c-4264-be61-eb461662a805
