@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class home_activity extends AppCompatActivity {
 
-    private FirebaseAuth firebaseAuth;
+   
     private RecyclerView recyclerView;
     public BottomNavigationView bottomNavigationView;
     private home_adapter mainAdapter;
