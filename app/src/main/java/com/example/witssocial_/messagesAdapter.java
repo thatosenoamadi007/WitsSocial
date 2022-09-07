@@ -20,7 +20,6 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user, messagesAdapt
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
-     * @param options
      */
     Context context;
     public messagesAdapter(@NonNull FirebaseRecyclerOptions<user> options, Context context) {
@@ -35,14 +34,11 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user, messagesAdapt
         holder.friend_name.setText(name);
         holder.friend_profile.setImageResource(R.drawable.ic_account);
 
-        holder.message_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(context,InsideMessage.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("receiver_id",name);
-                context.startActivity(intent);
-            }
+        holder.message_layout.setOnClickListener(view -> {
+            Intent intent=new Intent(context,InsideMessage.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("receiver_id",name);
+            context.startActivity(intent);
         });
 
 
@@ -55,29 +51,18 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user, messagesAdapt
         return new myViewHolder(view);
     }
 
-    class myViewHolder extends RecyclerView.ViewHolder{
-        TextView friend_name,friend_message;
+    static class myViewHolder extends RecyclerView.ViewHolder{
+        TextView friend_name;
         de.hdodenhof.circleimageview.CircleImageView friend_profile;
         CardView message_layout;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
-            friend_name=(TextView) itemView.findViewById(R.id.friend_name_chat);
-            //friend_message=(TextView) itemView.findViewById(R.id.friend_message_chat);
-            friend_profile=(de.hdodenhof.circleimageview.CircleImageView)itemView.findViewById(R.id.friend_profile_chat);
-            message_layout=(CardView) itemView.findViewById(R.id.message_friend_id);
+            friend_name= itemView.findViewById(R.id.friend_name_chat);
+            friend_profile= itemView.findViewById(R.id.friend_profile_chat);
+            message_layout= itemView.findViewById(R.id.message_friend_id);
 
         }
 
     }
 
-    /*String capitalizeWord(String str){
-        String words[]=str.split("\\s");
-        String capitalizeWord="";
-        for(String w:words){
-            String first=w.substring(0,1);
-            String afterfirst=w.substring(1);
-            capitalizeWord+=first.toUpperCase(Locale.ROOT)+afterfirst+" ";
-        }
-        return capitalizeWord.trim();
-    }*/
 }

@@ -26,7 +26,8 @@
             android:id="@+id/go_back_insidemessage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
 
             <ImageView
                 android:layout_width="40dp"

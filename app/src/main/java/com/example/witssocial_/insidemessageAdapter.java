@@ -24,13 +24,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 public class insidemessageAdapter extends FirebaseRecyclerAdapter<messageObject, insidemessageAdapter.myViewHolder> {
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
-     * @param options
      */
     Context context;
     public insidemessageAdapter(@NonNull FirebaseRecyclerOptions<messageObject> options, Context context) {
@@ -68,7 +68,7 @@ public class insidemessageAdapter extends FirebaseRecyclerAdapter<messageObject,
         }
 
         //check who is the sender and the recipient, and arranges the layout
-        if(model.getSender_id().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString())){
+        if(model.getSender_id().equals(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail())){
             @SuppressLint("UseCompatLoadingForDrawables") Drawable d = context.getResources().getDrawable(R.drawable.message_container_bg2);
             holder.change_color.setBackground(d);
             holder.change_gravity.setGravity(Gravity.END);
@@ -90,15 +90,15 @@ public class insidemessageAdapter extends FirebaseRecyclerAdapter<messageObject,
         return new myViewHolder(view);
     }
 
-    class myViewHolder extends RecyclerView.ViewHolder{
+    static class myViewHolder extends RecyclerView.ViewHolder{
         TextView message_content,time;
         RelativeLayout change_gravity,change_color;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
-            message_content=(TextView) itemView.findViewById(R.id.display_message);
-            change_gravity=(RelativeLayout) itemView.findViewById(R.id.change_gravity);
-            change_color=(RelativeLayout) itemView.findViewById(R.id.change_color);
-            time=(TextView) itemView.findViewById(R.id.time);
+            message_content= itemView.findViewById(R.id.display_message);
+            change_gravity= itemView.findViewById(R.id.change_gravity);
+            change_color= itemView.findViewById(R.id.change_color);
+            time= itemView.findViewById(R.id.time);
         }
 
     }

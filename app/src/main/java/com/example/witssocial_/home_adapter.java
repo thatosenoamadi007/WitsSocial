@@ -13,9 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
 
 public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myViewHolder> {
 
@@ -42,14 +39,14 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
         return new myViewHolder(view);
     }
 
-    class myViewHolder extends RecyclerView.ViewHolder{
+    static class myViewHolder extends RecyclerView.ViewHolder{
         TextView handle, caption;
         ImageView post;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
-            handle = (TextView) itemView.findViewById(R.id.handle);
-            caption = (TextView) itemView.findViewById(R.id.caption);
-            post = (ImageView) itemView.findViewById(R.id.post);
+            handle = itemView.findViewById(R.id.handle);
+            caption = itemView.findViewById(R.id.caption);
+            post = itemView.findViewById(R.id.post);
         }
     }
 
