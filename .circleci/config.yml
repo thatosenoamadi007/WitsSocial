@@ -20,7 +20,7 @@ jobs:
           command: ./gradlew androidDependencies
       - run:
           name: Install dependencies, run tests, and collect coverage
-          command: gradle build
+          command: ./gradlew build
       - save_cache:
           paths:
             - ~/.gradle
