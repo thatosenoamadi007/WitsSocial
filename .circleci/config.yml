@@ -15,9 +15,6 @@ jobs:
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
       - run:
-          name: Install requirements
-          command: pip install -r api/requirements.txt
-      - run:
           name: chmod permissions
           command: chmod +x ./gradlew
       - run:
