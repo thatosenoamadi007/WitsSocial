@@ -1,7 +1,5 @@
 version: 2.1
-orbs:
-  coveralls: coveralls/coveralls@1.0.6
-  
+
 jobs:
   build:
     working_directory: ~/code
@@ -19,10 +17,7 @@ jobs:
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
-      - run: npm install --no-optional
-      - run:
-          name: Install and Make
-          command: 'npm install && make test-coverage'
+
           
       - save_cache:
           paths:
