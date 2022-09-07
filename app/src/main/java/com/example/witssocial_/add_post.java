@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
@@ -58,6 +59,7 @@ public class add_post extends AppCompatActivity {
     private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.add_post);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
            if (item.getItemId() == R.id.posts_timeline) {
                 Intent intent = new Intent (add_post.this, home_activity.class);
@@ -120,19 +122,6 @@ public class add_post extends AppCompatActivity {
                         Toast.makeText(add_post.this,"Picture uploaded", Toast.LENGTH_SHORT).show();
 
                     });
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("Posts").child(FirebaseAuth.getInstance().getCurrentUser().getUid()),Post.class)
-                .build();
-        recyclerView.getRecycledViewPool().clear();
-        mainAdapter = new home_adapter(options);
-        recyclerView.setAdapter(mainAdapter);
-            
-
-    }
-}
-
-
-
 
     }
 }
