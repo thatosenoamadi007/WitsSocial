@@ -37,6 +37,7 @@ public class add_post extends AppCompatActivity {
         setContentView(R.layout.activity_add_post);
 
         addPost = findViewById(R.id.choosePost);
+        caption = findViewById(R.id.caption);
         caption = findViewById(R.id.makecaption);
         FirebaseStorage storage = FirebaseStorage.getInstance();
         postBtn = findViewById(R.id.postBtn);
@@ -119,6 +120,16 @@ public class add_post extends AppCompatActivity {
                         Toast.makeText(add_post.this,"Picture uploaded", Toast.LENGTH_SHORT).show();
 
                     });
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Posts").child(FirebaseAuth.getInstance().getCurrentUser().getUid()),Post.class)
+                .build();
+        recyclerView.getRecycledViewPool().clear();
+        mainAdapter = new home_adapter(options);
+        recyclerView.setAdapter(mainAdapter);
+            
+
+    }
+}
 
 
 

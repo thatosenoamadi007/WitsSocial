@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/bg_edittext.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/ic_account.xml" value="0.13" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/ic_attach_insidemessage.xml" value="0.1" />
@@ -41,10 +42,5 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".add_post"
+    tools:context=".add_post">
     >
 
     <ImageView
@@ -39,7 +39,6 @@
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/makecaption" />
-
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

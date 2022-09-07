@@ -26,6 +26,7 @@ public class login extends AppCompatActivity {
         logIn = findViewById(R.id.logInBtn);
         mAuth = FirebaseAuth.getInstance();
 
+
         logIn.setOnClickListener(view -> mAuth.signInWithEmailAndPassword(username.getText().toString(),password.getText().toString()).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
                 startActivity(new Intent(login.this, SearchUsers.class));
