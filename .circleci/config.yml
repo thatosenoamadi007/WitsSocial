@@ -18,6 +18,9 @@ jobs:
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
+      - run:
+          name: Install dependencies, run tests, and collect coverage
+          command: gradle build
       - save_cache:
           paths:
             - ~/.gradle
@@ -27,3 +30,8 @@ jobs:
           destination: reports
       - store_test_results:
           path: app/build/test-results
+workflow:
+  version: 2.1
+  build-test:
+    jobs:
+      - build
