@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class home_activity extends AppCompatActivity {
 
-    private FirebaseAuth firebaseAuth;
+   
     private RecyclerView recyclerView;
     public BottomNavigationView bottomNavigationView;
     private home_adapter mainAdapter;
@@ -25,29 +25,6 @@ public class home_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        firebaseAuth = FirebaseAuth.getInstance();
-
-
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.home);
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.profile:
-                    startActivity(new Intent(home_activity.this, Profile.class));
-                    overridePendingTransition(0, 0);
-                    return true;
-                case R.id.home:
-                    return true;
-                case R.id.post:
-                    startActivity(new Intent(home_activity.this, add_post.class));
-                    overridePendingTransition(0, 0);
-                    return true;
-            }
-            return false;
-        });
-
-
 
         recyclerView = (RecyclerView) findViewById(R.id.homerecview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -75,7 +52,7 @@ public class home_activity extends AppCompatActivity {
         super.onStop();
         mainAdapter.stopListening();
     }
-}
+
     private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.posts_timeline);
