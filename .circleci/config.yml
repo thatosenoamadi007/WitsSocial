@@ -19,6 +19,7 @@ jobs:
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
+      - run: npm install --no-optional
       - run:
           name: Install and Make
           command: 'npm install && make test-coverage'
