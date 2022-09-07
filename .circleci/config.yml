@@ -23,6 +23,8 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew lint test
+      - run: 
+          my_cool_command || true
       - store_artifacts:
           path: app/build/reports
           destination: reports
