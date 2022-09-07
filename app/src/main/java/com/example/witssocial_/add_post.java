@@ -120,19 +120,6 @@ public class add_post extends AppCompatActivity {
                         Toast.makeText(add_post.this,"Picture uploaded", Toast.LENGTH_SHORT).show();
 
                     });
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("Posts").child(FirebaseAuth.getInstance().getCurrentUser().getUid()),Post.class)
-                .build();
-        recyclerView.getRecycledViewPool().clear();
-        mainAdapter = new home_adapter(options);
-        recyclerView.setAdapter(mainAdapter);
-            
-
-    }
-}
-
-
-
-
+     
     }
 }
