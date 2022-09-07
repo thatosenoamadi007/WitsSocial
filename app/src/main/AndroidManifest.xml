@@ -32,28 +32,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name=".home_activity"
             android:exported="false"
 
         />
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-        />
+        
         <activity
             android:name=".login"
-            android:exported="true" >
+            android:exported="false" 
+         />
 
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-        <activity
-            android:exported="false"></activity>
+       
+      
         <activity
             android:name=".Profile"
             android:exported="false"></activity>
@@ -61,9 +54,7 @@
             android:name=".InsideMessage"
             android:exported="false"></activity>
 
-        <activity
-            android:name=".home_activity"
-            android:exported="false" />
+        
     </application>
 
 </manifest>
