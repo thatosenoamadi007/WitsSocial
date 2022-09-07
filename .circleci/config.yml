@@ -1,7 +1,6 @@
 version: 2.1
-
 orbs:
-  codecov: codecov/codecov@3.2.2
+  codecov: codecov/codecov@3
 
 jobs:
   test-api:
@@ -25,8 +24,9 @@ jobs:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - run:
-          name: Run tests and collect coverage
-          command: ./gradlew test
+          name: Install dependencies, run tests, and collect coverage
+          command: gradle build
+          
       - codecov/upload
 
           
@@ -39,4 +39,8 @@ jobs:
           destination: reports
       - store_test_results:
           path: app/build/test-results
-
+workflow:
+  version: 2.1
+  build-test:
+    jobs:
+      - build
