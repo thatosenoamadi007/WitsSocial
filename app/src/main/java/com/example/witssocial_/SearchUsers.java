@@ -75,8 +75,8 @@ public class SearchUsers extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         FirebaseRecyclerOptions<user> options =
-                new FirebaseRecyclerOptions.Builder<user>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("List of friends").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
+                new FirebaseRecyclerOptions.Builder<user>()//List of friends
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("User Following").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
                         .build();
         mainAdapter = new messagesAdapter(options,getApplicationContext());
         mainAdapter.startListening();

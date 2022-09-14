@@ -69,22 +69,24 @@
                     android:layout_marginStart="20dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:text="@string/_30k"
                         android:gravity="center"
                         android:textColor="@color/black"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:id="@+id/number_of_followers"/>
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:text="@string/_1k"
                         android:gravity="center"
                         android:textColor="@color/black"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:id="@+id/number_of_following"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
