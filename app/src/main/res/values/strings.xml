@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">Wits Social</string>
+    <string name="already_have_an_account_sign_in">Already have an account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="confirm_password_required">Confirm Password (Required)</string>
+    <string name="password_required">Password (Required)</string>
+    <string name="email_required">Email (Required)</string>
+    <string name="full_name_required">Full Name (Required)</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="sign_in_textview">Sign In</string>
+    <string name="sign_in_text">Sign In</string>
+    <string name="sign_up_textview">Sign Up</string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account yet?</string>
+    <string name="user_full_name">user full name</string>
+    <string name="user_email">User email</string>
+    <string name="todo">TODO</string>
+    <string name="caption">Caption</string>
+    <string name="_32_minutes_ago">32 minutes ago</string>
+    <string name="_10k">10K</string>
+    <string name="message">Message</string>
+    <string name="follow">Follow</string>
+    <string name="following">Following</string>
+    <string name="followers">Followers</string>
+    <string name="_1k">1k</string>
+    <string name="_30k">30K</string>
+    <string name="karabogmailcom">karabogmailcom</string>
+    <string name="karabo_sepuru">karabo sepuru</string>
+    <string name="god_save_our_gracious_king_long_live_our_noble_king_god_save_the_king_send_him_victorious_happy_and_glorious_long_to_reign_over_us_god_save_the_king">God save our gracious king! Long live our noble king! God save the king! Send him victorious, Happy and glorious, Long to reign over us; God save the king!</string>
+    <string name="all">All</string>
+    <string name="media">Media</string>
+    <string name="text">Text</string>
+    <string name="message1">Message</string>
 </resources>

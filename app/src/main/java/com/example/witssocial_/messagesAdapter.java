@@ -35,7 +35,8 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user, messagesAdapt
         holder.friend_profile.setImageResource(R.drawable.ic_account);
 
         holder.message_layout.setOnClickListener(view -> {
-            Intent intent=new Intent(context,InsideMessage.class);
+            //Intent intent=new Intent(context,InsideMessage.class);
+            Intent intent=new Intent(context,a_FriendProfile.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("receiver_id",name);
             context.startActivity(intent);

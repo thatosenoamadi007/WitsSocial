@@ -2,14 +2,13 @@ package com.example.witssocial_;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,16 +24,16 @@ import java.util.Objects;
 
 public class InsideMessage extends AppCompatActivity {
     //variables used when activity loads
-    LinearLayout go_back;
-    TextView show_friend_name;
+    AppCompatImageView go_back;
+    AppCompatTextView show_friend_name;
 
     //variables used when displaying messages
     RecyclerView recyclerView;
     insidemessageAdapter mainAdapter;
 
     //variables used when sending message
-    EditText typed_message;
-    ImageView send_message;
+    AppCompatEditText typed_message;
+    AppCompatImageView send_message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class InsideMessage extends AppCompatActivity {
     }
 
     void delegatedToSendMessage(){
-        String message_content=typed_message.getText().toString();
+        String message_content= Objects.requireNonNull(typed_message.getText()).toString();
         String name=getIntent().getStringExtra("receiver_id");
         String currentDateTime=get_CurrentDateTime();
 
