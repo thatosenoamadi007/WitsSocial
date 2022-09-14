@@ -36,15 +36,7 @@ public class a_FriendProfile extends AppCompatActivity {
         setContentView(R.layout.activity_afriend_profile);
 
         //initialize variables
-        number_of_followers=findViewById(R.id.number_of_followers);
-        number_of_following=findViewById(R.id.number_of_following);
-        follow_friend=findViewById(R.id.follow_friend);
-        message_friend=findViewById(R.id.message_friend);
-        friend_name=findViewById(R.id.friend_name);
-        friend_email=findViewById(R.id.friend_email);
-        top_bar_friend_email=findViewById(R.id.top_bar_friend_name);
-        go_back_to_search=findViewById(R.id.go_back_to_search);
-        friend_recyclerview=findViewById(R.id.friend_profile_recyclerview);
+        initializeVariables();
 
         //set variables
         String friendEmail=getIntent().getStringExtra("receiver_id");
@@ -54,6 +46,12 @@ public class a_FriendProfile extends AppCompatActivity {
 
         //check if you already follow user
         ifFollowsUser();
+
+        //add to recently searched
+        user user=new user(getIntent().getStringExtra("receiver_id"));
+        String branch1= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()).replace("@","").replace(".","");
+        String branch2=getIntent().getStringExtra("receiver_id").replace("@","").replace(".","");
+        recentlySearched(user,branch1,branch2);
 
         //go back to previous activity
         go_back_to_search.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,SearchUsers.class)));
@@ -70,6 +68,28 @@ public class a_FriendProfile extends AppCompatActivity {
         //follow friend
         follow_friend.setOnClickListener(view -> follow_Unfollow_friend());
 
+    }
+
+    private void recentlySearched(user user,String branch1,String branch2) {
+        FirebaseDatabase.getInstance().getReference()
+                .child("Search History")
+                .child(branch1)
+                .child(branch2)
+                .setValue(user).addOnSuccessListener(unused -> {
+                    Toast.makeText(a_FriendProfile.this, "Added to recently searched.", Toast.LENGTH_SHORT).show();
+                }).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Couldn't add to recently searched.", Toast.LENGTH_SHORT).show());
+    }
+
+    private void initializeVariables() {
+        number_of_followers=findViewById(R.id.number_of_followers);
+        number_of_following=findViewById(R.id.number_of_following);
+        follow_friend=findViewById(R.id.follow_friend);
+        message_friend=findViewById(R.id.message_friend);
+        friend_name=findViewById(R.id.friend_name);
+        friend_email=findViewById(R.id.friend_email);
+        top_bar_friend_email=findViewById(R.id.top_bar_friend_name);
+        go_back_to_search=findViewById(R.id.go_back_to_search);
+        friend_recyclerview=findViewById(R.id.friend_profile_recyclerview);
     }
 
     private void ifFollowsUser() {

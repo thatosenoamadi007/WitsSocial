@@ -75,8 +75,8 @@ public class SearchUsers extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         FirebaseRecyclerOptions<user> options =
-                new FirebaseRecyclerOptions.Builder<user>()//List of friends
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("User Following").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
+                new FirebaseRecyclerOptions.Builder<user>()//List of friends User Following
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Search History").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
                         .build();
         mainAdapter = new messagesAdapter(options,getApplicationContext());
         mainAdapter.startListening();
@@ -112,8 +112,8 @@ public class SearchUsers extends AppCompatActivity {
 
     private void findAllFriends() {
 
-        mainAdapter = new messagesAdapter(new FirebaseRecyclerOptions.Builder<user>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("List of friends").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
+        mainAdapter = new messagesAdapter(new FirebaseRecyclerOptions.Builder<user>()//List of Friends
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Search History").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
                 .build(),getApplicationContext());
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);

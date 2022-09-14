@@ -71,10 +71,10 @@ public class InsideMessage extends AppCompatActivity {
         saveToChatHistory(currentDateTime,messageObject,branch2,branch1);
 
         //add to the database that shows list of friends im chatting with and recent message sent to them
-        user user=new user(name);
-        sendToListOfUsers(user,branch1,branch2);
-        user=new user(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        sendToListOfUsers(user,branch2,branch1);
+        //user user=new user(name);
+        //sendToListOfUsers(user,branch1,branch2);
+        //user=new user(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        //sendToListOfUsers(user,branch2,branch1);
 
     }
 
@@ -87,7 +87,7 @@ public class InsideMessage extends AppCompatActivity {
                 .setValue(messageObject).addOnSuccessListener(unused -> typed_message.setText("")).addOnFailureListener(e -> Toast.makeText(InsideMessage.this, "Message not sent, try again.", Toast.LENGTH_SHORT).show());
     }
 
-    void sendToListOfUsers(user user, String branch1, String branch2){
+   /* void sendToListOfUsers(user user, String branch1, String branch2){
         FirebaseDatabase.getInstance().getReference()
                 .child("List of friends")
                 .child(branch1)
@@ -95,7 +95,7 @@ public class InsideMessage extends AppCompatActivity {
                 .setValue(user).addOnSuccessListener(unused -> {
 
                 }).addOnFailureListener(e -> Toast.makeText(InsideMessage.this, "Couldn't update latest messages on the database", Toast.LENGTH_SHORT).show());
-    }
+    }*/
 
     String get_CurrentDateTime(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.US);
