@@ -48,7 +48,9 @@ jobs:
           name: Install dependencies, run tests, and collect coverage
           command: ./gradlew build
       - codecov/upload
-
+      - run:
+          curl -Os https://uploader.codecov.io/latest/linux/codecov chmod +x codecov ./codecov
+          
 workflow:
   version: 2.1
   build-test:
