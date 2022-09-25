@@ -47,6 +47,10 @@ jobs:
       - run:
           name: Install dependencies, run tests, and collect coverage
           command: ./gradlew build
+      - run: |
+          swift test --enable-code-coverage
+          xcrun llvm-cov report $BUILD_FOLDER -instr-profile $PROFDATA_FOLDER
+          xcrun llvm-cov export -format="lcov" $BUILD_FOLDER -instr-profile $PROFDATA_FOLDER > $LCOV_PATH
       - codecov/upload
 
           
