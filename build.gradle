@@ -20,7 +20,6 @@ targetCompatibility = 18
 dependencies {
     testImplementation "junit:junit:4.13"
 }
-
 jacocoTestReport {
     reports {
         xml.enabled true
