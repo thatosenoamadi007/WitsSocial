@@ -48,10 +48,10 @@ jobs:
           name: Install dependencies, run tests, and collect coverage
           command: ./gradlew build
       - codecov/upload
-      -run:
-         curl -Os https://uploader.codecov.io/latest/linux/codecov
-         chmod +x codecov
-         ./codecov -t ${CODECOV_TOKEN=5c39ae22-c70c-4264-be61-eb461662a805}
+      - run:
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov -t ${CODECOV_TOKEN=5c39ae22-c70c-4264-be61-eb461662a805}
 
 workflow:
   version: 2.1
