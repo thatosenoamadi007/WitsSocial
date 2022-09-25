@@ -41,6 +41,9 @@ jobs:
       - image: circleci/android:api-30
     steps:
       - checkout
+       - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
       - run:
           name: Install dependencies, run tests, and collect coverage
           command: ./gradlew build
