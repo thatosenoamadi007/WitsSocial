@@ -14,9 +14,9 @@ version '1.0'
 apply plugin: 'java'
 apply plugin: 'jacoco'
 
-/*task clean(type: Delete) {
-    delete rootProject.buildDir
-}*/
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
 
 jacocoTestReport {
     reports {
