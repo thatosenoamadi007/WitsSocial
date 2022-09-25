@@ -10,12 +10,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 18
-      #- name: Install dependencies, run tests, and collect coverage
-      #  run: gradle build
+      - name: Install dependencies, run tests, and collect coverage
+        run: gradle build
       # Execute unit tests
-      - name: Gradlew Permission
-        run: chmod +x ./gradlew
-      - name: Unit Test
-        run: ./gradlew testDebugUnitTest
+     # - name: Gradlew Permission
+      #  run: chmod +x ./gradlew
+      #- name: Unit Test
+      #  run: ./gradlew testDebugUnitTest
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
