@@ -25,13 +25,12 @@ public class home_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-         //initlise the recycler view, layout manager and firebase recycler options
+
+        //initlise the recycler view, layout manager and firebase recycler options
         recyclerView = (RecyclerView) findViewById(R.id.homerecview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("AllPost"),Post.class).build();
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
         bottomNavigationbar();
-
-        //----------------------------
 
         RecyclerView recyclerView = findViewById(R.id.homerecview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -43,18 +42,7 @@ public class home_activity extends AppCompatActivity {
         recyclerView.setAdapter(mainAdapter);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mainAdapter.startListening();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mainAdapter.stopListening();
-    }
-     //fuction to navigate the bottom navigation menu
+    //function to navigate the bottom navigation menu
     private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.posts_timeline);
@@ -71,12 +59,27 @@ public class home_activity extends AppCompatActivity {
                 return true;
             }
             if (item.getItemId() == R.id.chat) {
-               Intent intent = new Intent (home_activity.this, SearchUsers.class);
+                Intent intent = new Intent (home_activity.this, SearchUsers.class);
                 startActivity(intent);
                 return true;
             }
             return false;
         });
     }
+
+    //adapter start listening
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mainAdapter.startListening();
+    }
+
+    //adapter stop listening
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mainAdapter.stopListening();
+    }
+
 
 }

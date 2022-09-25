@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class add_post extends AppCompatActivity {
+    //find all view in activity
     private ImageView addPost;
     private TextView caption;
     private Button postBtn;
@@ -36,6 +37,7 @@ public class add_post extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
 
+        //instatiate view in activity
         addPost = findViewById(R.id.choosePost);
         caption = findViewById(R.id.caption);
         caption = findViewById(R.id.makecaption);
@@ -45,9 +47,11 @@ public class add_post extends AppCompatActivity {
 
         bottomNavigationbar();
 
+        //add post button on click listener
         addPost.setOnClickListener(view -> selectPost());
     }
 
+    //function to select post
     private void selectPost() {
         Intent intent = new Intent();
         intent.setType("*/*");
@@ -55,6 +59,8 @@ public class add_post extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent1,"SELECT POST"),10);
     }
 
+
+    //function to nav the bottom navigation menu
     private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.add_post);
@@ -81,6 +87,7 @@ public class add_post extends AppCompatActivity {
         });
     }
 
+    //upload post to database
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
