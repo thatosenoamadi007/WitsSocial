@@ -15,7 +15,6 @@ jobs:
           name: Install dependencies, run tests, and collect coverage
           command: ./gradlew build
       - codecov/upload
-      - file: coverage.xml,e2e-coverage.xml
 
 workflow:
   version: 2.1
