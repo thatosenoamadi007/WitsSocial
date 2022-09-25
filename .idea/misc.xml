@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/add_post_button_bg.xml" value="0.1265" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/add_post_image_bg.xml" value="0.143" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/bg_edittext.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/ic_account.xml" value="0.13" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/drawable/ic_attach_insidemessage.xml" value="0.1" />
@@ -23,6 +25,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_add_post.xml" value="0.13994565217391305" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_afriend_profile.xml" value="0.15989583333333332" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_dummy_actiity.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_edit_profile.xml" value="0.15989583333333332" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_inside_message.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_login.xml" value="0.14130434782608695" />
@@ -33,6 +36,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/messageapperance.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/post_layout.xml" value="0.3148148148148148" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/post_layout2.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/menu/bottom_nav_bar.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/menu/bottom_navigation.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/User/AndroidStudioProjects/WitsSocial/app/src/main/res/menu/botton_nav_menu.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/user/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_add_post.xml" value="0.1" />

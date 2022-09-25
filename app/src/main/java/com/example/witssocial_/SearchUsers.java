@@ -51,16 +51,19 @@ public class SearchUsers extends AppCompatActivity {
             if (item.getItemId() == R.id.posts_timeline) {
                 Intent intent = new Intent (SearchUsers.this, home_activity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
                 return true;
             }
             if (item.getItemId() == R.id.account) {
                 Intent intent = new Intent (SearchUsers.this, Profile.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 return true;
             }
             if (item.getItemId() == R.id.add_post) {
                 Intent intent = new Intent (SearchUsers.this, add_post.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
                 return true;
             }
             return false;
@@ -74,9 +77,10 @@ public class SearchUsers extends AppCompatActivity {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        FirebaseRecyclerOptions<user> options =
-                new FirebaseRecyclerOptions.Builder<user>()//List of friends User Following
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Search History").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
+        FirebaseRecyclerOptions<user_class> options =
+                new FirebaseRecyclerOptions.Builder<user_class>()//List of friends User Following
+                        //.setQuery(FirebaseDatabase.getInstance().getReference().child("Search History").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Search History").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user_class.class)
                         .build();
         mainAdapter = new messagesAdapter(options,getApplicationContext());
         mainAdapter.startListening();
@@ -98,9 +102,10 @@ public class SearchUsers extends AppCompatActivity {
         if(s.equals("")){
             findAllFriends();
         }else{
-            FirebaseRecyclerOptions<user> options =
-                    new FirebaseRecyclerOptions.Builder<user>()
-                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("username").startAt(s.toLowerCase(Locale.ROOT)).endAt(s.toLowerCase(Locale.ROOT)+"~"), user.class)//.orderByChild("modName").equalTo("APHY8010")
+            FirebaseRecyclerOptions<user_class> options =
+                    new FirebaseRecyclerOptions.Builder<user_class>()
+                            //.setQuery(FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("username").startAt(s.toLowerCase(Locale.ROOT)).endAt(s.toLowerCase(Locale.ROOT)+"~"), user.class)//.orderByChild("modName").equalTo("APHY8010")
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").orderByChild("username").startAt(s.toLowerCase(Locale.ROOT)).endAt(s.toLowerCase(Locale.ROOT)+"~"), user_class.class)//.orderByChild("modName").equalTo("APHY8010")
                             .build();
             mainAdapter = new messagesAdapter(options,getApplicationContext());
             mainAdapter.startListening();
@@ -112,8 +117,9 @@ public class SearchUsers extends AppCompatActivity {
 
     private void findAllFriends() {
 
-        mainAdapter = new messagesAdapter(new FirebaseRecyclerOptions.Builder<user>()//List of Friends
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("Search History").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
+        mainAdapter = new messagesAdapter(new FirebaseRecyclerOptions.Builder<user_class>()//List of Friends
+                //.setQuery(FirebaseDatabase.getInstance().getReference().child("Search History").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Search History").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user_class.class)
                 .build(),getApplicationContext());
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);

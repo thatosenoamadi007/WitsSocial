@@ -25,7 +25,7 @@ import java.util.Objects;
 
 public class a_FriendProfile extends AppCompatActivity {
     AppCompatImageView go_back_to_search;
-    AppCompatTextView top_bar_friend_email,friend_email,friend_name,number_of_followers,number_of_following;
+    AppCompatTextView top_bar_friend_email,friend_description,friend_email,friend_name,number_of_followers,number_of_following;
     AppCompatButton message_friend,follow_friend;
     RecyclerView friend_recyclerview;
     home_adapter mainAdapter;
@@ -39,17 +39,20 @@ public class a_FriendProfile extends AppCompatActivity {
         initializeVariables();
 
         //set variables
-        String friendEmail=getIntent().getStringExtra("receiver_id");
-        top_bar_friend_email.setText(friendEmail);
-        friend_email.setText(friendEmail);
-        friend_name.setText(friendEmail);
+        String friend_Email=getIntent().getStringExtra("receiver_id");
+        String friend_Name=getIntent().getStringExtra("receiver_username");
+        String friend_Description=getIntent().getStringExtra("receiver_description");
+        top_bar_friend_email.setText(friend_Email);
+        friend_email.setText(friend_Email);
+        friend_name.setText(friend_Name);
+        friend_description.setText(friend_Description);
 
         //check if you already follow user
         ifFollowsUser();
 
         //add to recently searched
-        user user=new user(getIntent().getStringExtra("receiver_id"));
-        String branch1= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()).replace("@","").replace(".","");
+        user_class user=new user_class(getIntent().getStringExtra("receiver_id"),getIntent().getStringExtra("receiver_username"),getIntent().getStringExtra("receiver_description"));
+        String branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");
         String branch2=getIntent().getStringExtra("receiver_id").replace("@","").replace(".","");
         recentlySearched(user,branch1,branch2);
 
@@ -57,11 +60,11 @@ public class a_FriendProfile extends AppCompatActivity {
         go_back_to_search.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,SearchUsers.class)));
 
         //message friend
-        message_friend.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,InsideMessage.class).putExtra("receiver_id",friendEmail)));
+        message_friend.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,InsideMessage.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description)));
 
         //load friend posts content
         friend_recyclerview.setLayoutManager(new LinearLayoutManager(this));
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Posts").child(user.getEmail().replaceAll("@","").replace(".","")),Post.class).build();
         mainAdapter= new home_adapter(options);
         friend_recyclerview.setAdapter(mainAdapter);
 
@@ -70,14 +73,13 @@ public class a_FriendProfile extends AppCompatActivity {
 
     }
 
-    private void recentlySearched(user user,String branch1,String branch2) {
+    private void recentlySearched(user_class user,String branch1,String branch2) {
         FirebaseDatabase.getInstance().getReference()
+                .child("Wits Social Database")
                 .child("Search History")
                 .child(branch1)
                 .child(branch2)
-                .setValue(user).addOnSuccessListener(unused -> {
-                    Toast.makeText(a_FriendProfile.this, "Added to recently searched.", Toast.LENGTH_SHORT).show();
-                }).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Couldn't add to recently searched.", Toast.LENGTH_SHORT).show());
+                .setValue(user);//.addOnSuccessListener(unused -> Toast.makeText(a_FriendProfile.this, "Added to recently searched.", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Couldn't add to recently searched.", Toast.LENGTH_SHORT).show());
     }
 
     private void initializeVariables() {
@@ -90,12 +92,14 @@ public class a_FriendProfile extends AppCompatActivity {
         top_bar_friend_email=findViewById(R.id.top_bar_friend_name);
         go_back_to_search=findViewById(R.id.go_back_to_search);
         friend_recyclerview=findViewById(R.id.friend_profile_recyclerview);
+        friend_description=findViewById(R.id.friend_description);
     }
 
     private void ifFollowsUser() {
         String branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");
         String branch2=friend_email.getText().toString().replace("@","").replace(".","");
         FirebaseDatabase.getInstance().getReference()
+                .child("Wits Social Database")
                 .child("User Following")
                 .child(branch1)
                 .child(branch2)
@@ -122,7 +126,7 @@ public class a_FriendProfile extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void follow_Unfollow_friend() {
         String mode=follow_friend.getText().toString();
-        user user=new user(friend_email.getText().toString());
+        user_class user=new user_class(friend_email.getText().toString(),friend_name.getText().toString(),friend_description.getText().toString());
         String branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");
         String branch2=friend_email.getText().toString().replace("@","").replace(".","");
         if(mode.equals("Follow")){
@@ -138,19 +142,22 @@ public class a_FriendProfile extends AppCompatActivity {
 
     private void unfollowFriend(String branch1, String branch2) {
         FirebaseDatabase.getInstance().getReference()
+                .child("Wits Social Database")
                 .child("User Following")
                 .child(branch1)
                 .child(branch2)
-                .removeValue()
-                .addOnSuccessListener(unused -> Toast.makeText(a_FriendProfile.this, "Successfully unfollowed user", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Error while trying to unfollow user.", Toast.LENGTH_SHORT).show());
+                .removeValue();
+                //.addOnSuccessListener(unused -> Toast.makeText(a_FriendProfile.this, "Successfully unfollowed user", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Error while trying to unfollow user.", Toast.LENGTH_SHORT).show());
     }
 
-    private void followFriend(user user, String branch1, String branch2){
+    private void followFriend(user_class user, String branch1, String branch2){
         FirebaseDatabase.getInstance().getReference()
+                .child("Wits Social Database")
                 .child("User Following")
                 .child(branch1)
                 .child(branch2)
-                .setValue(user).addOnSuccessListener(unused -> Toast.makeText(a_FriendProfile.this, "Successfully followed user", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Error while trying to follow user.", Toast.LENGTH_SHORT).show());
+                .setValue(user);//.addOnSuccessListener(unused -> Toast.makeText(a_FriendProfile.this, "Successfully followed user", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Error while trying to follow user.", Toast.LENGTH_SHORT).show());
+    //.setValue(user).addOnSuccessListener(unused -> Toast.makeText(a_FriendProfile.this, "Successfully followed user", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Error while trying to follow user.", Toast.LENGTH_SHORT).show());
     }
 
 

@@ -31,4 +31,11 @@
     <string name="media">Media</string>
     <string name="text">Text</string>
     <string name="message1">Message</string>
+    <string name="my_account_name">My account name</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="settings">Settings</string>
+    <string name="caption1">Caption</string>
+    <string name="post">Post</string>
+    <string name="search_users">Search Users</string>
+    <string name="posts">Posts</string>
 </resources>

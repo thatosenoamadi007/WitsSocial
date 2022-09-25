@@ -35,19 +35,22 @@ public class home_activity extends AppCompatActivity {
          //initlise the recycler view, layout manager and firebase recycler options
         recyclerView =findViewById(R.id.homerecview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
+        //FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Posts"),Post.class).build();
+        mainAdapter= new home_adapter(options);
+        recyclerView.setAdapter(mainAdapter);
         bottomNavigationbar();
 
         //----------------------------
 
-        RecyclerView recyclerView = findViewById(R.id.homerecview);
+        /*RecyclerView recyclerView = findViewById(R.id.homerecview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         
        
        //set recyclerview to the main adapter
         recyclerView.getRecycledViewPool().clear();
         mainAdapter= new home_adapter(options);
-        recyclerView.setAdapter(mainAdapter);
+        recyclerView.setAdapter(mainAdapter);*/
 
         all_post.setOnClickListener(view -> {
             all_post.setBackgroundColor(Color.WHITE);
@@ -83,16 +86,19 @@ public class home_activity extends AppCompatActivity {
             if (item.getItemId() == R.id.account) {
                 Intent intent = new Intent (home_activity.this, Profile.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 return true;
             }
             if (item.getItemId() == R.id.add_post) {
                 Intent intent = new Intent (home_activity.this, add_post.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 return true;
             }
             if (item.getItemId() == R.id.chat) {
                Intent intent = new Intent (home_activity.this, SearchUsers.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 return true;
             }
             return false;

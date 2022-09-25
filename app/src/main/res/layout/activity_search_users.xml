@@ -14,7 +14,7 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,23 +22,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Search Users"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="40sp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:elevation="10dp"
+                android:background="@color/white"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_users"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry"
+                    android:textAllCaps="false"/>
+            </RelativeLayout>
             <SearchView
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:id="@+id/search_friend_chat"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:queryHint="Search users by username or email"
+                android:layout_height="55dp"
+                android:queryHint="Search user by username or email"
                 android:background="@drawable/search_view_bg"
+                android:queryBackground="@color/trans"
                 android:iconifiedByDefault="false"
                 android:searchIcon="@drawable/search_icon"
 
@@ -69,5 +80,6 @@
         app:itemIconTint="@drawable/selector"
         app:menu="@menu/bottom_navigation"
         android:layout_gravity="bottom"
+        app:itemHorizontalTranslationEnabled = "false"
         />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

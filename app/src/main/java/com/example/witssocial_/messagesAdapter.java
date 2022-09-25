@@ -15,30 +15,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-public class messagesAdapter extends FirebaseRecyclerAdapter<user, messagesAdapter.myViewHolder> {
+public class messagesAdapter extends FirebaseRecyclerAdapter<user_class, messagesAdapter.myViewHolder> {
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      */
     Context context;
-    public messagesAdapter(@NonNull FirebaseRecyclerOptions<user> options, Context context) {
+    public messagesAdapter(@NonNull FirebaseRecyclerOptions<user_class> options, Context context) {
         super(options);
         this.context=context;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull user model) {
+    protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull user_class model) {
 
-        String name= model.getUsername();
-        holder.friend_name.setText(name);
+        //String name= model.getUsername();
+        String email= model.getEmail();
+        String username=model.getUsername();
+        String description= model.getDescription();
+        holder.friend_name.setText(email);
         holder.friend_profile.setImageResource(R.drawable.ic_account);
 
         holder.message_layout.setOnClickListener(view -> {
             //Intent intent=new Intent(context,InsideMessage.class);
             Intent intent=new Intent(context,a_FriendProfile.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("receiver_id",name);
+            intent.putExtra("receiver_id",email);
+            intent.putExtra("receiver_username",username);
+            intent.putExtra("receiver_description",description);
             context.startActivity(intent);
         });
 
@@ -67,3 +72,4 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user, messagesAdapt
     }
 
 }
+

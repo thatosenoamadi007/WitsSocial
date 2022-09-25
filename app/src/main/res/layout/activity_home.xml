@@ -11,32 +11,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
+            android:elevation="10dp"
             android:background="@color/white"
-            android:elevation="10dp">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="15dp"
-                android:src="@drawable/img_1"/>
+            android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/top_bar_my_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/user_full_name"
+                android:text="@string/posts"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="15sp"
-                android:layout_gravity="center"
-                android:paddingStart="90dp"
-                tools:ignore="RtlSymmetry" />
-
-        </LinearLayout>
+                tools:ignore="RtlSymmetry"
+                android:textAllCaps="false"/>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,5 +93,6 @@
         app:itemIconTint="@drawable/selector"
         app:menu="@menu/bottom_navigation"
         android:layout_gravity="bottom"
+        app:itemHorizontalTranslationEnabled = "false"
         />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

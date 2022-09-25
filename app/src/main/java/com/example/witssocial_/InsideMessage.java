@@ -80,6 +80,7 @@ public class InsideMessage extends AppCompatActivity {
 
     void saveToChatHistory(String currentDateTime, messageObject messageObject, String branch1, String branch2){
             FirebaseDatabase.getInstance().getReference()
+                    .child("Wits Social Database")
                 .child("Chat history")
                 .child(branch1)
                 .child(branch2)
@@ -116,8 +117,11 @@ public class InsideMessage extends AppCompatActivity {
     }
 
     void go_back(){
+        String friend_Email=getIntent().getStringExtra("receiver_id");
+        String friend_Name=getIntent().getStringExtra("receiver_username");
+        String friend_Description=getIntent().getStringExtra("receiver_description");
         go_back= findViewById(R.id.go_back_insidemessage);
-        go_back.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),SearchUsers.class)));
+        go_back.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),a_FriendProfile.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description)));
 
     }
 
@@ -131,7 +135,7 @@ public class InsideMessage extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         mainAdapter = new insidemessageAdapter(new FirebaseRecyclerOptions.Builder<messageObject>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("Chat history").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).child(name.replace("@","").replace(".","")), messageObject.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Chat history").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).child(name.replace("@","").replace(".","")), messageObject.class)
                 .build(),getApplicationContext());
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);

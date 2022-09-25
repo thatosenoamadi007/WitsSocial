@@ -62,11 +62,13 @@ public class add_post extends AppCompatActivity {
            if (item.getItemId() == R.id.posts_timeline) {
                 Intent intent = new Intent (add_post.this, home_activity.class);
                 startActivity(intent);
+               overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
                 return true;
             }
             if (item.getItemId() == R.id.account) {
                 Intent intent = new Intent (add_post.this, Profile.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 return true;
             }
             if (item.getItemId() == R.id.add_post) {
@@ -75,6 +77,7 @@ public class add_post extends AppCompatActivity {
             if (item.getItemId() == R.id.chat) {
                Intent intent = new Intent (add_post.this, SearchUsers.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 return true;
             }
             return false;
@@ -110,11 +113,20 @@ public class add_post extends AppCompatActivity {
                         Uri uri =uriTask.getResult();
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         Post post = new Post(uri.toString(),caption.getText().toString(),user.getEmail());
-                        FirebaseDatabase.getInstance().getReference("Posts")
+                        /*FirebaseDatabase.getInstance().getReference("Posts")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                 .child(time)
                                 .setValue(post);
                         FirebaseDatabase.getInstance().getReference("All Posts")
+                                .child(time)
+                                .setValue(post);*/
+                        FirebaseDatabase.getInstance().getReference("Wits Social Database")
+                                .child("Posts")
+                                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()).replace("@","").replace(".",""))
+                                .child(time)
+                                .setValue(post);
+                        FirebaseDatabase.getInstance().getReference("Wits Social Database")
+                                .child("All Posts")
                                 .child(time)
                                 .setValue(post);
                         Toast.makeText(add_post.this,"Picture uploaded", Toast.LENGTH_SHORT).show();
