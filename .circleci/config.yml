@@ -38,12 +38,12 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/openjdk:18.0.2
+      - image: circleci/android:api-30
     steps:
       - checkout
       - run:
           name: Install dependencies, run tests, and collect coverage
-          command: gradle build
+          command: ./gradlew build
       - codecov/upload
 
 workflow:
