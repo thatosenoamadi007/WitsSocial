@@ -8,21 +8,3 @@ plugins {
     id 'com.android.application' version '7.2.2' apply false
     id 'com.android.library' version '7.2.2' apply false
 }
-group 'io.codecov'
-version '1.0'
-
-apply plugin: 'java'
-apply plugin: 'jacoco'
-
-//task clean(type: Delete) {
-//    delete rootProject.buildDir
-//}
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled false
-    }
-}
-
-check.dependsOn jacocoTestReport
