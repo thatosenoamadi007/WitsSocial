@@ -42,8 +42,8 @@ jobs:
     steps:
       - checkout
        - run:
-          name: chmod permissions
-          command: chmod +x ./gradlew
+           name: chmod permissions
+           command: chmod +x ./gradlew
       - run:
           name: Install dependencies, run tests, and collect coverage
           command: ./gradlew build
