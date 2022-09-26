@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs:
   run:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
