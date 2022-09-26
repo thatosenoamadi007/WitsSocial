@@ -13,10 +13,10 @@ jobs:
           java-version: 18
       - name: Unit tests
         run: bash ./gradlew test --stacktrace
-      - name: Upload coverage reports to Codecov
-        run: |
-          # Replace `linux` below with the appropriate OS
-          # Options are `alpine`, `linux`, `macos`, `windows`
-          curl -Os https://uploader.codecov.io/latest/linux/codecov
-          chmod +x codecov
-          ./codecov
+      - name: Upload tests results
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: test-results
+          path: |
+            coverage.xml
