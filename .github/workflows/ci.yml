@@ -12,7 +12,7 @@ jobs:
         with:
           java-version: 18
       - name: Build debug
-        run: bash ./gradlew build jacocoTestReport assembleAndroidTest
+        run: bash ./gradlew build assembleAndroidTest
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v1
         with:
