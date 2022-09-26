@@ -11,8 +11,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        //maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "WitsSocial_"
+//rootProject.name = "WitsSocial_"
 include ':app'
