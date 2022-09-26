@@ -70,7 +70,7 @@ repositories {
 task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
     reports {
         xml.enabled true
-        html.enabled true
+        html.enabled false
     }
 }
 
