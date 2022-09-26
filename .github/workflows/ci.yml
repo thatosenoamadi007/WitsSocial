@@ -19,4 +19,4 @@ jobs:
         with:
           name: test-results
           path: |
-            coverage.xml
+            ./coverage.xml
