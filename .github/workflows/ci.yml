@@ -11,16 +11,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 18
-      - name: Build debug
-        run: bash ./gradlew build assembleAndroidTest
-      - name: run tests
-        uses: reactivecircus/android-emulator-runner@v1
-        with:
-          api-level: 29
-          script: ./gradlew connectedCheck
+      - name: Install dependencies, run tests, and collect coverage
+        run: gradle build
       - name: Upload coverage to Codecov
-        run: |
-          curl -Os https://uploader.codecov.io/latest/macos/codecov
-          chmod +x codecov
-          ./codecov
-        #uses: codecov/codecov-action@v2.1.0
+        uses: codecov/codecov-action@v3
