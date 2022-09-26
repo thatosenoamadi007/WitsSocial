@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs:
   run:
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -19,4 +19,8 @@ jobs:
           api-level: 29
           script: ./gradlew connectedCheck
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2.1.0
+        run: |
+          curl -Os https://uploader.codecov.io/latest/macos/codecov
+          chmod +x codecov
+          ./codecov
+        #uses: codecov/codecov-action@v2.1.0
