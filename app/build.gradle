@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'jacoco'
 }
 
 android {
@@ -30,6 +31,7 @@ android {
     lintOptions {
         baseline file("lint-baseline.xml")
     }
+
 }
 
 dependencies {
@@ -57,3 +59,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
 }
+
+
+

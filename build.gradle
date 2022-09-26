@@ -8,20 +8,4 @@ plugins {
     id 'com.android.application' version '7.2.2' apply false
     id 'com.android.library' version '7.2.2' apply false
 }
-group 'io.codecov'
-version '1.0'
 
-apply plugin: 'java'
-apply plugin: 'jacoco'
-
-dependencies {
-    testImplementation "junit:junit:4.13.2"
-}
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled true
-    }
-}
-
-check.dependsOn jacocoTestReport
