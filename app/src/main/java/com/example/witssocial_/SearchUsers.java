@@ -105,7 +105,7 @@ public class SearchUsers extends AppCompatActivity {
             FirebaseRecyclerOptions<user_class> options =
                     new FirebaseRecyclerOptions.Builder<user_class>()
                             //.setQuery(FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("username").startAt(s.toLowerCase(Locale.ROOT)).endAt(s.toLowerCase(Locale.ROOT)+"~"), user.class)//.orderByChild("modName").equalTo("APHY8010")
-                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").orderByChild("username").startAt(s.toLowerCase(Locale.ROOT)).endAt(s.toLowerCase(Locale.ROOT)+"~"), user_class.class)//.orderByChild("modName").equalTo("APHY8010")
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").orderByChild("email").startAt(s.toLowerCase(Locale.ROOT)).endAt(s.toLowerCase(Locale.ROOT)+"~"), user_class.class)//.orderByChild("modName").equalTo("APHY8010")
                             .build();
             mainAdapter = new messagesAdapter(options,getApplicationContext());
             mainAdapter.startListening();
