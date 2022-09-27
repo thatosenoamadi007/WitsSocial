@@ -24,6 +24,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
+
+//
 public class add_post extends AppCompatActivity {
     private ImageView addPost;
     private TextView caption;
