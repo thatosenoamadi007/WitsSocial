@@ -11,5 +11,6 @@
     <color name="greyLight">#B8B8B8</color>
     <color name="blue">#002187</color>
     <color name="trans">#00002187</color>
+    <color name="layout_background">#F0E9E9</color>
 
 </resources>

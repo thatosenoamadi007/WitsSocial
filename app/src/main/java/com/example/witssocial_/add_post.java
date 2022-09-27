@@ -37,7 +37,7 @@ public class add_post extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
-
+//hee
         addPost = findViewById(R.id.choosePost);
         caption = findViewById(R.id.caption);
         caption = findViewById(R.id.makecaption);

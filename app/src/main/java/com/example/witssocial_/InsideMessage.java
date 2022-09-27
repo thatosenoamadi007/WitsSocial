@@ -2,14 +2,13 @@ package com.example.witssocial_;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,16 +24,16 @@ import java.util.Objects;
 
 public class InsideMessage extends AppCompatActivity {
     //variables used when activity loads
-    LinearLayout go_back;
-    TextView show_friend_name;
+    AppCompatImageView go_back;
+    AppCompatTextView show_friend_name;
 
     //variables used when displaying messages
     RecyclerView recyclerView;
     insidemessageAdapter mainAdapter;
 
     //variables used when sending message
-    EditText typed_message;
-    ImageView send_message;
+    AppCompatEditText typed_message;
+    AppCompatImageView send_message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class InsideMessage extends AppCompatActivity {
     }
 
     void delegatedToSendMessage(){
-        String message_content=typed_message.getText().toString();
+        String message_content= Objects.requireNonNull(typed_message.getText()).toString();
         String name=getIntent().getStringExtra("receiver_id");
         String currentDateTime=get_CurrentDateTime();
 
@@ -72,10 +71,10 @@ public class InsideMessage extends AppCompatActivity {
         saveToChatHistory(currentDateTime,messageObject,branch2,branch1);
 
         //add to the database that shows list of friends im chatting with and recent message sent to them
-        user user=new user(name);
-        sendToListOfUsers(user,branch1,branch2);
-        user=new user(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        sendToListOfUsers(user,branch2,branch1);
+        //user user=new user(name);
+        //sendToListOfUsers(user,branch1,branch2);
+        //user=new user(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        //sendToListOfUsers(user,branch2,branch1);
 
     }
 
@@ -88,7 +87,7 @@ public class InsideMessage extends AppCompatActivity {
                 .setValue(messageObject).addOnSuccessListener(unused -> typed_message.setText("")).addOnFailureListener(e -> Toast.makeText(InsideMessage.this, "Message not sent, try again.", Toast.LENGTH_SHORT).show());
     }
 
-    void sendToListOfUsers(user user, String branch1, String branch2){
+   /* void sendToListOfUsers(user user, String branch1, String branch2){
         FirebaseDatabase.getInstance().getReference()
                 .child("List of friends")
                 .child(branch1)
@@ -96,7 +95,7 @@ public class InsideMessage extends AppCompatActivity {
                 .setValue(user).addOnSuccessListener(unused -> {
 
                 }).addOnFailureListener(e -> Toast.makeText(InsideMessage.this, "Couldn't update latest messages on the database", Toast.LENGTH_SHORT).show());
-    }
+    }*/
 
     String get_CurrentDateTime(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.US);
