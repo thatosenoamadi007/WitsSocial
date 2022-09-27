@@ -59,10 +59,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-    
-    lintOptions {
-        baseline file("lint-baseline.xml")
-    }
 
     buildFeatures {
         dataBinding = true
