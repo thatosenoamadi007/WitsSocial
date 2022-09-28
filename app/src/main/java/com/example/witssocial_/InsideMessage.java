@@ -97,6 +97,7 @@ public class InsideMessage extends AppCompatActivity {
                 }).addOnFailureListener(e -> Toast.makeText(InsideMessage.this, "Couldn't update latest messages on the database", Toast.LENGTH_SHORT).show());
     }*/
 
+    //convert current time to correcto format
     String get_CurrentDateTime(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.US);
         Date date = new Date();
@@ -115,12 +116,14 @@ public class InsideMessage extends AppCompatActivity {
         show_friend_name.setText(name);
     }
 
+    //button to go back to profile
     void go_back(){
         go_back= findViewById(R.id.go_back_insidemessage);
         go_back.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),SearchUsers.class)));
 
     }
 
+    //display all the messages
     private void display() {
         String name=getIntent().getStringExtra("receiver_id");
         //String name="mammogram";
