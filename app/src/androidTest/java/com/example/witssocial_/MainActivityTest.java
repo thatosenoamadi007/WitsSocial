@@ -2,22 +2,18 @@ package com.example.witssocial_;
 
 import static android.service.autofill.Validators.not;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.TestCase.assertNotNull;
 
 import android.app.Instrumentation;
+import android.support.test.espresso.Espresso;
+import android.support.test.rule.ActivityTestRule;
 import android.widget.EditText;
 
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.After;
@@ -29,7 +25,7 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
     @Rule
-    public IntentsTestRule<MainActivity> rActivityTestRule = new IntentsTestRule<>(MainActivity.class);
+    public ActivityTestRule<MainActivity> rActivityTestRule = new ActivityTestRule<>(MainActivity.class);
     private MainActivity mActivity = null;
     public String wrongDetails = "You are already registered, click the link above to login.";
     public String correctDetails = "Registered successfully";
