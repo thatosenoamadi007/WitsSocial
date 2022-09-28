@@ -1,6 +1,6 @@
 # WitsSocial
 
-![thatosenoamadi007](https://circleci.com/gh/thatosenoamadi007/WitsSocial.svg?style=svg)
+[![thatosenoamadi007](https://circleci.com/gh/thatosenoamadi007/WitsSocial.svg?style=svg)](https://app.circleci.com/pipelines/github/thatosenoamadi007/WitsSocial?branch=main)
 [![codecov](https://codecov.io/gh/thatosenoamadi007/Wits-Social/branch/main/graph/badge.svg?token=dDP18TfQon)](https://codecov.io/gh/thatosenoamadi007/Wits-Social)
  
 ![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fthatosenoamadi007%2FWitsSocial.svg?type=small)
