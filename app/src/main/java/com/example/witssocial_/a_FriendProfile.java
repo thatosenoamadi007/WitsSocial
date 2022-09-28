@@ -70,6 +70,7 @@ public class a_FriendProfile extends AppCompatActivity {
 
     }
 
+    //add user to recenlty searched history 
     private void recentlySearched(user user,String branch1,String branch2) {
         FirebaseDatabase.getInstance().getReference()
                 .child("Search History")
@@ -92,6 +93,7 @@ public class a_FriendProfile extends AppCompatActivity {
         friend_recyclerview=findViewById(R.id.friend_profile_recyclerview);
     }
 
+    //unfollow users
     private void ifFollowsUser() {
         String branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");
         String branch2=friend_email.getText().toString().replace("@","").replace(".","");
@@ -136,6 +138,7 @@ public class a_FriendProfile extends AppCompatActivity {
         }
     }
 
+    //removes user from my followers list
     private void unfollowFriend(String branch1, String branch2) {
         FirebaseDatabase.getInstance().getReference()
                 .child("User Following")
@@ -145,6 +148,7 @@ public class a_FriendProfile extends AppCompatActivity {
                 .addOnSuccessListener(unused -> Toast.makeText(a_FriendProfile.this, "Successfully unfollowed user", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Error while trying to unfollow user.", Toast.LENGTH_SHORT).show());
     }
 
+    //adds user to my followers list
     private void followFriend(user user, String branch1, String branch2){
         FirebaseDatabase.getInstance().getReference()
                 .child("User Following")
