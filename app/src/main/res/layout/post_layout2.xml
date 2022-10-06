@@ -43,11 +43,12 @@
                     android:layout_marginTop="8dp"/>
 
                 <TextView
+                    android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/user_full_name"
                     android:layout_marginTop="8dp"
-                    android:layout_marginStart="9dp"/>
+                    android:layout_marginStart="3dp"/>
             </LinearLayout>
 
 
@@ -82,13 +83,15 @@
                 android:layout_marginBottom="4dp">
 
                 <ImageView
+                    android:id="@+id/heart"
                     android:layout_marginTop="6dp"
                     android:layout_width="26dp"
                     android:layout_height="26dp"
-                    android:background="@drawable/img_5"
+                    android:background="@drawable/heart2"
                     tools:ignore="ContentDescription" />
 
                 <TextView
+                    android:id="@+id/likeCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/_10k"

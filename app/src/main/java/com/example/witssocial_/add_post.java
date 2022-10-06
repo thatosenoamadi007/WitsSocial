@@ -9,9 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,8 +23,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 public class add_post extends AppCompatActivity {
@@ -101,8 +106,9 @@ public class add_post extends AppCompatActivity {
         pd.setTitle("File is loading......");
         pd.show();
 
-        Date currentTime = Calendar.getInstance().getTime();
-        String time = currentTime.toString();
+        String time;
+        String currentDateTime=get_CurrentDateTime();
+        time=currentDateTime.replaceAll("/", "|");
         final String userkey= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
             StorageReference galleryPictures = storageRef.child("Post/"+userkey).child(time);
@@ -112,14 +118,10 @@ public class add_post extends AppCompatActivity {
                         while(!uriTask.isComplete());
                         Uri uri =uriTask.getResult();
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        Post post = new Post(uri.toString(),caption.getText().toString(),user.getEmail());
-                        /*FirebaseDatabase.getInstance().getReference("Posts")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .child(time)
-                                .setValue(post);
-                        FirebaseDatabase.getInstance().getReference("All Posts")
-                                .child(time)
-                                .setValue(post);*/
+                        FirebaseDatabase database=FirebaseDatabase.getInstance();
+                        String key=database.getReference("All Posts").push().getKey();
+                        //Post post = new Post(uri.toString(),caption.getText().toString(),user.getEmail());
+                        Post post = new Post(uri.toString(),caption.getText().toString(),user.getUid(),key);
                         FirebaseDatabase.getInstance().getReference("Wits Social Database")
                                 .child("Posts")
                                 .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()).replace("@","").replace(".",""))
@@ -129,9 +131,15 @@ public class add_post extends AppCompatActivity {
                                 .child("All Posts")
                                 .child(time)
                                 .setValue(post);
-                        Toast.makeText(add_post.this,"Picture uploaded", Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(this, "Post Uploaded.", Toast.LENGTH_SHORT).show();
 
                     });
      
+    }
+    String get_CurrentDateTime(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.US);
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }

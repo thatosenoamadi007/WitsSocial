@@ -63,9 +63,11 @@ public class Profile extends AppCompatActivity {
 
 
         //load my posts content
-        my_account_profile_recyclerview.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        my_account_profile_recyclerview.setLayoutManager(linearLayoutManager);
         FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Posts").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","")),Post.class).build();
-        mainAdapter= new home_adapter(options);
+        mainAdapter= new home_adapter(options,getApplicationContext());
         my_account_profile_recyclerview.setAdapter(mainAdapter);
 
 

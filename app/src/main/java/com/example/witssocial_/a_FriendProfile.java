@@ -68,9 +68,11 @@ public class a_FriendProfile extends AppCompatActivity {
         message_friend.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,InsideMessage.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description)));
 
         //load friend posts content
-        friend_recyclerview.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        friend_recyclerview.setLayoutManager(linearLayoutManager);
         FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Posts").child(user.getEmail().replaceAll("@","").replace(".","")),Post.class).build();
-        mainAdapter= new home_adapter(options);
+        mainAdapter= new home_adapter(options,getApplicationContext());
         friend_recyclerview.setAdapter(mainAdapter);
 
         //follow friend
