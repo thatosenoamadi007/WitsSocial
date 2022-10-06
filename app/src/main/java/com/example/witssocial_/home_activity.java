@@ -39,10 +39,11 @@ public class home_activity extends AppCompatActivity {
         recyclerView =findViewById(R.id.homerecview);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         //FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
         FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Posts"),Post.class).build();
-        mainAdapter= new home_adapter(options,getApplicationContext());
+        mainAdapter= new home_adapter(options,getApplicationContext(),"home_activity","null","null","null");
         recyclerView.setAdapter(mainAdapter);
         bottomNavigationbar();
 

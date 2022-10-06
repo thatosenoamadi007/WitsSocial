@@ -70,8 +70,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="2dp"
+                android:background="@drawable/img_1"
                 android:scaleType="fitXY"
-                tools:srcCompat="@tools:sample/avatars"
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
@@ -103,6 +103,7 @@
                     android:textStyle="bold"/>
 
                 <ImageView
+                    android:id="@+id/go_to_comments"
                     android:layout_width="26dp"
                     android:layout_height="26dp"
                     android:layout_marginStart="5dp"
@@ -112,6 +113,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/commentsCount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:text="@string/_10k"
@@ -133,7 +135,18 @@
 
 </LinearLayout>
 
-
+<!-- <ImageView
+                android:id="@+id/post"
+                android:layout_width="match_parent"
+                android:layout_height="209dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="2dp"
+                android:scaleType="fitXY"
+                tools:srcCompat="@tools:sample/avatars"
+                tools:ignore="ContentDescription" />
+                -->
     <!--<?xml version="1.0" encoding="utf-8"?>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

@@ -2,6 +2,7 @@ package com.example.witssocial_;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,15 +29,21 @@ import java.util.Objects;
 
 public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myViewHolder> {
     Context context;
-    public home_adapter(@NonNull FirebaseRecyclerOptions<Post> options,Context context){
+    String came_from,email,username,description;
+    public home_adapter(@NonNull FirebaseRecyclerOptions<Post> options,Context context,String came_from,String email,String username,String description){
         super(options);
         this.context=context;
+        this.came_from=came_from;
+        this.email=email;
+        this.username=username;
+        this.description=description;
     }
 
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull Post post) {
         Glide.with(holder.post.getContext())
                 .load(post.getPost())
+                .fitCenter()
                 .placeholder(R.drawable.ic_baseline_person_24)
                 .error(R.drawable.ic_launcher_foreground)
                 .into(holder.post);
@@ -71,6 +78,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
         String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         likers like = new likers(user);
 
+        //check if you already liked post
         final boolean[] check = {false};
         FirebaseDatabase.getInstance().getReference()
                 .child("Wits Social Database")
@@ -92,8 +100,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
                     }
                 });
 
-        //int count = post.getCountLikes();
-
+        //count number of likes
         FirebaseDatabase.getInstance().getReference()
                 .child("Wits Social Database")
                 .child("ID")
@@ -113,8 +120,28 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
 
                     }
                 });
+        //count number of comments
+        FirebaseDatabase.getInstance().getReference()
+                .child("Wits Social Database")
+                .child("Comments")
+                .child(ID).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            int count=(int)snapshot.getChildrenCount();
+                            holder.commentsCount.setText(Integer.toString(count));
+                        }else{
+                            holder.commentsCount.setText("0");
+                        }
+                    }
 
-        //Toast.makeText(context, , Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+        //like or unlike
         holder.heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,7 +174,22 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
 
         });
 
-
+        //view post comments
+        holder.go_to_comments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context,Comment_Section.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("post_id",post.getId());
+                intent.putExtra("came_from",came_from);
+                if(came_from.equals("friend_profile")){
+                    intent.putExtra("receiver_id",email);
+                    intent.putExtra("receiver_username",username);
+                    intent.putExtra("receiver_description",description);
+                }
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -159,8 +201,9 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
     }
 
     static class myViewHolder extends RecyclerView.ViewHolder{
-        TextView handle, caption, username,likeCount;
-        ImageView post, userprofile, heart;
+        TextView handle, caption, username,likeCount,commentsCount;
+        ImageView  userprofile, heart,go_to_comments;
+        ImageView post;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
             handle = itemView.findViewById(R.id.handle);
@@ -170,6 +213,8 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
             userprofile=itemView.findViewById(R.id.userpropic);
             heart = itemView.findViewById(R.id.heart);
             likeCount = itemView.findViewById(R.id.likeCount);
+            go_to_comments = itemView.findViewById(R.id.go_to_comments);
+            commentsCount=itemView.findViewById(R.id.commentsCount);
         }
     }
 
