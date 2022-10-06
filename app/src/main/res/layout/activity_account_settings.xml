@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Account_Settings"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:elevation="10dp"
+        android:background="@color/white">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/ic_back_button"
+            tools:ignore="ContentDescription"
+            android:id="@+id/go_back_to_my_profile"
+            android:scaleX="0.7"
+            android:scaleY="0.7"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Account Settings"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:paddingStart="105dp"
+            tools:ignore="RtlSymmetry"
+            android:textAllCaps="false"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="600dp"
+        android:background="@drawable/login_button_background"
+        android:text="Sign Out"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:id="@+id/SignOut"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

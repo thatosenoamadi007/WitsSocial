@@ -1,14 +1,17 @@
 package com.example.witssocial_;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -105,4 +108,26 @@ public class home_activity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        if(getIntent().getStringExtra("sign_out_or_not")!=null){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Are you sure you want to log out?");
+            alertDialogBuilder
+                    //.setMessage("Click yes to sign out!")
+                    .setCancelable(true)
+                    .setPositiveButton("Yes",
+                            (dialog, id) -> {
+                                startActivity(new Intent(home_activity.this,login.class));
+                            })
+                    .setNegativeButton("No", (dialog, id) -> dialog.cancel());
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
+        else{
+            super.onBackPressed();
+        }
+
+    }
 }

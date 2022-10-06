@@ -3,9 +3,11 @@ package com.example.witssocial_;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -24,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 public class Profile extends AppCompatActivity {
-    AppCompatTextView top_bar_my_name,my_email,my_username,number_of_followers,number_of_following,my_profile_description;
+    AppCompatTextView top_bar_my_name,my_email,my_username,number_of_followers,number_of_following,my_profile_description,see_list_of_followers,see_list_of_following;
     AppCompatButton edit_my_profile,my_account_settings;
     RecyclerView my_account_profile_recyclerview;
     home_adapter mainAdapter;
@@ -47,8 +50,16 @@ public class Profile extends AppCompatActivity {
         //edit my profile
         editProfile();
 
+        //see list of followers
+        number_of_followers.setOnClickListener(view -> {startActivity(new Intent(Profile.this,Followers.class).putExtra("came_from","Profile"));});
+        see_list_of_followers.setOnClickListener(view -> {startActivity(new Intent(Profile.this,Followers.class).putExtra("came_from","Profile"));});
+
+        //see list of following
+        number_of_following.setOnClickListener(view -> {startActivity(new Intent(Profile.this,Following.class).putExtra("came_from","Profile"));});
+        see_list_of_following.setOnClickListener(view -> {startActivity(new Intent(Profile.this,Following.class).putExtra("came_from","Profile"));});
+
         //go to settings
-        //my_account_settings.setOnClickListener(view -> startActivity(new Intent(Profile.this,Account_Settings.class)));
+        my_account_settings.setOnClickListener(view -> startActivity(new Intent(Profile.this,Account_Settings.class)));
 
 
         //load my posts content
@@ -62,7 +73,9 @@ public class Profile extends AppCompatActivity {
 
     private void editProfile() {
         String my_Email=my_email.getText().toString();
-        String my_full_name=my_username.getText().toString();
+        //String my_full_name=my_username.getText().toString();
+        //String my_full_name=my_username.getText().toString();
+        final String[] my_full_name = {my_username.getText().toString()};
         final String[] my_description = {my_profile_description.getText().toString()};
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -71,6 +84,7 @@ public class Profile extends AppCompatActivity {
                         user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
                         assert user_class != null;
                         my_description[0] =user_class.getDescription();
+                        my_full_name[0]=user_class.getUsername();
                     }
 
                     @Override
@@ -79,14 +93,15 @@ public class Profile extends AppCompatActivity {
                     }
                 });
         //Toast.makeText(this, my_description[0], Toast.LENGTH_SHORT).show();
-        edit_my_profile.setOnClickListener(view -> startActivity(new Intent(Profile.this,Edit_Profile.class).putExtra("receiver_id",my_Email).putExtra("receiver_username",my_full_name).putExtra("receiver_description", my_description[0])));
+        edit_my_profile.setOnClickListener(view -> startActivity(new Intent(Profile.this,Edit_Profile.class).putExtra("receiver_id",my_Email).putExtra("receiver_username",my_full_name[0]).putExtra("receiver_description", my_description[0])));
     }
 
     @SuppressLint("SetTextI18n")
     private void setStaticValues() {
         String name= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
         my_email.setText(name);
-        top_bar_my_name.setText(name);
+        //top_bar_my_name.setText(name);
+        top_bar_my_name.setText("Profile");
         //my_username.setText(name);
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -103,6 +118,9 @@ public class Profile extends AppCompatActivity {
                         Toast.makeText(Profile.this, "Error occurred trying to update username and description", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        //set number of followers and number of following
+        setNumberFollowersFollowing();
         //my_profile_description.setText("My description");
     }
 
@@ -116,6 +134,8 @@ public class Profile extends AppCompatActivity {
         top_bar_my_name=findViewById(R.id.top_bar_my_name);
         my_account_profile_recyclerview=findViewById(R.id.my_account_profile_recyclerview);
         my_profile_description=findViewById(R.id.my_profile_description);
+        see_list_of_followers=findViewById(R.id.see_list_of_followers);
+        see_list_of_following=findViewById(R.id.see_list_of_following);
     }
 
     @Override
@@ -150,5 +170,48 @@ public class Profile extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    private void setNumberFollowersFollowing() {
+        String friend_email=FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        String friend_email2=friend_email;
+        //Toast.makeText(Profile.this, friend_email+"-----"+friend_email.replace("@","").replace(".",""), Toast.LENGTH_SHORT).show();
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Followers")
+                .child(friend_email.replace("@","").replace(".",""))
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            int count=(int)snapshot.getChildrenCount();
+                            number_of_followers.setText(Integer.toString(count));
+
+                        }else{
+                            number_of_followers.setText("0");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Following")
+                .child(friend_email2.replace("@","").replace(".",""))
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            int count=(int)snapshot.getChildrenCount();
+                            number_of_following.setText(Integer.toString(count));
+                        }else{
+                            number_of_following.setText("0");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 }

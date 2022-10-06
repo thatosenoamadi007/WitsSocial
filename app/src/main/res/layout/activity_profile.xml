@@ -90,7 +90,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginStart="20dp"
                         android:orientation="horizontal">
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/see_list_of_followers"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
                             android:textStyle="bold"
                             tools:ignore="InvalidId" />
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/see_list_of_following"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
