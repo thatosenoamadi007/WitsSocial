@@ -1,4 +1,4 @@
-package com.example.witssocial_;
+/*package com.example.witssocial_;
 
 import static android.service.autofill.Validators.not;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
@@ -76,3 +76,4 @@ public class MainActivityTest {
     }
 
 }
+*/
