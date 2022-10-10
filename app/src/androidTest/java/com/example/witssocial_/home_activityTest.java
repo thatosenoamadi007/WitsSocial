@@ -47,7 +47,7 @@ public class home_activityTest {
     @Test
     public void Text_PostsCheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
-            // use 'activity'.
+            // use 'activity'
             TextView Text_Posts = activity.findViewById(R.id.Text_Posts);
             assertNotNull(Text_Posts);
         });
