@@ -1,9 +1,9 @@
 name: Android CI
 on:
   push:
-    branches: [ main ]
+    branches: [ karabo_new ]
   pull_request:
-    branches: [ main ]
+    branches: [ karabo_new ]
     
 jobs:
   build:
