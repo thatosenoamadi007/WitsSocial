@@ -202,6 +202,9 @@ public class MainActivityTest {
         Espresso.onView(withId(R.id.Password)).perform(typeText("1234567")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.confirmPassword)).perform(typeText("1234567")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.SignUp)).perform(click());
+        //login activity = rActivityTestRule.getActivity();
+        //Espresso.onView(withText(wrongDetails)).inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).check(matches(isDisplayed()));
+    }
     /*@After
     public void tearDown() throws Exception {
         mActivity = null ;
