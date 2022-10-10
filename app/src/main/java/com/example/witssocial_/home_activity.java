@@ -21,6 +21,7 @@ public class home_activity extends AppCompatActivity {
     private RecyclerView recyclerView;
     public BottomNavigationView bottomNavigationView;
     private home_adapter mainAdapter;
+    private textPostAdapter mainAdapter1;
 
  
    
@@ -32,14 +33,8 @@ public class home_activity extends AppCompatActivity {
         all_post=findViewById(R.id.All_Posts);
         media_post=findViewById(R.id.Media_Posts);
         text_post=findViewById(R.id.Text_Posts);
-         //initlise the recycler view, layout manager and firebase recycler options
-        recyclerView =findViewById(R.id.homerecview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Posts"),Post.class).build();
-        mainAdapter= new home_adapter(options);
-        recyclerView.setAdapter(mainAdapter);
         bottomNavigationbar();
+
 
         //----------------------------
 
@@ -56,6 +51,15 @@ public class home_activity extends AppCompatActivity {
             all_post.setBackgroundColor(Color.WHITE);
             media_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
             text_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
+
+            //initlise the recycler view, layout manager and firebase recycler options
+            recyclerView =findViewById(R.id.homerecview);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            //FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
+            FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Posts"),Post.class).build();
+            mainAdapter= new home_adapter(options);
+            recyclerView.setAdapter(mainAdapter);
+
         });
 
         media_post.setOnClickListener(view -> {
@@ -68,6 +72,15 @@ public class home_activity extends AppCompatActivity {
             text_post.setBackgroundColor(Color.WHITE);
             all_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
             media_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
+
+            //initlise the recycler view, layout manager and firebase recycler options
+            recyclerView =findViewById(R.id.homerecview);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            //FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
+            FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Text Posts"),Post.class).build();
+            mainAdapter1= new textPostAdapter(options);
+            recyclerView.setAdapter(mainAdapter1);
+
         });
     }
 
