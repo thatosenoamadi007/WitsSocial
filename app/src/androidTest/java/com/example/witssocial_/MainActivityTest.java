@@ -185,7 +185,7 @@ public class MainActivityTest {
         // mActivity = rActivityTestRule.getActivity();
      }*/
     @Test
-    public void enterOldDetails(){
+    public void enterWrongDetails(){
         Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal@gmail.com")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.Password)).perform(typeText("123")).perform(closeSoftKeyboard());
@@ -194,6 +194,14 @@ public class MainActivityTest {
         //login activity = rActivityTestRule.getActivity();
         //Espresso.onView(withText(wrongDetails)).inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).check(matches(isDisplayed()));
     }
+
+    @Test
+    public void enterCorrectDetails(){
+        Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal Beck")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal@gmail.com")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.Password)).perform(typeText("1234567")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.confirmPassword)).perform(typeText("1234567")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.SignUp)).perform(click());
     /*@After
     public void tearDown() throws Exception {
         mActivity = null ;
