@@ -11,7 +11,7 @@ public class PostTest extends TestCase {
     }
 
     public void testGetPost() {
-        Post post=new Post("https://firebasestorage.googleapis.com/witssocial/2022-09-06/karano.png","Top of the morning","karabo@gmail.com");
+        Post post=new Post("https://firebasestorage.googleapis.com/witssocial/2022-09-06/karano.png","Top of the morning","karabo@gmail.com","my id");
         assertEquals("https://firebasestorage.googleapis.com/witssocial/2022-09-06/karano.png",post.getPost());
     }
 
@@ -22,7 +22,7 @@ public class PostTest extends TestCase {
     }
 
     public void testGetCaption() {
-        Post post=new Post("https://firebasestorage.googleapis.com/witssocial/2022/09/06","Top of the morning","karabo@gmail.com");
+        Post post=new Post("https://firebasestorage.googleapis.com/witssocial/2022/09/06","Top of the morning","karabo@gmail.com","my id");
         assertEquals("Top of the morning",post.getCaption());
     }
 
@@ -33,7 +33,7 @@ public class PostTest extends TestCase {
     }
 
     public void testGetUsername() {
-        Post post=new Post("https://firebasestorage.googleapis.com/witssocial/2022/09/06","Top of the morning","karabo@gmail.com");
+        Post post=new Post("https://firebasestorage.googleapis.com/witssocial/2022/09/06","Top of the morning","karabo@gmail.com","my id");
         assertEquals("karabo@gmail.com",post.getUsername());
     }
 }
