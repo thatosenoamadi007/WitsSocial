@@ -42,10 +42,6 @@ public class loginTest {
         });
 
     }
-   /* @Before
-    public void setUp() throws Exception {
-       // mActivity = rActivityTestRule.getActivity();
-    }*/
     @Test
     public void enterOldDetails(){
         Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal@gmail.com")).perform(closeSoftKeyboard());
@@ -54,8 +50,4 @@ public class loginTest {
         //login activity = rActivityTestRule.getActivity();
         //Espresso.onView(withText(wrongDetails)).inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).check(matches(isDisplayed()));
     }
-    /*@After
-    public void tearDown() throws Exception {
-        mActivity = null ;
-    }*/
 }
