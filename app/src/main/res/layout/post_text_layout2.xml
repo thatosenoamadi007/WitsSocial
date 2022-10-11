@@ -43,8 +43,8 @@
                     android:layout_marginTop="8dp"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:text="@string/user_full_name"
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="9dp"/>
@@ -54,7 +54,7 @@
             <TextView
                 android:id="@+id/caption"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="5dp"
                 android:text="@string/caption"
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="2dp"
                 android:text="Text post goes here"

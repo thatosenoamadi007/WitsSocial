@@ -40,11 +40,16 @@ public class textPost extends AppCompatActivity {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageRef= storage.getReference();
 
-        Date currentTime = Calendar.getInstance().getTime();
-        String time = currentTime.toString();
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Post post = new Post(editText.getText().toString(),"Text Post",user.getEmail());
+        btnTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Date currentTime = Calendar.getInstance().getTime();
+                String time = currentTime.toString();
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                Post post = new Post(editText.getText().toString(),"",user.getEmail());
                         /*FirebaseDatabase.getInstance().getReference("Posts")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                 .child(time)
@@ -52,16 +57,19 @@ public class textPost extends AppCompatActivity {
                         FirebaseDatabase.getInstance().getReference("All Posts")
                                 .child(time)
                                 .setValue(post);*/
-        FirebaseDatabase.getInstance().getReference("Wits Social Database")
-                .child("textPosts")
-                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()).replace("@","").replace(".",""))
-                .child(time)
-                .setValue(post);
-        FirebaseDatabase.getInstance().getReference("Wits Social Database")
-                .child("All Text Posts")
-                .child(time)
-                .setValue(post);
-        Toast.makeText(textPost.this,"Text uploaded", Toast.LENGTH_SHORT).show();
+                FirebaseDatabase.getInstance().getReference("Wits Social Database")
+                        .child("textPosts")
+                        .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()).replace("@","").replace(".",""))
+                        .child(time)
+                        .setValue(post);
+                FirebaseDatabase.getInstance().getReference("Wits Social Database")
+                        .child("All Text Posts")
+                        .child(time)
+                        .setValue(post);
+                Toast.makeText(textPost.this,"Text uploaded", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 }

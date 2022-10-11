@@ -36,6 +36,7 @@ public class home_activity extends AppCompatActivity {
         bottomNavigationbar();
 
 
+
         //----------------------------
 
         /*RecyclerView recyclerView = findViewById(R.id.homerecview);
@@ -59,6 +60,7 @@ public class home_activity extends AppCompatActivity {
             FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Posts"),Post.class).build();
             mainAdapter= new home_adapter(options);
             recyclerView.setAdapter(mainAdapter);
+            mainAdapter.startListening();
 
         });
 
@@ -80,6 +82,7 @@ public class home_activity extends AppCompatActivity {
             FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Text Posts"),Post.class).build();
             mainAdapter1= new textPostAdapter(options);
             recyclerView.setAdapter(mainAdapter1);
+            mainAdapter1.startListening();
 
         });
     }
@@ -87,6 +90,14 @@ public class home_activity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //initlise the recycler view, layout manager and firebase recycler options
+        recyclerView =findViewById(R.id.homerecview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Posts"),Post.class).build();
+        mainAdapter= new home_adapter(options);
+        recyclerView.setAdapter(mainAdapter);
+
         mainAdapter.startListening();
     }
 
