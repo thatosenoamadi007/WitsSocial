@@ -187,7 +187,7 @@ public class MainActivityTest {
     @Test
     public void enterWrongDetails(){
         Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal")).perform(closeSoftKeyboard());
-        Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal@gmail.com")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal1@gmail.com")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.Password)).perform(typeText("123")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.confirmPassword)).perform(typeText("123")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.SignUp)).perform(click());
@@ -198,7 +198,7 @@ public class MainActivityTest {
     @Test
     public void enterCorrectDetails(){
         Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal Beck")).perform(closeSoftKeyboard());
-        Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal@gmail.com")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal1@gmail.com")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.Password)).perform(typeText("1234567")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.confirmPassword)).perform(typeText("1234567")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.SignUp)).perform(click());
