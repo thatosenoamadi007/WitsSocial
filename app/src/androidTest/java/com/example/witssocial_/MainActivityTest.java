@@ -138,7 +138,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
-    @Rule
+    /*@Rule
     public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
     private login mActivity = null;
     public String wrongDetails = "You are already registered, click the link above to login.";
@@ -179,12 +179,12 @@ public class MainActivityTest {
             assertNotNull(ConnPassowrd);
         });
 
-    }
+    }*/
     /* @Before
      public void setUp() throws Exception {
         // mActivity = rActivityTestRule.getActivity();
      }*/
-    @Test
+   /* @Test
     public void enterWrongDetails(){
         Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal1@gmail.com")).perform(closeSoftKeyboard());
@@ -215,7 +215,7 @@ public class MainActivityTest {
         Espresso.onView(withId(R.id.SignUp)).perform(click());
         //login activity = rActivityTestRule.getActivity();
         //Espresso.onView(withText(wrongDetails)).inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).check(matches(isDisplayed()));
-    }
+    }*/
     
     /*@After
     public void tearDown() throws Exception {
