@@ -28,12 +28,12 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
-    @Test
+    /*@Test
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.witssocial_", appContext.getPackageName());
-    }
+    }*/
 
     @Rule
     public ActivityScenarioRule<login> activityScenarioRule = new ActivityScenarioRule<>(login.class);
