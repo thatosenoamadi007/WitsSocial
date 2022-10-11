@@ -23,7 +23,7 @@ public class loginTest {
     @Rule
     public ActivityScenarioRule<login> activityScenarioRule = new ActivityScenarioRule<>(login.class);
     Instrumentation.ActivityMonitor monitor = InstrumentationRegistry.getInstrumentation().addMonitor(login.class.getName(),null,false);
-
+/*
     @Test
     public void Emailcheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -41,7 +41,7 @@ public class loginTest {
             assertNotNull(Password);
         });
 
-    }
+    }*/
     @Test
     public void enterOldDetails(){
         Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal@gmail.com")).perform(closeSoftKeyboard());
