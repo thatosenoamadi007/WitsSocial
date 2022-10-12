@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +31,7 @@ public class Profile extends AppCompatActivity {
     AppCompatTextView top_bar_my_name,my_email,my_username,number_of_followers,number_of_following,my_profile_description,see_list_of_followers,see_list_of_following;
     AppCompatButton edit_my_profile,my_account_settings;
     RecyclerView my_account_profile_recyclerview;
+    de.hdodenhof.circleimageview.CircleImageView userprofile;
     home_adapter mainAdapter;
     BottomNavigationView bottomNavigationView;
 
@@ -114,6 +116,11 @@ public class Profile extends AppCompatActivity {
                         assert user_class != null;
                         my_username.setText(user_class.getUsername());
                         my_profile_description.setText(user_class.getDescription());
+                        Glide.with(userprofile.getContext())
+                                .load(user_class.getImage())
+                                .placeholder(R.drawable.ic_launcher_foreground)
+                                .error(R.drawable.ic_baseline_person_24)
+                                .into(userprofile);
                     }
 
                     @Override
@@ -139,6 +146,7 @@ public class Profile extends AppCompatActivity {
         my_profile_description=findViewById(R.id.my_profile_description);
         see_list_of_followers=findViewById(R.id.see_list_of_followers);
         see_list_of_following=findViewById(R.id.see_list_of_following);
+        userprofile=findViewById(R.id.userprofile);
     }
 
     @Override

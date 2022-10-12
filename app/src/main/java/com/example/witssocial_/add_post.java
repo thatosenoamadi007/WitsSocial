@@ -42,7 +42,6 @@ public class add_post extends AppCompatActivity {
         setContentView(R.layout.activity_add_post);
 
         addPost = findViewById(R.id.choosePost);
-        caption = findViewById(R.id.caption);
         caption = findViewById(R.id.makecaption);
         FirebaseStorage storage = FirebaseStorage.getInstance();
         postBtn = findViewById(R.id.postBtn);

@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.test.espresso.remote.EspressoRemoteMessage;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -42,6 +41,11 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
         holder.email.setText(post.getEmail());
         holder.username.setText(post.getUsername());
         ifFollowsUser(post.getEmail(),holder);
+        Glide.with(holder.friend_profile_chat.getContext())
+                .load(post.getImage())
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.ic_baseline_person_24)
+                .into(holder.friend_profile_chat);
         holder.follow_friend_in_list_of_followers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +55,7 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
                     holder.follow_friend_in_list_of_followers.setBackgroundColor(Color.WHITE);
                 }
                 else{
-                    followUser(post.getEmail(),post.getUsername(),post.getDescription());
+                    followUser(post.getEmail(),post.getUsername(),post.getDescription(),post.getImage());
                     holder.follow_friend_in_list_of_followers.setText("Following");
                     holder.follow_friend_in_list_of_followers.setBackgroundColor(Color.parseColor("#F6F4F4"));
                 }
@@ -59,8 +63,8 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
         });
     }
 
-    private void followUser(String email, String username, String description) {
-        user_class user=new user_class(email,username,description);
+    private void followUser(String email, String username, String description,String image) {
+        user_class user=new user_class(email,username,description,image);
         String branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");
         String branch2=email.replace("@","").replace(".","");
         //add to list to people im following
@@ -125,12 +129,14 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
 
     static class myViewHolder extends RecyclerView.ViewHolder{
         TextView email, username;
+        de.hdodenhof.circleimageview.CircleImageView friend_profile_chat;
         AppCompatButton follow_friend_in_list_of_followers;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
             email = itemView.findViewById(R.id.email);
             username = itemView.findViewById(R.id.username);
             follow_friend_in_list_of_followers=itemView.findViewById(R.id.follow_friend_in_list_of_followers);
+            friend_profile_chat=itemView.findViewById(R.id.friend_profile_chat);
         }
     }
 

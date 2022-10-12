@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -27,10 +28,12 @@ import java.util.Objects;
 
 public class a_FriendProfile extends AppCompatActivity {
     AppCompatImageView go_back_to_search;
+    de.hdodenhof.circleimageview.CircleImageView friend_profile;
     AppCompatTextView top_bar_friend_email,friend_description,friend_email,friend_name,number_of_followers,number_of_following,see_list_of_followers,see_list_of_following;
     AppCompatButton message_friend,follow_friend;
     RecyclerView friend_recyclerview;
     home_adapter mainAdapter;
+    String profile_pic_url;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +47,17 @@ public class a_FriendProfile extends AppCompatActivity {
         String friend_Email=getIntent().getStringExtra("receiver_id");
         String friend_Name=getIntent().getStringExtra("receiver_username");
         String friend_Description=getIntent().getStringExtra("receiver_description");
+        profile_pic_url=getIntent().getStringExtra("receiver_profile_pic");
         top_bar_friend_email.setText(friend_Email);
         friend_email.setText(friend_Email);
         friend_name.setText(friend_Name);
         friend_description.setText(friend_Description);
+        friend_profile=findViewById(R.id.friend_profile);
+        Glide.with(friend_profile.getContext())
+                .load(profile_pic_url)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.ic_baseline_person_24)
+                .into(friend_profile);
 
         //set number of followers and number of following
         setNumberFollowersFollowing(friend_Email);
@@ -56,7 +66,7 @@ public class a_FriendProfile extends AppCompatActivity {
         ifFollowsUser();
 
         //add to recently searched
-        user_class user=new user_class(getIntent().getStringExtra("receiver_id"),getIntent().getStringExtra("receiver_username"),getIntent().getStringExtra("receiver_description"));
+        user_class user=new user_class(getIntent().getStringExtra("receiver_id"),getIntent().getStringExtra("receiver_username"),getIntent().getStringExtra("receiver_description"),profile_pic_url);
         String branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");
         String branch2=getIntent().getStringExtra("receiver_id").replace("@","").replace(".","");
         recentlySearched(user,branch1,branch2);
@@ -65,7 +75,7 @@ public class a_FriendProfile extends AppCompatActivity {
         go_back_to_search.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,SearchUsers.class)));
 
         //message friend
-        message_friend.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,InsideMessage.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description)));
+        message_friend.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,InsideMessage.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description).putExtra("receiver_profile_pic",profile_pic_url)));
 
         //load friend posts content
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
@@ -83,12 +93,12 @@ public class a_FriendProfile extends AppCompatActivity {
         String rec=getIntent().getStringExtra("receiver_id");
         String rec_us=getIntent().getStringExtra("receiver_username");
         String rec_desc=getIntent().getStringExtra("receiver_username");
-        number_of_followers.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Followers.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc));});
-        see_list_of_followers.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Followers.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc));});
+        number_of_followers.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Followers.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
+        see_list_of_followers.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Followers.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
 
         //see list of following
-        number_of_following.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Following.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc));});
-        see_list_of_following.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Following.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc));});
+        number_of_following.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Following.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
+        see_list_of_following.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Following.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
 
     }
 
@@ -187,7 +197,7 @@ public class a_FriendProfile extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void follow_Unfollow_friend() {
         String mode=follow_friend.getText().toString();
-        user_class user=new user_class(friend_email.getText().toString(),friend_name.getText().toString(),friend_description.getText().toString());
+        user_class user=new user_class(friend_email.getText().toString(),friend_name.getText().toString(),friend_description.getText().toString(),profile_pic_url);
         String branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");
         String branch2=friend_email.getText().toString().replace("@","").replace(".","");
         if(mode.equals("Follow")){

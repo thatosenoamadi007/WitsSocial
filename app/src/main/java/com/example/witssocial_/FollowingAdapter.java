@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.test.espresso.remote.EspressoRemoteMessage;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -62,6 +61,11 @@ public class FollowingAdapter extends FirebaseRecyclerAdapter<user_class,Followi
                         .removeValue();
             });
         }
+        Glide.with(holder.friend_profile_chat.getContext())
+                .load(post.getImage())
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.ic_baseline_person_24)
+                .into(holder.friend_profile_chat);
 
     }
 
@@ -74,12 +78,14 @@ public class FollowingAdapter extends FirebaseRecyclerAdapter<user_class,Followi
 
     static class myViewHolder extends RecyclerView.ViewHolder{
         TextView email, username;
+        de.hdodenhof.circleimageview.CircleImageView friend_profile_chat;
         AppCompatImageView unfollow_user_in_list_of_following;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
             email = itemView.findViewById(R.id.email);
             username = itemView.findViewById(R.id.username);
             unfollow_user_in_list_of_following=itemView.findViewById(R.id.unfollow_user_in_list_of_following);
+            friend_profile_chat=itemView.findViewById(R.id.friend_profile_chat);
         }
     }
 

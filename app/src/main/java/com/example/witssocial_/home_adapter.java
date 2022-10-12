@@ -57,11 +57,11 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
                         assert user_class != null;
                         holder.handle.setText(user_class.getEmail());
                         holder.username.setText("@"+user_class.getUsername());
-                    /*Glide.with(holder.userprofile.getContext())
-                            .load(user_class.getUrl())
-                            .placeholder(R.drawable.ic_baseline_person_24)
-                            .error(R.drawable.ic_launcher_foreground)
-                            .into(holder.userprofile);*/
+                    Glide.with(holder.userprofile.getContext())
+                            .load(user_class.getImage())
+                            .placeholder(R.drawable.ic_launcher_foreground)
+                            .error(R.drawable.ic_baseline_person_24)
+                            .into(holder.userprofile);
                     }
 
                     @Override
@@ -69,11 +69,11 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
 
                     }
                 });
-        Glide.with(holder.userprofile.getContext())
+        /*Glide.with(holder.userprofile.getContext())
                 .load(R.drawable.img_1)
                 .placeholder(R.drawable.ic_baseline_person_24)
                 .error(R.drawable.ic_launcher_foreground)
-                .into(holder.userprofile);
+                .into(holder.userprofile);*/
         String ID = post.getId();
         String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         likers like = new likers(user);

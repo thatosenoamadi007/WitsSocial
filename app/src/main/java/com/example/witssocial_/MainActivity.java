@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                             //DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Users").child((Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()));
                             //user User = new user(email.getText().toString());
                             DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child((Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()));
-                            user_class User = new user_class(email.getText().toString(),full_name.getText().toString(),"");
+                            user_class User = new user_class(email.getText().toString(),full_name.getText().toString(),"","");
                             db.setValue(User);
                             Toast.makeText(MainActivity.this, "Account Registered.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(MainActivity.this,login.class));

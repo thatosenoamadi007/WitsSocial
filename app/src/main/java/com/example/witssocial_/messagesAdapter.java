@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
@@ -35,7 +36,11 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user_class, message
         String username=model.getUsername();
         String description= model.getDescription();
         holder.friend_name.setText(email);
-        holder.friend_profile.setImageResource(R.drawable.ic_account);
+        Glide.with(holder.friend_profile.getContext())
+                .load(model.getImage())
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.ic_baseline_person_24)
+                .into(holder.friend_profile);
 
         holder.message_layout.setOnClickListener(view -> {
             //Intent intent=new Intent(context,InsideMessage.class);
@@ -44,6 +49,7 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user_class, message
             intent.putExtra("receiver_id",email);
             intent.putExtra("receiver_username",username);
             intent.putExtra("receiver_description",description);
+            intent.putExtra("receiver_profile_pic",model.getEmail());
             context.startActivity(intent);
         });
 

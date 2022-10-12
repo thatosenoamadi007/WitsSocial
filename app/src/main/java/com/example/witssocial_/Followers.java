@@ -31,7 +31,8 @@ public class Followers extends AppCompatActivity {
             String rec=getIntent().getStringExtra("receiver_id");
             String rec_us=getIntent().getStringExtra("receiver_username");
             String rec_desc=getIntent().getStringExtra("receiver_username");
-            go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(Followers.this,a_FriendProfile.class).putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc)));
+            String friend_profile=getIntent().getStringExtra("receiver_profile_pic");
+            go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(Followers.this,a_FriendProfile.class).putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc).putExtra("receiver_profile_pic",friend_profile)));
 
             //show list of following
             show_list_of_followers=findViewById(R.id.show_list_of_followers);

@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +27,7 @@ public class InsideMessage extends AppCompatActivity {
     //variables used when activity loads
     AppCompatImageView go_back;
     AppCompatTextView show_friend_name;
+    de.hdodenhof.circleimageview.CircleImageView show_friend_profile_image_insidemessage;
 
     //variables used when displaying messages
     RecyclerView recyclerView;
@@ -111,8 +113,15 @@ public class InsideMessage extends AppCompatActivity {
 
         //get friend name and display it
         String name=getIntent().getStringExtra("receiver_id");
+        String friend_profile1=getIntent().getStringExtra("receiver_profile_pic");
         //String name="dummy@gmail.com";
         show_friend_name= findViewById(R.id.show_friend_name_insidemessage);
+        show_friend_profile_image_insidemessage=findViewById(R.id.show_friend_profile_image_insidemessage);
+        Glide.with(show_friend_profile_image_insidemessage.getContext())
+                .load(friend_profile1)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.ic_baseline_person_24)
+                .into(show_friend_profile_image_insidemessage);
         show_friend_name.setText(name);
     }
 
@@ -120,8 +129,9 @@ public class InsideMessage extends AppCompatActivity {
         String friend_Email=getIntent().getStringExtra("receiver_id");
         String friend_Name=getIntent().getStringExtra("receiver_username");
         String friend_Description=getIntent().getStringExtra("receiver_description");
+        String friend_profile=getIntent().getStringExtra("receiver_profile_pic");
         go_back= findViewById(R.id.go_back_insidemessage);
-        go_back.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),a_FriendProfile.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description)));
+        go_back.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),a_FriendProfile.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description).putExtra("receiver_profile_pic",friend_profile)));
 
     }
 

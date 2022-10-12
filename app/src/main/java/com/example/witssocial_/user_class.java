@@ -1,7 +1,7 @@
 package com.example.witssocial_;
 
 public class user_class {
-    String username,email,description;
+    String username,email,description,image;
 
 
     public user_class(){
@@ -9,10 +9,11 @@ public class user_class {
     }
 
 
-    public user_class(String email,String username,String description){
+    public user_class(String email,String username,String description,String image){
         this.username = username;
         this.email=email;
         this.description=description;
+        this.image=image;
 
     }
 
@@ -38,5 +39,13 @@ public class user_class {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
     }
 }
