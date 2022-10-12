@@ -22,7 +22,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class home_activityTest {
-    @Rule
+   /* @Rule
     public ActivityScenarioRule<home_activity> activityScenarioRule = new ActivityScenarioRule<>(home_activity.class);
     Instrumentation.ActivityMonitor monitor = InstrumentationRegistry.getInstrumentation().addMonitor(home_activity.class.getName(),null,false);
 
@@ -34,7 +34,7 @@ public class home_activityTest {
         });
 
     }
-    /*@Test
+    @Test
     public void Media_PostsCheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
             // use 'activity'.
@@ -42,7 +42,7 @@ public class home_activityTest {
             assertNotNull(Media_Posts);
         });
 
-    }*/
+    }
     @Test
     public void Text_PostsCheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -56,13 +56,13 @@ public class home_activityTest {
         Espresso.onView(withId(R.id.All_Posts)).perform(click());
     }
 
-   /* @Test
+    @Test
     public void Media_PostsClick(){
         Espresso.onView(withId(R.id.Media_Posts)).perform(click());
-    }*/
+    }
 
     @Test
     public void Text_PostsClick(){
         Espresso.onView(withId(R.id.Text_Posts)).perform(click());
-    }
+    }*/
 }
