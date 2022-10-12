@@ -26,7 +26,7 @@ public class home_activityTest {
     public ActivityScenarioRule<home_activity> activityScenarioRule = new ActivityScenarioRule<>(home_activity.class);
     Instrumentation.ActivityMonitor monitor = InstrumentationRegistry.getInstrumentation().addMonitor(home_activity.class.getName(),null,false);
 
-    @Test
+    /*@Test
     public void AllPostscheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
             TextView All_Posts = activity.findViewById(R.id.All_Posts);
@@ -50,7 +50,7 @@ public class home_activityTest {
             assertNotNull(Text_Posts);
         });
 
-    }
+    }*/
     @Test
     public void AllPostsClick(){
         Espresso.onView(withId(R.id.All_Posts)).perform(click());
