@@ -37,9 +37,6 @@
             android:name=".a_FriendProfile"
             android:exported="false" />
         <activity
-            android:name=".dummy_actiity"
-            android:exported="false" />
-        <activity
             android:name=".SearchUsers"
             android:exported="false" />
         <activity

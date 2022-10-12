@@ -36,7 +36,7 @@ public class Followers extends AppCompatActivity {
 
             //show list of following
             show_list_of_followers=findViewById(R.id.show_list_of_followers);
-            show_list_of_followers.setLayoutManager(new LinearLayoutManager(this));                                                                                                              //User Following
+            show_list_of_followers.setLayoutManager(new LinearLayoutManager(this));//User Following
             FirebaseRecyclerOptions<user_class> options = new FirebaseRecyclerOptions.Builder<user_class>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Followers").child(rec.replace("@","").replace(".","")),user_class.class).build();
             mainAdapter= new FollowersAdapter(options,getApplicationContext());
             show_list_of_followers.setAdapter(mainAdapter);
@@ -46,8 +46,10 @@ public class Followers extends AppCompatActivity {
             go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(Followers.this,Profile.class)));
             //show list of following
             show_list_of_followers=findViewById(R.id.show_list_of_followers);
-            show_list_of_followers.setLayoutManager(new LinearLayoutManager(this));                                                                                                              //User Following
-            FirebaseRecyclerOptions<user_class> options = new FirebaseRecyclerOptions.Builder<user_class>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Followers").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","")),user_class.class).build();
+            show_list_of_followers.setLayoutManager(new LinearLayoutManager(this));//User Following
+            String email="karabol@gmail.com";
+            try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}catch (Exception e){email="karabol@gmail.com";}
+            FirebaseRecyclerOptions<user_class> options = new FirebaseRecyclerOptions.Builder<user_class>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Followers").child(email.replace("@","").replace(".","")),user_class.class).build();
             mainAdapter= new FollowersAdapter(options,getApplicationContext());
             show_list_of_followers.setAdapter(mainAdapter);
             go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(Followers.this,Profile.class)));

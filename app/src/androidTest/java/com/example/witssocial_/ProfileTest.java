@@ -29,6 +29,14 @@ public class ProfileTest {
     public void GotoAccountSettingClick(){
         Espresso.onView(withId(R.id.my_account_settings)).perform(click());
     }*/
+    @Test
+    public void SeeFollowerslist(){
+        Espresso.onView(withId(R.id.number_of_followers)).perform(click());
+    }
+    @Test
+    public void SeeFollowinglist(){
+        Espresso.onView(withId(R.id.number_of_following)).perform(click());
+    }
 
     @Test
     public void GotoEditProfileClick(){
