@@ -61,8 +61,8 @@ public class home_activityTest {
         Espresso.onView(withId(R.id.Media_Posts)).perform(click());
     }
 
-    @Test
+    /*@Test
     public void Text_PostsClick(){
         Espresso.onView(withId(R.id.Text_Posts)).perform(click());
-    }
+    }*/
 }
