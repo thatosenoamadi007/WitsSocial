@@ -12,9 +12,6 @@ jobs:
           name: chmod permissions
           command: chmod +x ./gradlew
       - run:
-          name: Install dependencies, run tests, and collect coverage
-          command: ./gradlew build
-      - run:
           name: Show list of system-images
           command: sdkmanager --list --verbose | grep system-images
       - run:
