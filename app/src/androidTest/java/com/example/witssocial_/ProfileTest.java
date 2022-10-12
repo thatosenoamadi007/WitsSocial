@@ -25,10 +25,10 @@ public class ProfileTest {
     @Rule
     public ActivityScenarioRule<Profile> activityScenarioRule = new ActivityScenarioRule<>(Profile.class);
 
-    @Test
+    /*@Test
     public void GotoAccountSettingClick(){
         Espresso.onView(withId(R.id.my_account_settings)).perform(click());
-    }
+    }*/
 
     @Test
     public void GotoEditProfileClick(){

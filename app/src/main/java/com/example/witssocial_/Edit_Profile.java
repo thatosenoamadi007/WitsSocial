@@ -88,13 +88,16 @@ public class Edit_Profile extends AppCompatActivity {
         pd = new ProgressDialog(this);
         pd.setCanceledOnTouchOutside(false);
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
+        //firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = firebaseDatabase.getReference("Wits Social Database").child("Users");
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        Query query = databaseReference.orderByChild("email").equalTo(firebaseUser.getEmail());
+        String email="karabol@gmail.com";
+        try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
+        catch(Exception e){email="karabol@gmail.com";}
+        Query query = databaseReference.orderByChild("email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -129,7 +132,10 @@ public class Edit_Profile extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Query query = databaseReference.orderByChild("email").equalTo(firebaseUser.getEmail());
+        String email="karabol@gmail.com";
+        try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
+        catch(Exception e){email="karabol@gmail.com";}
+        Query query = databaseReference.orderByChild("email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -154,7 +160,10 @@ public class Edit_Profile extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Query query = databaseReference.orderByChild("email").equalTo(firebaseUser.getEmail());
+        String email="karabol@gmail.com";
+        try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
+        catch(Exception e){email="karabol@gmail.com";}
+        Query query = databaseReference.orderByChild("email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -300,8 +309,12 @@ public class Edit_Profile extends AppCompatActivity {
         pd.show();
 
         // We are taking the filepath as storagepath + firebaseauth.getUid()+".png"
-        String filepathname = storagepath + "" + profileOrCoverPhoto + "_" + firebaseUser.getUid();
+        String id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+        try{id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
+        catch(Exception e){id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";}
+        String filepathname = storagepath + "" + profileOrCoverPhoto + "_" + id;
         StorageReference storageReference1 = storageReference.child(filepathname);
+        String finalId = id;
         storageReference1.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -315,7 +328,7 @@ public class Edit_Profile extends AppCompatActivity {
                     // updating our image url into the realtime database
                     HashMap<String, Object> hashMap = new HashMap<>();
                     hashMap.put(profileOrCoverPhoto, downloadUri.toString());
-                    databaseReference.child(firebaseUser.getUid()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    databaseReference.child(finalId).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             pd.dismiss();
