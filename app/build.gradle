@@ -4,6 +4,11 @@ plugins {
 }
 
 android {
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        ignoreWarnings true
+    }
     compileSdk 32
 
     defaultConfig {
@@ -16,19 +21,47 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+        reports {
+            xml.enabled = true
+            html.enabled = true
+
+        }
+
+        project.gradle.taskGraph.whenReady {
+            connectedDebugAndroidTest {
+                ignoreFailures = true
+            }
+        }
+        def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+        def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+        def mainSrc = "${project.projectDir}/src/main/java"
+
+        sourceDirectories.setFrom(files([mainSrc]))
+        classDirectories.setFrom(files([debugTree]))
+        executionData.setFrom(fileTree(dir: "$buildDir", includes: [
+                "jacoco/testDebugUnitTest.exec",
+                "outputs/code-coverage/connected/*coverage.ec"
+        ]))
+    }
+
     buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
-    
-    lintOptions {
-        baseline file("lint-baseline.xml")
+
+    buildFeatures {
+        dataBinding = true
     }
 }
 
@@ -48,6 +81,19 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    //androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
+
+    implementation 'androidx.test:core:1.4.0'
+    implementation 'androidx.test.espresso:espresso-contrib:3.4.0'
+    testImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.4.0'
+    //androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0'
+    //androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    //androidTestImplementation 'com.android.support.test:rules:1.0.2'
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -56,4 +102,12 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
+
+    //implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 }
+
+
+
+
+
+
