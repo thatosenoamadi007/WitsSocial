@@ -82,7 +82,13 @@ public class Profile extends AppCompatActivity {
         //String my_full_name=my_username.getText().toString();
         final String[] my_full_name = {my_username.getText().toString()};
         final String[] my_description = {my_profile_description.getText().toString()};
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        String id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+        try{
+            id=FirebaseAuth.getInstance().getCurrentUser().getUid();
+        }catch (Exception e){
+            id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+        }
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child(id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -103,12 +109,20 @@ public class Profile extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void setStaticValues() {
-        String name= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
+        String name="karabol@gmail.com";
+        String id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+        try{
+            name=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
+            id=FirebaseAuth.getInstance().getCurrentUser().getUid();
+        }catch (Exception e){
+            name="karabol@gmail.com";
+            id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+        }
         my_email.setText(name);
         //top_bar_my_name.setText(name);
         top_bar_my_name.setText("Profile");
         //my_username.setText(name);
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child(id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -185,6 +199,8 @@ public class Profile extends AppCompatActivity {
 
     private void setNumberFollowersFollowing() {
         String friend_email=FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        try{friend_email=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
+        catch (Exception e){friend_email="karabol@gmail.com";}
         String friend_email2=friend_email;
         //Toast.makeText(Profile.this, friend_email+"-----"+friend_email.replace("@","").replace(".",""), Toast.LENGTH_SHORT).show();
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Followers")
