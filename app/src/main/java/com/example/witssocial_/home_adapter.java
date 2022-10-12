@@ -75,7 +75,12 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
                 .error(R.drawable.ic_launcher_foreground)
                 .into(holder.userprofile);*/
         String ID = post.getId();
-        String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        String user = "karabol@gmail.com";
+        try {user=FirebaseAuth.getInstance().getCurrentUser().getEmail();}
+        catch(Exception e) {
+            //  Block of code to handle errors
+            user="karabol@gmail.com";
+        }
         likers like = new likers(user);
 
         //check if you already liked post
@@ -142,6 +147,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
                 });
 
         //like or unlike
+        String finalUser = user;
         holder.heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,7 +169,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
                             .child("Wits Social Database")
                             .child("ID")
                             .child(ID)
-                            .child(user.replace("@","").replace(".",""))
+                            .child(finalUser.replace("@","").replace(".",""))
                             .removeValue();
                     holder.heart.setImageResource(R.drawable.heart2);
                     check[0] =false;
