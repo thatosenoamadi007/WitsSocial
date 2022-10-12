@@ -51,10 +51,10 @@ public class home_activityTest {
         });
 
     }
-    @Test
+    /*@Test
     public void Text_PostsClick(){
         Espresso.onView(withId(R.id.Text_Posts)).perform(click());
-    }
+    }*/
     @Test
     public void AllPostsClick(){
         Espresso.onView(withId(R.id.All_Posts)).perform(click());
