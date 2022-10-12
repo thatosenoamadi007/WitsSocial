@@ -33,10 +33,10 @@ public class ProfileTest {
     public void SeeFollowerslist(){
         Espresso.onView(withId(R.id.number_of_followers)).perform(click());
     }
-    /*@Test
+    @Test
     public void SeeFollowinglist(){
         Espresso.onView(withId(R.id.number_of_following)).perform(click());
-    }*/
+    }
 
     @Test
     public void GotoEditProfileClick(){

@@ -42,7 +42,9 @@ public class FollowingAdapter extends FirebaseRecyclerAdapter<user_class,Followi
             holder.unfollow_user_in_list_of_following.setBackgroundColor(Color.WHITE);
         }else{
             holder.unfollow_user_in_list_of_following.setOnClickListener(view -> {
-                String branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");
+                String email="karabol@gmail.com";
+                try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}catch (Exception e){email="karabol@gmail.com";}
+                String branch1= email;
                 String branch2=post.getEmail().replace("@","").replace(".","");
                 //remove from list of people im following
                 FirebaseDatabase.getInstance().getReference()
