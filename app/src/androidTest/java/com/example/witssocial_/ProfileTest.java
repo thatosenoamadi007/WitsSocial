@@ -24,7 +24,6 @@ import org.junit.runner.RunWith;
 public class ProfileTest {
     @Rule
     public ActivityScenarioRule<Profile> activityScenarioRule = new ActivityScenarioRule<>(Profile.class);
-    Instrumentation.ActivityMonitor monitor = InstrumentationRegistry.getInstrumentation().addMonitor(Profile.class.getName(),null,false);
 
     @Test
     public void GotoAccountSettingClick(){
