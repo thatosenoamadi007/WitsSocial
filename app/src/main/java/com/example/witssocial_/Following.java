@@ -46,7 +46,9 @@ public class Following extends AppCompatActivity {
             //Toast.makeText(this, FirebaseAuth.getInstance().getCurrentUser().getEmail().replace("@","").replace(".",""), Toast.LENGTH_SHORT).show();
             show_list_of_following=findViewById(R.id.show_list_of_following);
             show_list_of_following.setLayoutManager(new LinearLayoutManager(this));
-            FirebaseRecyclerOptions<user_class> options = new FirebaseRecyclerOptions.Builder<user_class>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Following").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","")),user_class.class).build();
+            String email="karabol@gmail.com";
+            try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}catch (Exception e){email="karabol@gmail.com";}
+            FirebaseRecyclerOptions<user_class> options = new FirebaseRecyclerOptions.Builder<user_class>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Following").child(email.replace("@","").replace(".","")),user_class.class).build();
             mainAdapter= new FollowingAdapter(options,getApplicationContext(),"no");
             show_list_of_following.setAdapter(mainAdapter);
         }
