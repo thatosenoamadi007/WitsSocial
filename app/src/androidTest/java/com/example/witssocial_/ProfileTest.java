@@ -31,4 +31,9 @@ public class ProfileTest {
         Espresso.onView(withId(R.id.my_account_settings)).perform(click());
     }
 
+    @Test
+    public void GotoEditProfileClick(){
+        Espresso.onView(withId(R.id.edit_my_profile)).perform(click());
+    }
+
 }

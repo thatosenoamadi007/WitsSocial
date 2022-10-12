@@ -198,7 +198,7 @@ public class Profile extends AppCompatActivity {
     }
 
     private void setNumberFollowersFollowing() {
-        String friend_email=FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        String friend_email="krabol@gmail.com";
         try{friend_email=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
         catch (Exception e){friend_email="karabol@gmail.com";}
         String friend_email2=friend_email;
