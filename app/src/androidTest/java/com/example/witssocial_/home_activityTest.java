@@ -26,7 +26,7 @@ public class home_activityTest {
     public ActivityScenarioRule<home_activity> activityScenarioRule = new ActivityScenarioRule<>(home_activity.class);
     Instrumentation.ActivityMonitor monitor = InstrumentationRegistry.getInstrumentation().addMonitor(home_activity.class.getName(),null,false);
 
-    /*@Test
+    @Test
     public void AllPostscheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
             TextView All_Posts = activity.findViewById(R.id.All_Posts);
@@ -34,7 +34,7 @@ public class home_activityTest {
         });
 
     }
-    @Test
+    /*@Test
     public void Media_PostsCheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
             // use 'activity'.
@@ -42,7 +42,7 @@ public class home_activityTest {
             assertNotNull(Media_Posts);
         });
 
-    }
+    }*/
     @Test
     public void Text_PostsCheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -50,16 +50,16 @@ public class home_activityTest {
             assertNotNull(Text_Posts);
         });
 
-    }*/
+    }
     @Test
     public void AllPostsClick(){
         Espresso.onView(withId(R.id.All_Posts)).perform(click());
     }
 
-    @Test
+   /* @Test
     public void Media_PostsClick(){
         Espresso.onView(withId(R.id.Media_Posts)).perform(click());
-    }
+    }*/
 
     @Test
     public void Text_PostsClick(){
