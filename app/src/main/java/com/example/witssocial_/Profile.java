@@ -69,7 +69,14 @@ public class Profile extends AppCompatActivity {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         my_account_profile_recyclerview.setLayoutManager(linearLayoutManager);
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Posts").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","")),Post.class).build();
+        String email="karabol@gmail.com";
+        try{
+            email=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
+        }catch (Exception e){
+            email="karabol@gmail.com";
+        }
+        assert email != null;
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Posts").child(email.replace("@","").replace(".","")),Post.class).build();
         mainAdapter= new home_adapter(options,getApplicationContext(),"my_profile","null","null","null");
         my_account_profile_recyclerview.setAdapter(mainAdapter);
 
