@@ -61,7 +61,7 @@ public class Profile extends AppCompatActivity {
         see_list_of_following.setOnClickListener(view -> {startActivity(new Intent(Profile.this,Following.class).putExtra("came_from","Profile"));});
 
         //go to settings
-        my_account_settings.setOnClickListener(view -> startActivity(new Intent(Profile.this,Account_Settings.class)));
+        my_account_settings.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),Account_Settings.class)));
 
 
         //load my posts content
