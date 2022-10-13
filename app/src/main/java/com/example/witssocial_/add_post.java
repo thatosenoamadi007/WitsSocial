@@ -4,7 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +36,7 @@ public class add_post extends AppCompatActivity {
     private TextView caption;
     private Button postBtn;
     private Uri imageUri;
+    private Button textPost;
     private StorageReference storageRef;
     BottomNavigationView bottomNavigationView;
     @Override
@@ -116,6 +119,7 @@ public class add_post extends AppCompatActivity {
                         Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                         while(!uriTask.isComplete());
                         Uri uri =uriTask.getResult();
+
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         FirebaseDatabase database=FirebaseDatabase.getInstance();
                         String key=database.getReference("All Posts").push().getKey();
