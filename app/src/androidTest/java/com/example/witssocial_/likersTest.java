@@ -14,5 +14,4 @@ public class likersTest extends TestCase {
         likers likers=new likers("like");
         assertEquals("like",likers.getLikerID());
     }
-
 }
