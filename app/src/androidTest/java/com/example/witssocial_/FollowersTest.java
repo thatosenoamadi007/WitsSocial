@@ -1,6 +1,7 @@
 package com.example.witssocial_;
 import static android.service.autofill.Validators.not;
 //import static android.support.test.InstrumentationRegistry.getInstrumentation;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -27,7 +28,12 @@ public class FollowersTest {
 
     @Test
     public void GotoEditProfileClick(){
-        Espresso.onView(withId(R.id.go_back_to_my_profile)).perform(click());
+        //Espresso.onView(withId(R.id.go_back_to_my_profile)).perform(click());
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            // use 'activity'.
+            AppCompatImageView go_back_to_my_profile = activity.findViewById(R.id.go_back_to_my_profile);
+            assertNotNull(go_back_to_my_profile);
+        });
     }
 
 }
