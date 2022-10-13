@@ -35,7 +35,7 @@ public class Comment_Section extends AppCompatActivity {
         go_back_to_home_activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String came_from=getIntent().getStringExtra("came_from");
+                /*String came_from=getIntent().getStringExtra("came_from");
                 if(came_from.equals("home_activity")){
                     startActivity(new Intent(Comment_Section.this,home_activity.class));
                 }
@@ -47,7 +47,7 @@ public class Comment_Section extends AppCompatActivity {
                     String friend_Name=getIntent().getStringExtra("receiver_username");
                     String friend_Description=getIntent().getStringExtra("receiver_description");
                     startActivity(new Intent(Comment_Section.this,a_FriendProfile.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description));
-                }
+                }*/
             }
         });
 
@@ -69,7 +69,7 @@ public class Comment_Section extends AppCompatActivity {
             public void onClick(View view) {
                 if(!add_a_comment.getText().toString().isEmpty()){
 
-                    String key=FirebaseDatabase.getInstance().getReference("Wits Social Database").push().getKey();
+                   /* String key=FirebaseDatabase.getInstance().getReference("Wits Social Database").push().getKey();
                     comment comment=new comment(add_a_comment.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getUid());
                     FirebaseDatabase.getInstance().getReference("Wits Social Database")
                             .child("Comments")
@@ -87,7 +87,7 @@ public class Comment_Section extends AppCompatActivity {
                                 public void onFailure(@NonNull Exception e) {
                                     Toast.makeText(Comment_Section.this, "Error trying to upload comment.", Toast.LENGTH_SHORT).show();
                                 }
-                            });
+                            });*/
                 }
             }
         });

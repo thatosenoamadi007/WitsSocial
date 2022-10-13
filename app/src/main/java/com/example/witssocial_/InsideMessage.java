@@ -61,7 +61,7 @@ public class InsideMessage extends AppCompatActivity {
     }
 
     void delegatedToSendMessage(){
-        String message_content= Objects.requireNonNull(typed_message.getText()).toString();
+        /*String message_content= Objects.requireNonNull(typed_message.getText()).toString();
         String name=getIntent().getStringExtra("receiver_id");
         String currentDateTime=get_CurrentDateTime();
 
@@ -70,7 +70,7 @@ public class InsideMessage extends AppCompatActivity {
         String branch1= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()).replace("@","").replace(".","");
         String branch2=name.replace("@","").replace(".","");
         saveToChatHistory(currentDateTime,messageObject,branch1,branch2);
-        saveToChatHistory(currentDateTime,messageObject,branch2,branch1);
+        saveToChatHistory(currentDateTime,messageObject,branch2,branch1);*/
 
         //add to the database that shows list of friends im chatting with and recent message sent to them
         //user user=new user(name);
@@ -81,13 +81,13 @@ public class InsideMessage extends AppCompatActivity {
     }
 
     void saveToChatHistory(String currentDateTime, messageObject messageObject, String branch1, String branch2){
-            FirebaseDatabase.getInstance().getReference()
+            /*FirebaseDatabase.getInstance().getReference()
                     .child("Wits Social Database")
                 .child("Chat history")
                 .child(branch1)
                 .child(branch2)
                 .child(currentDateTime.replaceAll("/", "|"))
-                .setValue(messageObject).addOnSuccessListener(unused -> typed_message.setText("")).addOnFailureListener(e -> Toast.makeText(InsideMessage.this, "Message not sent, try again.", Toast.LENGTH_SHORT).show());
+                .setValue(messageObject).addOnSuccessListener(unused -> typed_message.setText("")).addOnFailureListener(e -> Toast.makeText(InsideMessage.this, "Message not sent, try again.", Toast.LENGTH_SHORT).show());*/
     }
 
    /* void sendToListOfUsers(user user, String branch1, String branch2){
@@ -126,12 +126,12 @@ public class InsideMessage extends AppCompatActivity {
     }
 
     void go_back(){
-        String friend_Email=getIntent().getStringExtra("receiver_id");
+        /*String friend_Email=getIntent().getStringExtra("receiver_id");
         String friend_Name=getIntent().getStringExtra("receiver_username");
         String friend_Description=getIntent().getStringExtra("receiver_description");
         String friend_profile=getIntent().getStringExtra("receiver_profile_pic");
         go_back= findViewById(R.id.go_back_insidemessage);
-        go_back.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),a_FriendProfile.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description).putExtra("receiver_profile_pic",friend_profile)));
+        go_back.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),a_FriendProfile.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description).putExtra("receiver_profile_pic",friend_profile)));*/
 
     }
 
