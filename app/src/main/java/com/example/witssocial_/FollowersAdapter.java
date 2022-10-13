@@ -67,7 +67,8 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
         user_class user=new user_class(email,username,description,image);
         String branch1="karabol@gmail.com";
         try{branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
-        catch (Exception e){branch1="karabol@gmail.com";}
+        catch (Exception e){branch1="karabol@gmail.com";
+            branch1.replace("@","").replace(".","");}
         String branch2=email.replace("@","").replace(".","");
         //add to list to people im following
         FirebaseDatabase.getInstance().getReference()
@@ -109,7 +110,7 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
         String email1="karabol@gmail.com";
         try{email1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
         catch (Exception e){email1="karabol@gmail.com";}
-        String branch1= email1;
+        String branch1= email1.replace("@","").replace(".","");
         String branch2=email.replace("@","").replace(".","");
         //remove from list of people im following
         FirebaseDatabase.getInstance().getReference()
@@ -152,7 +153,7 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
         String email1="karabol@gmail.com";
         try{email1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
         catch (Exception e){email1="karabol@gmail.com";}
-        String branch1= email1;
+        String branch1= email1.replace("@","").replace(".","");
         String branch2=email.replace("@","").replace(".","");
         FirebaseDatabase.getInstance().getReference()
                 .child("Wits Social Database")
