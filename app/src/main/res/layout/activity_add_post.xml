@@ -30,9 +30,9 @@
                 tools:ignore="RtlSymmetry" />
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="390dp"
-            android:layout_height="209dp"
+            android:layout_height="300dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="18dp"
@@ -40,10 +40,20 @@
             <ImageView
                 android:id="@+id/choosePost"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="230dp"
                 android:src="@drawable/icupload"
                 tools:ignore="ContentDescription" />
-        </LinearLayout>
+
+            <Button
+                android:id="@+id/textPost"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/choosePost"
+                android:fontFamily="@font/ubuntu_bold"
+                android:hint="Want to post text instead? Click here.."
+                android:text=""
+                android:textColorHint="@color/grey" />
+        </RelativeLayout>
 
 
 
