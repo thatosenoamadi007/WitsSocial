@@ -52,15 +52,15 @@ public class add_post extends AppCompatActivity {
 
         bottomNavigationbar();
 
-        addPost.setOnClickListener(view -> selectPost());
+        //addPost.setOnClickListener(view -> selectPost());
     }
 
-    private void selectPost() {
-        Intent intent = new Intent();
-        intent.setType("*/*");
-        final Intent intent1 = intent.setAction((Intent.ACTION_GET_CONTENT));
-        startActivityForResult(Intent.createChooser(intent1,"SELECT POST"),10);
-    }
+    //private void selectPost() {
+    //    Intent intent = new Intent();
+    //    intent.setType("*/*");
+    //    final Intent intent1 = intent.setAction((Intent.ACTION_GET_CONTENT));
+    //    startActivityForResult(Intent.createChooser(intent1,"SELECT POST"),10);
+    //}
 
     private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
@@ -91,7 +91,7 @@ public class add_post extends AppCompatActivity {
         });
     }
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==10 && resultCode==RESULT_OK && data!=null && data.getData()!=null){
@@ -101,9 +101,9 @@ public class add_post extends AppCompatActivity {
         }else{
             Toast.makeText(add_post.this, "resultcode"+requestCode, Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
-    private void uploadPost() {
+    /*private void uploadPost() {
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setTitle("File is loading......");
         pd.show();
@@ -139,7 +139,7 @@ public class add_post extends AppCompatActivity {
 
                     });
      
-    }
+    }*/
     String get_CurrentDateTime(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.US);
         Date date = new Date();
