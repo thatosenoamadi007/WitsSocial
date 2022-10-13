@@ -21,26 +21,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
-public class ProfileTest {
+public class FollowersTest {
     @Rule
-    public ActivityScenarioRule<Profile> activityScenarioRule = new ActivityScenarioRule<>(Profile.class);
-
-    /*@Test
-    public void GotoAccountSettingClick(){
-        Espresso.onView(withId(R.id.my_account_settings)).perform(click());
-    }*/
-    /*@Test
-    public void SeeFollowerslist(){
-        Espresso.onView(withId(R.id.number_of_followers)).perform(click());
-    }
-    @Test
-    public void SeeFollowinglist(){
-        Espresso.onView(withId(R.id.number_of_following)).perform(click());
-    }*/
+    public ActivityScenarioRule<Followers> activityScenarioRule = new ActivityScenarioRule<>(Followers.class);
 
     @Test
     public void GotoEditProfileClick(){
-        Espresso.onView(withId(R.id.edit_my_profile)).perform(click());
+        Espresso.onView(withId(R.id.go_back_to_my_profile)).perform(click());
     }
 
 }

@@ -26,7 +26,7 @@ public class Following extends AppCompatActivity {
 
         //go back to profile
         go_back_to_my_profile=findViewById(R.id.go_back_to_my_profile);
-        if(getIntent().getStringExtra("came_from").equals("a_FriendProfile")){
+        if(getIntent().getStringExtra("came_from")!=null && getIntent().getStringExtra("came_from").equals("a_FriendProfile")){
             String rec=getIntent().getStringExtra("receiver_id");
             String rec_us=getIntent().getStringExtra("receiver_username");
             String rec_desc=getIntent().getStringExtra("receiver_username");
