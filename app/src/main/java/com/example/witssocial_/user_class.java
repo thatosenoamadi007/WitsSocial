@@ -3,7 +3,6 @@ package com.example.witssocial_;
 public class user_class {
     String username,email,description,image;
 
-
     public user_class(){
 
     }
