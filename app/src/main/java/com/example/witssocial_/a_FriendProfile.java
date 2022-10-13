@@ -50,20 +50,20 @@ public class a_FriendProfile extends AppCompatActivity {
         friend_Name=getIntent().getStringExtra("receiver_username");
         friend_Description=getIntent().getStringExtra("receiver_description");
         profile_pic_url=getIntent().getStringExtra("receiver_profile_pic");
-        /*if(friend_Email!=null && friend_Name!=null){
-            Toast.makeText(this, "user mode", Toast.LENGTH_SHORT).show();
+        if(friend_Email!=null && friend_Name!=null){
+            //Toast.makeText(this, "user mode", Toast.LENGTH_SHORT).show();
             /*friend_Email=getIntent().getStringExtra("receiver_id");
             friend_Name=getIntent().getStringExtra("receiver_username");
             friend_Description=getIntent().getStringExtra("receiver_description");
             profile_pic_url=getIntent().getStringExtra("receiver_profile_pic");*/
-        /*}
+        }
         else{
-            Toast.makeText(this, "testing mode", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "testing mode", Toast.LENGTH_SHORT).show();
             friend_Email="karabol@gmail.com";
             friend_Name="karabo_sepuru";
             friend_Description="Student at University of the Witwatersrand\uD83D\uDCDA\uD83D\uDE4Fj";
             profile_pic_url="https://firebasestorage.googleapis.com/v0/b/witssocial-a0ae3.appspot.com/o/Users_Profile_Cover_image%2Fimage_1sHMCTUdp0UwvnfEUdLe6Q6mJif2?alt=media&token=f4948326-e83f-4bc6-ad50-c7738e393214";
-        }*/
+        }
         //Toast.makeText(this, friend_Email+"--"+friend_Name+"---"+friend_Description, Toast.LENGTH_SHORT).show();
         top_bar_friend_email.setText(friend_Email);
         friend_email.setText(friend_Email);
