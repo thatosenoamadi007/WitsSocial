@@ -48,7 +48,7 @@ public class Followers extends AppCompatActivity {
             show_list_of_followers=findViewById(R.id.show_list_of_followers);
             show_list_of_followers.setLayoutManager(new LinearLayoutManager(this));//User Following
             String email="karabol@gmail.com";
-            try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}catch (Exception e){email="karabolgmailcom";}
+            try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}catch (Exception e){email="karabol@gmail.com";}
             FirebaseRecyclerOptions<user_class> options = new FirebaseRecyclerOptions.Builder<user_class>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Followers").child(email.replace("@","").replace(".","")),user_class.class).build();
             mainAdapter= new FollowersAdapter(options,getApplicationContext());
             show_list_of_followers.setAdapter(mainAdapter);
