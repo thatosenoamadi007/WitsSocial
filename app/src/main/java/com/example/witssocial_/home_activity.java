@@ -1,14 +1,17 @@
 package com.example.witssocial_;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,7 +24,6 @@ public class home_activity extends AppCompatActivity {
     private RecyclerView recyclerView;
     public BottomNavigationView bottomNavigationView;
     private home_adapter mainAdapter;
-    private textPostAdapter mainAdapter1;
 
  
    
@@ -33,9 +35,17 @@ public class home_activity extends AppCompatActivity {
         all_post=findViewById(R.id.All_Posts);
         media_post=findViewById(R.id.Media_Posts);
         text_post=findViewById(R.id.Text_Posts);
+         //initlise the recycler view, layout manager and firebase recycler options
+        recyclerView =findViewById(R.id.homerecview);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        //FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Posts"),Post.class).build();
+        mainAdapter= new home_adapter(options,getApplicationContext(),"home_activity","null","null","null");
+        recyclerView.setAdapter(mainAdapter);
         bottomNavigationbar();
-
-
 
         //----------------------------
 
@@ -52,16 +62,6 @@ public class home_activity extends AppCompatActivity {
             all_post.setBackgroundColor(Color.WHITE);
             media_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
             text_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
-
-            //initlise the recycler view, layout manager and firebase recycler options
-            recyclerView =findViewById(R.id.homerecview);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            //FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
-            FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Posts"),Post.class).build();
-            mainAdapter= new home_adapter(options);
-            recyclerView.setAdapter(mainAdapter);
-            mainAdapter.startListening();
-
         });
 
         media_post.setOnClickListener(view -> {
@@ -74,30 +74,12 @@ public class home_activity extends AppCompatActivity {
             text_post.setBackgroundColor(Color.WHITE);
             all_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
             media_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
-
-            //initlise the recycler view, layout manager and firebase recycler options
-            recyclerView =findViewById(R.id.homerecview);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            //FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
-            FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Text Posts"),Post.class).build();
-            mainAdapter1= new textPostAdapter(options);
-            recyclerView.setAdapter(mainAdapter1);
-            mainAdapter1.startListening();
-
         });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        //initlise the recycler view, layout manager and firebase recycler options
-        recyclerView =findViewById(R.id.homerecview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Posts"),Post.class).build();
-        mainAdapter= new home_adapter(options);
-        recyclerView.setAdapter(mainAdapter);
-
         mainAdapter.startListening();
     }
 
@@ -129,4 +111,26 @@ public class home_activity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        if(getIntent().getStringExtra("sign_out_or_not")!=null){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Are you sure you want to log out?");
+            alertDialogBuilder
+                    //.setMessage("Click yes to sign out!")
+                    .setCancelable(true)
+                    .setPositiveButton("Yes",
+                            (dialog, id) -> {
+                                startActivity(new Intent(home_activity.this,login.class));
+                            })
+                    .setNegativeButton("No", (dialog, id) -> dialog.cancel());
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
+        else{
+            super.onBackPressed();
+        }
+
+    }
 }

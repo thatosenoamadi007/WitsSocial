@@ -19,14 +19,15 @@
             android:elevation="10dp"
             android:background="@color/white"
             android:gravity="center">
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="add post"
+                android:text="Create Post"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                tools:ignore="RtlSymmetry"
-                android:textAllCaps="false"/>
+                tools:ignore="RtlSymmetry" />
         </RelativeLayout>
 
         <RelativeLayout

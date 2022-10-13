@@ -38,7 +38,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:background="@drawable/img" />
+            android:src="@drawable/img" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/show_friend_name_insidemessage"

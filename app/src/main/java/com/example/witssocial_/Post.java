@@ -4,15 +4,17 @@ public class Post {
     private String post;
     private String caption;
     private String username;
+    private String id;
 
     public Post(){
 
     }
 
-    public Post(String post,String caption, String username){
+    public Post(String post,String caption, String username, String id){
         this.post=post;
         this.caption=caption;
         this.username=username;
+        this.id=id;
     }
 
 
@@ -39,4 +41,7 @@ public class Post {
         return this.username;
     }
 
+    public void setId(String id) {this.id = id;}
+
+    public String getId() {return id;}
 }
