@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.spec.ECField;
 import java.util.Objects;
 
 public class a_FriendProfile extends AppCompatActivity {
@@ -44,10 +45,19 @@ public class a_FriendProfile extends AppCompatActivity {
         initializeVariables();
 
         //set variables
-        String friend_Email=getIntent().getStringExtra("receiver_id");
-        String friend_Name=getIntent().getStringExtra("receiver_username");
-        String friend_Description=getIntent().getStringExtra("receiver_description");
-        profile_pic_url=getIntent().getStringExtra("receiver_profile_pic");
+        String friend_Email,friend_Name,friend_Description;
+        if(getIntent().getStringExtra("receiver_id")!=null && getIntent().getStringExtra("receiver_username")!=null){
+            friend_Email=getIntent().getStringExtra("receiver_id");
+            friend_Name=getIntent().getStringExtra("receiver_username");
+            friend_Description=getIntent().getStringExtra("receiver_description");
+            profile_pic_url=getIntent().getStringExtra("receiver_profile_pic");
+        }
+        else{
+            friend_Email="karabol@gmail.com";
+            friend_Name="karabo_sepuru";
+            friend_Description="Student at University of the Witwatersrand\uD83D\uDCDA\uD83D\uDE4Fj";
+            profile_pic_url="https://firebasestorage.googleapis.com/v0/b/witssocial-a0ae3.appspot.com/o/Users_Profile_Cover_image%2Fimage_1sHMCTUdp0UwvnfEUdLe6Q6mJif2?alt=media&token=f4948326-e83f-4bc6-ad50-c7738e393214";
+        }
         top_bar_friend_email.setText(friend_Email);
         friend_email.setText(friend_Email);
         friend_name.setText(friend_Name);
@@ -66,9 +76,9 @@ public class a_FriendProfile extends AppCompatActivity {
         ifFollowsUser();
 
         //add to recently searched
-        user_class user=new user_class(getIntent().getStringExtra("receiver_id"),getIntent().getStringExtra("receiver_username"),getIntent().getStringExtra("receiver_description"),profile_pic_url);
-        String branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");
-        String branch2=getIntent().getStringExtra("receiver_id").replace("@","").replace(".","");
+        user_class user=new user_class(friend_Email,friend_Name,friend_Description,profile_pic_url);
+        String branch1= friend_Email.replace("@","").replace(".","");
+        String branch2=friend_Email.replace("@","").replace(".","");
         recentlySearched(user,branch1,branch2);
 
         //go back to previous activity
@@ -90,9 +100,12 @@ public class a_FriendProfile extends AppCompatActivity {
         follow_friend.setOnClickListener(view -> follow_Unfollow_friend());
 
         //see list of followers
-        String rec=getIntent().getStringExtra("receiver_id");
+        /*String rec=getIntent().getStringExtra("receiver_id");
         String rec_us=getIntent().getStringExtra("receiver_username");
-        String rec_desc=getIntent().getStringExtra("receiver_username");
+        String rec_desc=getIntent().getStringExtra("receiver_username");*/
+        String rec=friend_Email;
+        String rec_us=friend_Name;
+        String rec_desc=friend_Description;
         number_of_followers.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Followers.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
         see_list_of_followers.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Followers.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
 
@@ -167,7 +180,10 @@ public class a_FriendProfile extends AppCompatActivity {
     }
 
     private void ifFollowsUser() {
-        String branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");
+        String email="karabol@gmail.com";
+        try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
+        catch (Exception e){email="karabol@gmail.com";}
+        String branch1= email.replace("@","").replace(".","");
         String branch2=friend_email.getText().toString().replace("@","").replace(".","");
         FirebaseDatabase.getInstance().getReference()
                 .child("Wits Social Database")
@@ -198,7 +214,10 @@ public class a_FriendProfile extends AppCompatActivity {
     private void follow_Unfollow_friend() {
         String mode=follow_friend.getText().toString();
         user_class user=new user_class(friend_email.getText().toString(),friend_name.getText().toString(),friend_description.getText().toString(),profile_pic_url);
-        String branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");
+        String email="karabol@gmail.com";
+        try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
+        catch (Exception e){email="karabol@gmail.com";}
+        String branch1= email.replace("@","").replace(".","");
         String branch2=friend_email.getText().toString().replace("@","").replace(".","");
         if(mode.equals("Follow")){
             followFriend(user,branch1,branch2);
@@ -244,7 +263,10 @@ public class a_FriendProfile extends AppCompatActivity {
     }
 
     private void getUserDetails(String branch1, String branch2){
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        String id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+        try{id=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());}
+        catch (Exception e){id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";}
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child(id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
