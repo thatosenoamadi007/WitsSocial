@@ -2,7 +2,7 @@ package com.example.witssocial_;
 
 import junit.framework.TestCase;
 
-public class CommentTest extends TestCase {
+public class commentTest extends TestCase {
 
     public void testSetPost() {
         likers likers=new likers();
