@@ -49,7 +49,7 @@ public class insidemessageAdapter extends FirebaseRecyclerAdapter<messageObject,
         Date date = new Date();
         String date1= dateFormat.format(date);
         if(model.getTimestamp()!=null){
-            LocalDate currentDate
+            /*LocalDate currentDate
                     = LocalDate.parse(date1.substring(0,10).replaceAll("/","-"));
             if(date1.substring(0,10).equals(model.getTimestamp().substring(0,10))){
                 String time=model.getTimestamp().substring(11,16);
@@ -64,7 +64,7 @@ public class insidemessageAdapter extends FirebaseRecyclerAdapter<messageObject,
                 String month=currentDate.getMonth().toString().substring(0,3);
                 String time=model.getTimestamp().substring(11,16);
                 holder.time.setText(day+" "+month+" "+year+" "+time);
-            }
+            }*/
         }
 
         //check who is the sender and the recipient, and arranges the layout
