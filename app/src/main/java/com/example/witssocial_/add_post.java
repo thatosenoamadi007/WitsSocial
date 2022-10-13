@@ -46,20 +46,11 @@ public class add_post extends AppCompatActivity {
 
         addPost = findViewById(R.id.choosePost);
         caption = findViewById(R.id.makecaption);
-        textPost = findViewById(R.id.textPost);
         FirebaseStorage storage = FirebaseStorage.getInstance();
         postBtn = findViewById(R.id.postBtn);
         storageRef= storage.getReference();
 
         bottomNavigationbar();
-
-        textPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (add_post.this, textPost.class);
-                startActivity(intent);
-            }
-        });
 
         addPost.setOnClickListener(view -> selectPost());
     }

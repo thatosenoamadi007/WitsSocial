@@ -46,7 +46,7 @@ public class Followers extends AppCompatActivity {
             FirebaseRecyclerOptions<user_class> options = new FirebaseRecyclerOptions.Builder<user_class>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Followers").child(rec.replace("@","").replace(".","")),user_class.class).build();
             mainAdapter= new FollowersAdapter(options,getApplicationContext());
             show_list_of_followers.setAdapter(mainAdapter);*/
-            Toast.makeText(this, rec+"--"+rec_us+"--"+rec_desc+"--"+"a_friend", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, rec+"--"+rec_us+"--"+rec_desc+"--"+"a_friend", Toast.LENGTH_SHORT).show();
             showFollowingList(rec);
         }
         else{
@@ -60,7 +60,7 @@ public class Followers extends AppCompatActivity {
             mainAdapter= new FollowersAdapter(options,getApplicationContext());
             show_list_of_followers.setAdapter(mainAdapter);*/
             //go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(Followers.this,Profile.class)));
-            Toast.makeText(this, email+"---"+"profile", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, email+"---"+"profile", Toast.LENGTH_SHORT).show();
             showFollowingList(email);
         }
 
