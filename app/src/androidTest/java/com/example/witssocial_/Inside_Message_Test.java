@@ -23,29 +23,26 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
-public class commTest {
+public class Inside_Message_Test{
     @Rule
-    public ActivityScenarioRule<Comment_Section> activityScenarioRule = new ActivityScenarioRule<>(Comment_Section.class);
-    Instrumentation.ActivityMonitor monitor = InstrumentationRegistry.getInstrumentation().addMonitor(Comment_Section.class.getName(),null,false);
+    public ActivityScenarioRule<InsideMessage> activityScenarioRule = new ActivityScenarioRule<>(InsideMessage.class);
+    Instrumentation.ActivityMonitor monitor = InstrumentationRegistry.getInstrumentation().addMonitor(InsideMessage.class.getName(),null,false);
 
     @Test
-    public void AllPostscheck(){
+    public void messageCheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
-            AppCompatEditText addComment = activity.findViewById(R.id.add_a_comment);
+            AppCompatEditText typedMessage = activity.findViewById(R.id.message_to_send_InsideMessage);
 
-            assertNotNull(addComment);
+            assertNotNull(typedMessage);
         });
 
     }
 
 
     @Test
-    public void enterComment(){
-        Espresso.onView(withId(R.id.add_a_comment)).perform(typeText("A comment")).perform(closeSoftKeyboard());
-        Espresso.onView(withId(R.id.upload_comment)).perform(click());
+    public void enterMessage(){
+        Espresso.onView(withId(R.id.message_to_send_InsideMessage)).perform(typeText("A Message")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.send_message_InsideMessage)).perform(click());
     }
-
-
-
 
 }

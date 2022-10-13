@@ -69,11 +69,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
 
                     }
                 });
-        /*Glide.with(holder.userprofile.getContext())
-                .load(R.drawable.img_1)
-                .placeholder(R.drawable.ic_baseline_person_24)
-                .error(R.drawable.ic_launcher_foreground)
-                .into(holder.userprofile);*/
+
         String ID = post.getId();
         String user = "karabol@gmail.com";
         try {user=FirebaseAuth.getInstance().getCurrentUser().getEmail();}

@@ -57,13 +57,18 @@ public class Comment_Section extends AppCompatActivity {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         show_all_comments.setLayoutManager(linearLayoutManager);
-        FirebaseRecyclerOptions<comment> options = new FirebaseRecyclerOptions.Builder<comment>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Comments").child(getIntent().getStringExtra("post_id")),comment.class).build();
+        String id=getIntent().getStringExtra("post_id");
+        if(id==null){
+            id="-NDif6a4eeDvqNB4jHJs";
+        }
+        FirebaseRecyclerOptions<comment> options = new FirebaseRecyclerOptions.Builder<comment>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Comments").child(id),comment.class).build();
         commentsAdapter= new CommentsAdapter(options);
         show_all_comments.setAdapter(commentsAdapter);
 
         //add a comment
         add_a_comment=findViewById(R.id.add_a_comment);
         upload_comment=findViewById(R.id.upload_comment);
+        String finalId = id;
         upload_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,7 +78,7 @@ public class Comment_Section extends AppCompatActivity {
                     comment comment=new comment(add_a_comment.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getUid());
                     FirebaseDatabase.getInstance().getReference("Wits Social Database")
                             .child("Comments")
-                            .child(getIntent().getStringExtra("post_id"))
+                            .child(finalId)
                             .child(key)
                             .setValue(comment)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -20,6 +20,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 @RunWith(AndroidJUnit4.class)
 public class home_activityTest {
     @Rule
@@ -51,10 +52,10 @@ public class home_activityTest {
         });
 
     }
-    /*@Test
+    @Test
     public void Text_PostsClick(){
         Espresso.onView(withId(R.id.Text_Posts)).perform(click());
-    }*/
+    }
     @Test
     public void AllPostsClick(){
         Espresso.onView(withId(R.id.All_Posts)).perform(click());

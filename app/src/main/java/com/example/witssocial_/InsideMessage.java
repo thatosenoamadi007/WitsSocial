@@ -65,10 +65,22 @@ public class InsideMessage extends AppCompatActivity {
         String name=getIntent().getStringExtra("receiver_id");
         String currentDateTime=get_CurrentDateTime();
 
+        String user="";
+        try{
+            user=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
+        }catch (Exception e){
+            user="mo@email.com";
+        }
+        String friend ="";
+        try{
+            friend = name.toLowerCase(Locale.ROOT);
+        }catch (Exception e){
+            friend="karabol@gmail.com";
+        }
         //add to the database that contains all the chat history
-        messageObject messageObject=new messageObject(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail(),name.toLowerCase(Locale.ROOT),message_content,currentDateTime);
-        String branch1= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()).replace("@","").replace(".","");
-        String branch2=name.replace("@","").replace(".","");
+        messageObject messageObject=new messageObject(user,friend,message_content,currentDateTime);
+        String branch1= user.replace("@","").replace(".","");
+        String branch2=friend.replace("@","").replace(".","");
         saveToChatHistory(currentDateTime,messageObject,branch1,branch2);
         saveToChatHistory(currentDateTime,messageObject,branch2,branch1);
 
@@ -143,9 +155,22 @@ public class InsideMessage extends AppCompatActivity {
         //linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
+        String user="";
+        try{
+            user= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","");
+        }catch (Exception e){
+            user="moemailcom";
+        }
+        String friend ="";
+        try{
+            friend = name.replace("@","").replace(".","");
+        }catch (Exception e){
+            friend="karabolgmailcom";
+        }
+
 
         mainAdapter = new insidemessageAdapter(new FirebaseRecyclerOptions.Builder<messageObject>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Chat history").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).child(name.replace("@","").replace(".","")), messageObject.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Chat history").child(user).child(friend), messageObject.class)
                 .build(),getApplicationContext());
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);
