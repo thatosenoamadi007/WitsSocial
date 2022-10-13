@@ -63,7 +63,7 @@ public class add_post extends AppCompatActivity {
     //}
 
     private void bottomNavigationbar() {
-        bottomNavigationView=findViewById(R.id.bottom_navigation);
+        /*bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.add_post);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
            if (item.getItemId() == R.id.posts_timeline) {
@@ -88,7 +88,7 @@ public class add_post extends AppCompatActivity {
                 return true;
             }
             return false;
-        });
+        });*/
     }
 
     /*@Override

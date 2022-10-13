@@ -178,7 +178,7 @@ public class Profile extends AppCompatActivity {
 
     //fuction to navigate the bottom navigation menu
     private void bottomNavigationbar() {
-        bottomNavigationView=findViewById(R.id.bottom_navigation);
+        /*bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.account);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             item.getItemId();
@@ -201,7 +201,7 @@ public class Profile extends AppCompatActivity {
                 return true;
             }
             return false;
-        });
+        });*/
     }
 
     private void setNumberFollowersFollowing() {

@@ -45,7 +45,7 @@ public class SearchUsers extends AppCompatActivity {
     }
 
     private void bottomNavigationbar() {
-        bottomNavigationView=findViewById(R.id.bottom_navigation);
+        /*bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.chat);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.posts_timeline) {
@@ -67,7 +67,7 @@ public class SearchUsers extends AppCompatActivity {
                 return true;
             }
             return false;
-        });
+        });*/
     }
 
     private void display() {
@@ -103,7 +103,7 @@ public class SearchUsers extends AppCompatActivity {
 
     private void findFriend(String s) {
         if(s.equals("")){
-            findAllFriends();
+            //findAllFriends();
         }else{
             FirebaseRecyclerOptions<user_class> options =
                     new FirebaseRecyclerOptions.Builder<user_class>()
@@ -118,7 +118,7 @@ public class SearchUsers extends AppCompatActivity {
 
     }
 
-    private void findAllFriends() {
+    /*private void findAllFriends() {
         String email="karabol@gmail.com";
         try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
         catch (Exception e){email="karabol@gmail.com";}
@@ -128,7 +128,7 @@ public class SearchUsers extends AppCompatActivity {
                 .build(),getApplicationContext());
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);
-    }
+    }*/
 
     void initializeSearchView(){
         searchView=findViewById(R.id.search_friend_chat);
