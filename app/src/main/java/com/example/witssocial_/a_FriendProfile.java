@@ -46,18 +46,25 @@ public class a_FriendProfile extends AppCompatActivity {
 
         //set variables
         String friend_Email,friend_Name,friend_Description;
-        if(getIntent().getStringExtra("receiver_id")!=null && getIntent().getStringExtra("receiver_username")!=null){
-            friend_Email=getIntent().getStringExtra("receiver_id");
+        friend_Email=getIntent().getStringExtra("receiver_id");
+        friend_Name=getIntent().getStringExtra("receiver_username");
+        friend_Description=getIntent().getStringExtra("receiver_description");
+        profile_pic_url=getIntent().getStringExtra("receiver_profile_pic");
+        /*if(friend_Email!=null && friend_Name!=null){
+            Toast.makeText(this, "user mode", Toast.LENGTH_SHORT).show();
+            /*friend_Email=getIntent().getStringExtra("receiver_id");
             friend_Name=getIntent().getStringExtra("receiver_username");
             friend_Description=getIntent().getStringExtra("receiver_description");
-            profile_pic_url=getIntent().getStringExtra("receiver_profile_pic");
-        }
+            profile_pic_url=getIntent().getStringExtra("receiver_profile_pic");*/
+        /*}
         else{
+            Toast.makeText(this, "testing mode", Toast.LENGTH_SHORT).show();
             friend_Email="karabol@gmail.com";
             friend_Name="karabo_sepuru";
             friend_Description="Student at University of the Witwatersrand\uD83D\uDCDA\uD83D\uDE4Fj";
             profile_pic_url="https://firebasestorage.googleapis.com/v0/b/witssocial-a0ae3.appspot.com/o/Users_Profile_Cover_image%2Fimage_1sHMCTUdp0UwvnfEUdLe6Q6mJif2?alt=media&token=f4948326-e83f-4bc6-ad50-c7738e393214";
-        }
+        }*/
+        //Toast.makeText(this, friend_Email+"--"+friend_Name+"---"+friend_Description, Toast.LENGTH_SHORT).show();
         top_bar_friend_email.setText(friend_Email);
         friend_email.setText(friend_Email);
         friend_name.setText(friend_Name);
@@ -85,7 +92,10 @@ public class a_FriendProfile extends AppCompatActivity {
         go_back_to_search.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,SearchUsers.class)));
 
         //message friend
-        message_friend.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,InsideMessage.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description).putExtra("receiver_profile_pic",profile_pic_url)));
+        String finalFriend_Email = friend_Email;
+        String finalFriend_Description = friend_Description;
+        String finalFriend_Name = friend_Name;
+        message_friend.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,InsideMessage.class).putExtra("receiver_id", finalFriend_Email).putExtra("receiver_username", finalFriend_Name).putExtra("receiver_description", finalFriend_Description).putExtra("receiver_profile_pic",profile_pic_url)));
 
         //load friend posts content
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
@@ -106,12 +116,12 @@ public class a_FriendProfile extends AppCompatActivity {
         String rec=friend_Email;
         String rec_us=friend_Name;
         String rec_desc=friend_Description;
-        number_of_followers.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Followers.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
-        see_list_of_followers.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Followers.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
+        number_of_followers.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Followers.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_description",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
+        see_list_of_followers.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Followers.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_description",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
 
         //see list of following
-        number_of_following.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Following.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
-        see_list_of_following.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Following.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_username",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
+        number_of_following.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Following.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_description",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
+        see_list_of_following.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Following.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_description",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
 
     }
 
