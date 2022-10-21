@@ -11,9 +11,13 @@
         android:title="Add Post"
         android:icon="@drawable/add_post_icon"/>
     <item
-        android:id="@+id/chat"
+        android:id="@+id/searchbtn"
         android:title="Search"
         android:icon="@drawable/search_icon"/>
+    <item
+        android:id="@+id/chat_list"
+        android:title="Chats"
+        android:icon="@drawable/ic_chat_icon"/>
 
     <item
         android:id="@+id/account"

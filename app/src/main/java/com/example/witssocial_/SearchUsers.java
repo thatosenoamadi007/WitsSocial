@@ -46,7 +46,7 @@ public class SearchUsers extends AppCompatActivity {
 
     private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.chat);
+        bottomNavigationView.setSelectedItemId(R.id.searchbtn);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.posts_timeline) {
                 Intent intent = new Intent (SearchUsers.this, home_activity.class);

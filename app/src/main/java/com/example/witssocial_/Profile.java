@@ -3,14 +3,11 @@ package com.example.witssocial_;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +16,6 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -194,7 +190,7 @@ public class Profile extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
                 return true;
             }
-            if (item.getItemId() == R.id.chat) {
+            if (item.getItemId() == R.id.searchbtn) {
                 Intent intent = new Intent (Profile.this, SearchUsers.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);

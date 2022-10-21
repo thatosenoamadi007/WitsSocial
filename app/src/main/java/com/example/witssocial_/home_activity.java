@@ -6,12 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -102,7 +100,7 @@ public class home_activity extends AppCompatActivity {
                 return true;
             }
             //Navigating menu
-            if (item.getItemId() == R.id.chat) {
+            if (item.getItemId() == R.id.searchbtn) {
                Intent intent = new Intent (home_activity.this, SearchUsers.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
