@@ -101,6 +101,7 @@ public class home_activity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 return true;
             }
+            //Navigating menu
             if (item.getItemId() == R.id.chat) {
                Intent intent = new Intent (home_activity.this, SearchUsers.class);
                 startActivity(intent);
