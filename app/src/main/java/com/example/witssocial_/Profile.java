@@ -190,6 +190,12 @@ public class Profile extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
                 return true;
             }
+            if (item.getItemId() == R.id.chat_list) {
+                Intent intent = new Intent (Profile.this, Conversations.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
+                return true;
+            }
             if (item.getItemId() == R.id.searchbtn) {
                 Intent intent = new Intent (Profile.this, SearchUsers.class);
                 startActivity(intent);

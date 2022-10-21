@@ -19,6 +19,13 @@
         android:theme="@style/Theme.WitsSocial_"
         tools:targetApi="31">
         <activity
+            android:name=".Conversations"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Comment_Section"
             android:exported="false" />
         <activity

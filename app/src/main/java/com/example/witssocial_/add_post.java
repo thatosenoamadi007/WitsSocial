@@ -66,6 +66,13 @@ public class add_post extends AppCompatActivity {
                overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
                 return true;
             }
+
+            if (item.getItemId() == R.id.chat_list) {
+                Intent intent = new Intent (add_post.this, Conversations.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
+                return true;
+            }
             if (item.getItemId() == R.id.account) {
                 Intent intent = new Intent (add_post.this, Profile.class);
                 startActivity(intent);

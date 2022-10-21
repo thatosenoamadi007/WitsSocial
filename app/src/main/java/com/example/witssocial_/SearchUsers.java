@@ -60,6 +60,12 @@ public class SearchUsers extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 return true;
             }
+            if (item.getItemId() == R.id.chat_list) {
+                Intent intent = new Intent (SearchUsers.this, Conversations.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
+                return true;
+            }
             if (item.getItemId() == R.id.add_post) {
                 Intent intent = new Intent (SearchUsers.this, add_post.class);
                 startActivity(intent);
