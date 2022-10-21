@@ -111,6 +111,7 @@ public class home_activity extends AppCompatActivity {
         });
     }
 
+    // What happens when back button is pressed
     @Override
     public void onBackPressed() {
         if(getIntent().getStringExtra("sign_out_or_not")!=null){
