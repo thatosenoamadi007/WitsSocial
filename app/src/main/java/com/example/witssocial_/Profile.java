@@ -129,7 +129,7 @@ public class Profile extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
-                        assert user_class != null;
+                        //assert user_class != null;
                         my_username.setText(user_class.getUsername());
                         my_profile_description.setText(user_class.getDescription());
                         Glide.with(userprofile.getContext())
