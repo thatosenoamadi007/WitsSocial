@@ -90,14 +90,14 @@ public class Profile extends AppCompatActivity {
         try{
             id=FirebaseAuth.getInstance().getCurrentUser().getUid();
         }catch (Exception e){
-            id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+            id="iZW27xhBsNbqVF4omIsRyQev2K72";
         }
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
-                        assert user_class != null;
+                        //assert user_class != null;
                         my_description[0] =user_class.getDescription();
                         my_full_name[0]=user_class.getUsername();
                     }
