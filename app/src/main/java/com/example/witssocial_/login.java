@@ -37,7 +37,6 @@ public class login extends AppCompatActivity {
         //onClick listener for login button to sign in user with email and password
         logIn.setOnClickListener(view -> mAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
-                //startActivity(new Intent(login.this, SearchUsers.class));
                 startActivity(new Intent(login.this, home_activity.class).putExtra("sign_out_or_not","yes"));
             }
         }).addOnFailureListener(e -> Toast.makeText(login.this, e.toString(), Toast.LENGTH_SHORT).show()));
@@ -47,7 +46,6 @@ public class login extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
         moveTaskToBack(true);
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(0);

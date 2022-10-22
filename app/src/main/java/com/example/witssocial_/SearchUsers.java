@@ -45,7 +45,7 @@ public class SearchUsers extends AppCompatActivity {
     }
 
     private void bottomNavigationbar() {
-        /*bottomNavigationView=findViewById(R.id.bottom_navigation);
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.chat);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.posts_timeline) {
@@ -67,7 +67,7 @@ public class SearchUsers extends AppCompatActivity {
                 return true;
             }
             return false;
-        });*/
+        });
     }
 
     private void display() {
@@ -83,7 +83,7 @@ public class SearchUsers extends AppCompatActivity {
         FirebaseRecyclerOptions<user_class> options =
                 new FirebaseRecyclerOptions.Builder<user_class>()//List of friends User Following
                         //.setQuery(FirebaseDatabase.getInstance().getReference().child("Search History").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Search History").child(email.replace("@","").replace(".","")).orderByChild("timestamp"), user_class.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Search History").child(email.replace("@","").replace(".","")).orderByChild("timestamp"), user_class.class)
                         .build();
         mainAdapter = new messagesAdapter(options,getApplicationContext());
         mainAdapter.startListening();
@@ -103,12 +103,11 @@ public class SearchUsers extends AppCompatActivity {
 
     private void findFriend(String s) {
         if(s.equals("")){
-            //findAllFriends();
+            findAllFriends();
         }else{
             FirebaseRecyclerOptions<user_class> options =
                     new FirebaseRecyclerOptions.Builder<user_class>()
-                            //.setQuery(FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("username").startAt(s.toLowerCase(Locale.ROOT)).endAt(s.toLowerCase(Locale.ROOT)+"~"), user.class)//.orderByChild("modName").equalTo("APHY8010")
-                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").orderByChild("email").startAt(s.toLowerCase(Locale.ROOT)).endAt(s.toLowerCase(Locale.ROOT)+"~"), user_class.class)//.orderByChild("modName").equalTo("APHY8010")
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").orderByChild("email").startAt(s.toLowerCase(Locale.ROOT)).endAt(s.toLowerCase(Locale.ROOT)+"~"), user_class.class)//.orderByChild("modName").equalTo("APHY8010")
                             .build();
             mainAdapter = new messagesAdapter(options,getApplicationContext());
             mainAdapter.startListening();
@@ -118,17 +117,16 @@ public class SearchUsers extends AppCompatActivity {
 
     }
 
-    /*private void findAllFriends() {
-        String email="karabol@gmail.com";
+    private void findAllFriends() {
+        String email="";
         try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
         catch (Exception e){email="karabol@gmail.com";}
-        mainAdapter = new messagesAdapter(new FirebaseRecyclerOptions.Builder<user_class>()//List of Friends
-                //.setQuery(FirebaseDatabase.getInstance().getReference().child("Search History").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Search History").child(email.replace("@","").replace(".","")).orderByChild("timestamp"), user_class.class)
+        mainAdapter = new messagesAdapter(new FirebaseRecyclerOptions.Builder<user_class>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Search History").child(email.replace("@","").replace(".","")).orderByChild("timestamp"), user_class.class)
                 .build(),getApplicationContext());
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);
-    }*/
+    }
 
     void initializeSearchView(){
         searchView=findViewById(R.id.search_friend_chat);

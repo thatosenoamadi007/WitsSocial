@@ -16,7 +16,10 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -29,13 +32,16 @@ public class Comment_Section extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment_section);
-
+        String friend_Email=getIntent().getStringExtra("receiver_id");
+        String friend_Name=getIntent().getStringExtra("receiver_username");
+        String friend_Description=getIntent().getStringExtra("receiver_description");
+        String friend_Picture=getIntent().getStringExtra("receiver_profile_pic");
         //go back to home activity
         go_back_to_home_activity=findViewById(R.id.go_back_to_home_activity);
         go_back_to_home_activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*String came_from=getIntent().getStringExtra("came_from");
+                String came_from=getIntent().getStringExtra("came_from");
                 if(came_from.equals("home_activity")){
                     startActivity(new Intent(Comment_Section.this,home_activity.class));
                 }
@@ -43,11 +49,30 @@ public class Comment_Section extends AppCompatActivity {
                     startActivity(new Intent(Comment_Section.this,Profile.class));
                 }
                 else{
-                    String friend_Email=getIntent().getStringExtra("receiver_id");
-                    String friend_Name=getIntent().getStringExtra("receiver_username");
-                    String friend_Description=getIntent().getStringExtra("receiver_description");
-                    startActivity(new Intent(Comment_Section.this,a_FriendProfile.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description));
-                }*/
+
+                    final String[] profile_pic = new String[1];
+                    FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
+                            .child("Users")
+                            .child(friend_Picture)
+                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if(snapshot.exists()){
+                                        user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
+                                        assert user_class != null;
+                                        profile_pic[0] =user_class.getImage();
+                                        startActivity(new Intent(Comment_Section.this,a_FriendProfile.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description).putExtra("receiver_profile_pic",profile_pic[0]));
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+                }
             }
         });
 
@@ -57,7 +82,7 @@ public class Comment_Section extends AppCompatActivity {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         show_all_comments.setLayoutManager(linearLayoutManager);
-        FirebaseRecyclerOptions<comment> options = new FirebaseRecyclerOptions.Builder<comment>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Comments").child(getIntent().getStringExtra("post_id")),comment.class).build();
+        FirebaseRecyclerOptions<comment> options = new FirebaseRecyclerOptions.Builder<comment>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Comments").child(getIntent().getStringExtra("post_id")),comment.class).build();
         commentsAdapter= new CommentsAdapter(options);
         show_all_comments.setAdapter(commentsAdapter);
 
@@ -67,27 +92,17 @@ public class Comment_Section extends AppCompatActivity {
         upload_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!add_a_comment.getText().toString().isEmpty()){
+                if(!Objects.requireNonNull(add_a_comment.getText()).toString().isEmpty()){
 
-                   /* String key=FirebaseDatabase.getInstance().getReference("Wits Social Database").push().getKey();
-                    comment comment=new comment(add_a_comment.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getUid());
-                    FirebaseDatabase.getInstance().getReference("Wits Social Database")
+                   String key=FirebaseDatabase.getInstance().getReference("Wits Social Database1").push().getKey();
+                    comment comment=new comment(add_a_comment.getText().toString(), Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+                    assert key != null;
+                    FirebaseDatabase.getInstance().getReference("Wits Social Database1")
                             .child("Comments")
                             .child(getIntent().getStringExtra("post_id"))
                             .child(key)
                             .setValue(comment)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    //Toast.makeText(Comment_Section.this, "Comment added.", Toast.LENGTH_SHORT).show();
-                                    add_a_comment.setText("");
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(Comment_Section.this, "Error trying to upload comment.", Toast.LENGTH_SHORT).show();
-                                }
-                            });*/
+                            .addOnSuccessListener(unused -> add_a_comment.setText("")).addOnFailureListener(e -> Toast.makeText(Comment_Section.this, "Error trying to upload comment.", Toast.LENGTH_SHORT).show());
                 }
             }
         });

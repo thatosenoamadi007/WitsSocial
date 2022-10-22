@@ -52,10 +52,6 @@ public class a_FriendProfile extends AppCompatActivity {
         profile_pic_url=getIntent().getStringExtra("receiver_profile_pic");
         if(friend_Email!=null && friend_Name!=null){
             //Toast.makeText(this, "user mode", Toast.LENGTH_SHORT).show();
-            /*friend_Email=getIntent().getStringExtra("receiver_id");
-            friend_Name=getIntent().getStringExtra("receiver_username");
-            friend_Description=getIntent().getStringExtra("receiver_description");
-            profile_pic_url=getIntent().getStringExtra("receiver_profile_pic");*/
         }
         else{
             //Toast.makeText(this, "testing mode", Toast.LENGTH_SHORT).show();
@@ -64,7 +60,7 @@ public class a_FriendProfile extends AppCompatActivity {
             friend_Description="Student at University of the Witwatersrand\uD83D\uDCDA\uD83D\uDE4Fj";
             profile_pic_url="https://firebasestorage.googleapis.com/v0/b/witssocial-a0ae3.appspot.com/o/Users_Profile_Cover_image%2Fimage_1sHMCTUdp0UwvnfEUdLe6Q6mJif2?alt=media&token=f4948326-e83f-4bc6-ad50-c7738e393214";
         }
-        //Toast.makeText(this, friend_Email+"--"+friend_Name+"---"+friend_Description, Toast.LENGTH_SHORT).show();
+
         top_bar_friend_email.setText(friend_Email);
         friend_email.setText(friend_Email);
         friend_name.setText(friend_Name);
@@ -102,7 +98,7 @@ public class a_FriendProfile extends AppCompatActivity {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         friend_recyclerview.setLayoutManager(linearLayoutManager);
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Posts").child(user.getEmail().replaceAll("@","").replace(".","")),Post.class).build();
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Posts").child(user.getEmail().replaceAll("@","").replace(".","")),Post.class).build();
         mainAdapter= new home_adapter(options,getApplicationContext(),"friend_profile",friend_Email,friend_Name,friend_Description);
         friend_recyclerview.setAdapter(mainAdapter);
 
@@ -110,9 +106,6 @@ public class a_FriendProfile extends AppCompatActivity {
         follow_friend.setOnClickListener(view -> follow_Unfollow_friend());
 
         //see list of followers
-        /*String rec=getIntent().getStringExtra("receiver_id");
-        String rec_us=getIntent().getStringExtra("receiver_username");
-        String rec_desc=getIntent().getStringExtra("receiver_username");*/
         String rec=friend_Email;
         String rec_us=friend_Name;
         String rec_desc=friend_Description;
@@ -127,7 +120,7 @@ public class a_FriendProfile extends AppCompatActivity {
 
     private void setNumberFollowersFollowing(String friend_email) {
         String email=friend_email;
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Followers")
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Followers")
                 .child(email.replace("@","").replace(".",""))
                 .addValueEventListener(new ValueEventListener() {
             @Override
@@ -145,7 +138,7 @@ public class a_FriendProfile extends AppCompatActivity {
 
             }
         });
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Following")
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Following")
                 .child(friend_email.replace("@","").replace(".",""))
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -166,10 +159,13 @@ public class a_FriendProfile extends AppCompatActivity {
     }
 
     private void recentlySearched(user_class user,String branch1,String branch2) {
+        String my_email="";
+        try{my_email=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
+        catch (Exception e){my_email=branch1;}
         FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database")
+                .child("Wits Social Database1")
                 .child("Search History")
-                .child(branch1)
+                .child(my_email.replace("@","").replace(".",""))
                 .child(branch2)
                 .setValue(user);//.addOnSuccessListener(unused -> Toast.makeText(a_FriendProfile.this, "Added to recently searched.", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Couldn't add to recently searched.", Toast.LENGTH_SHORT).show());
     }
@@ -196,7 +192,7 @@ public class a_FriendProfile extends AppCompatActivity {
         String branch1= email.replace("@","").replace(".","");
         String branch2=friend_email.getText().toString().replace("@","").replace(".","");
         FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database")
+                .child("Wits Social Database1")
                 .child("User Following")
                 .child(branch1)
                 .child(branch2)
@@ -243,15 +239,14 @@ public class a_FriendProfile extends AppCompatActivity {
     private void unfollowFriend(String branch1, String branch2) {
         //remove from list of people im following
         FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database")
+                .child("Wits Social Database1")
                 .child("User Following")
                 .child(branch1)
                 .child(branch2)
                 .removeValue();
-                //.addOnSuccessListener(unused -> Toast.makeText(a_FriendProfile.this, "Successfully unfollowed user", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Error while trying to unfollow user.", Toast.LENGTH_SHORT).show());
         //remove from list of list of people who are following me
         FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database")
+                .child("Wits Social Database1")
                 .child("User Followers")
                 .child(branch2)
                 .child(branch1)
@@ -261,29 +256,28 @@ public class a_FriendProfile extends AppCompatActivity {
     private void followFriend(user_class user, String branch1, String branch2){
         //add to list to people im following
         FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database")
+                .child("Wits Social Database1")
                 .child("User Following")
                 .child(branch1)
                 .child(branch2)
                 .setValue(user);
         //add to list of list of people who are following me
         getUserDetails(branch1,branch2);
-        //user_class user_class=new user_class(details[0],details[1],details[2] );
 
     }
 
     private void getUserDetails(String branch1, String branch2){
-        String id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+        String id="";
         try{id=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());}
         catch (Exception e){id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";}
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child(id)
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
                         assert user_class != null;
                         FirebaseDatabase.getInstance().getReference()
-                                .child("Wits Social Database")
+                                .child("Wits Social Database1")
                                 .child("User Followers")
                                 .child(branch2)
                                 .child(branch1)

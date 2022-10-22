@@ -91,7 +91,7 @@ public class Edit_Profile extends AppCompatActivity {
         //firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
-        databaseReference = firebaseDatabase.getReference("Wits Social Database").child("Users");
+        databaseReference = firebaseDatabase.getReference("Wits Social Database1").child("Users");
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
         String email="karabol@gmail.com";
@@ -119,20 +119,17 @@ public class Edit_Profile extends AppCompatActivity {
         });
 
 
-        my_profile_pic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //pd.setMessage("Updating Profile Picture");
-                //profileOrCoverPhoto = "image";
-                //showImagePicDialog();
-            }
+        my_profile_pic.setOnClickListener(v -> {
+            pd.setMessage("Updating Profile Picture");
+            profileOrCoverPhoto = "image";
+            showImagePicDialog();
         });
 
     }
     @Override
     protected void onPause() {
         super.onPause();
-        String email="karabol@gmail.com";
+        String email="";
         try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
         catch(Exception e){email="karabol@gmail.com";}
         Query query = databaseReference.orderByChild("email").equalTo(email);
@@ -160,7 +157,7 @@ public class Edit_Profile extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        String email="karabol@gmail.com";
+        String email="";
         try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
         catch(Exception e){email="karabol@gmail.com";}
         Query query = databaseReference.orderByChild("email").equalTo(email);
@@ -187,7 +184,7 @@ public class Edit_Profile extends AppCompatActivity {
 
     }
     // checking storage permission ,if given then we can add something in our storage
-    /*private Boolean checkStoragePermission() {
+    private Boolean checkStoragePermission() {
         boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return result;
     }
@@ -211,12 +208,12 @@ public class Edit_Profile extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(cameraPermission, CAMERA_REQUEST);
         }
-    }*/
+    }
 
     // Here we are showing image pic dialog where we will select
     // and image either from camera or gallery
 
-    /*private void showImagePicDialog() {
+    private void showImagePicDialog() {
         String options[] = {"Camera", "Gallery"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Pick Image From");
@@ -240,9 +237,9 @@ public class Edit_Profile extends AppCompatActivity {
             }
         });
         builder.create().show();
-    }*/
+    }
 
-    /*@Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == IMAGEPICK_GALLERY_REQUEST) {
@@ -254,9 +251,9 @@ public class Edit_Profile extends AppCompatActivity {
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }*/
+    }
 
-    /*@Override
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
@@ -284,10 +281,10 @@ public class Edit_Profile extends AppCompatActivity {
             }
             break;
         }
-    }*/
+    }
 
     // Here we will click a photo and then go to startactivityforresult for updating data
-    /*private void pickFromCamera() {
+    private void pickFromCamera() {
         ContentValues contentValues = new ContentValues();
         contentValues.put(MediaStore.Images.Media.TITLE, "Temp_pic");
         contentValues.put(MediaStore.Images.Media.DESCRIPTION, "Temp Description");
@@ -295,17 +292,17 @@ public class Edit_Profile extends AppCompatActivity {
         Intent camerIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         camerIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageuri);
         startActivityForResult(camerIntent, IMAGE_PICKCAMERA_REQUEST);
-    }*/
+    }
 
     // We will select an image from gallery
-    /*private void pickFromGallery() {
+    private void pickFromGallery() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK);
         galleryIntent.setType("image/*");
         startActivityForResult(galleryIntent, IMAGEPICK_GALLERY_REQUEST);
-    }*/
+    }
 
     // We will upload the image from here.
-    /*private void uploadProfileCoverPhoto(final android.net.Uri uri) {
+    private void uploadProfileCoverPhoto(final android.net.Uri uri) {
         pd.show();
 
         // We are taking the filepath as storagepath + firebaseauth.getUid()+".png"
@@ -353,7 +350,7 @@ public class Edit_Profile extends AppCompatActivity {
                 Toast.makeText(Edit_Profile.this, "Error", Toast.LENGTH_LONG).show();
             }
         });
-    }*/
+    }
 
 
     private void initializeValues() {
@@ -383,7 +380,7 @@ public class Edit_Profile extends AppCompatActivity {
             FirebaseAuth.getInstance().getCurrentUser().updatePassword(password.getText().toString());
         }
 
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child((Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()));
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child((Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()));
         user_class User = new user_class(email.getText().toString(),full_name.getText().toString(),description.getText().toString(),"dummy");//---------------------
         db.setValue(User)
                 .addOnSuccessListener(unused -> Toast.makeText(this, "Saved changes", Toast.LENGTH_SHORT).show());

@@ -41,22 +41,10 @@ public class home_activity extends AppCompatActivity {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-        //FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Posts"),Post.class).build();
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("All Posts"),Post.class).build();
         mainAdapter= new home_adapter(options,getApplicationContext(),"home_activity","null","null","null");
         recyclerView.setAdapter(mainAdapter);
         bottomNavigationbar();
-
-        //----------------------------
-
-        /*RecyclerView recyclerView = findViewById(R.id.homerecview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        
-       
-       //set recyclerview to the main adapter
-        recyclerView.getRecycledViewPool().clear();
-        mainAdapter= new home_adapter(options);
-        recyclerView.setAdapter(mainAdapter);*/
 
         all_post.setOnClickListener(view -> {
             all_post.setBackgroundColor(Color.WHITE);
@@ -85,7 +73,7 @@ public class home_activity extends AppCompatActivity {
 
      //fuction to navigate the bottom navigation menu
     private void bottomNavigationbar() {
-        /*bottomNavigationView=findViewById(R.id.bottom_navigation);
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.posts_timeline);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             item.getItemId();
@@ -108,12 +96,12 @@ public class home_activity extends AppCompatActivity {
                 return true;
             }
             return false;
-        });*/
+        });
     }
 
     @Override
     public void onBackPressed() {
-        /*if(getIntent().getStringExtra("sign_out_or_not")!=null){
+        if(getIntent().getStringExtra("sign_out_or_not")!=null){
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Are you sure you want to log out?");
             alertDialogBuilder
@@ -130,7 +118,7 @@ public class home_activity extends AppCompatActivity {
         }
         else{
             super.onBackPressed();
-        }*/
+        }
 
     }
 }
