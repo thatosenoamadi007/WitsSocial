@@ -120,7 +120,7 @@ public class Profile extends AppCompatActivity {
             id=FirebaseAuth.getInstance().getCurrentUser().getUid();
         }catch (Exception e){
             name="karabol@gmail.com";
-            id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+            id="iZW27xhBsNbqVF4omIsRyQev2K72";
         }
         my_email.setText(name);
         top_bar_my_name.setText("Profile");
