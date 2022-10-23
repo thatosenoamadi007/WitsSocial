@@ -68,11 +68,11 @@ public class Profile extends AppCompatActivity {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         my_account_profile_recyclerview.setLayoutManager(linearLayoutManager);
-        String email="karabol@gmail.com";
+        String email="";
         try{
             email=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
         }catch (Exception e){
-            email="karabol@gmail.com";
+            email="karabo@gmail.com";
         }
         assert email != null;
         FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Posts").child(email.replace("@","").replace(".","")),Post.class).build();
@@ -90,7 +90,7 @@ public class Profile extends AppCompatActivity {
         try{
             id=FirebaseAuth.getInstance().getCurrentUser().getUid();
         }catch (Exception e){
-            id="iZW27xhBsNbqVF4omIsRyQev2K72";
+            id="CYFstJWuF9NKirsH8GMewwB0t7m2";
         }
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -119,8 +119,8 @@ public class Profile extends AppCompatActivity {
             name=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
             id=FirebaseAuth.getInstance().getCurrentUser().getUid();
         }catch (Exception e){
-            name="karabol@gmail.com";
-            id="iZW27xhBsNbqVF4omIsRyQev2K72";
+            name="karabo@gmail.com";
+            id="CYFstJWuF9NKirsH8GMewwB0t7m2";
         }
         my_email.setText(name);
         top_bar_my_name.setText("Profile");
@@ -205,9 +205,9 @@ public class Profile extends AppCompatActivity {
     }
 
     private void setNumberFollowersFollowing() {
-        String friend_email="krabol@gmail.com";
+        String friend_email="";
         try{friend_email=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
-        catch (Exception e){friend_email="karabol@gmail.com";}
+        catch (Exception e){friend_email="karabo@gmail.com";}
         String friend_email2=friend_email;
         //Toast.makeText(Profile.this, friend_email+"-----"+friend_email.replace("@","").replace(".",""), Toast.LENGTH_SHORT).show();
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Followers")
