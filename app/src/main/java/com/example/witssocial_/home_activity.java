@@ -95,6 +95,12 @@ public class home_activity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 return true;
             }
+            if (item.getItemId() == R.id.messages) {
+                Intent intent = new Intent (home_activity.this, Messages.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
+                return true;
+            }
             return false;
         });
     }

@@ -66,6 +66,12 @@ public class SearchUsers extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
                 return true;
             }
+            if (item.getItemId() == R.id.messages) {
+                Intent intent = new Intent (SearchUsers.this, Messages.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
+                return true;
+            }
             return false;
         });
     }
@@ -77,12 +83,11 @@ public class SearchUsers extends AppCompatActivity {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        String email="karabol@gmail.com";
+        String email="";
         try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
         catch (Exception e){email="karabol@gmail.com";}
         FirebaseRecyclerOptions<user_class> options =
-                new FirebaseRecyclerOptions.Builder<user_class>()//List of friends User Following
-                        //.setQuery(FirebaseDatabase.getInstance().getReference().child("Search History").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).orderByChild("timestamp"), user.class)
+                new FirebaseRecyclerOptions.Builder<user_class>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Search History").child(email.replace("@","").replace(".","")).orderByChild("timestamp"), user_class.class)
                         .build();
         mainAdapter = new messagesAdapter(options,getApplicationContext());

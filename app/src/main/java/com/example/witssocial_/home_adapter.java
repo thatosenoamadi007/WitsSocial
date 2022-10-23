@@ -4,6 +4,7 @@ package com.example.witssocial_;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -192,21 +193,16 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
 
             context.startActivity(intent);
         });
-        /*final boolean[] isImageFitToScreen = {true};
-        holder.post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(isImageFitToScreen[0]) {
-                    isImageFitToScreen[0] =false;
-                    holder.post.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                    holder.post.setAdjustViewBounds(true);
-                }else{
-                    isImageFitToScreen[0] =true;
-                    holder.post.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-                    holder.post.setScaleType(ImageView.ScaleType.FIT_XY);
-                }
+        //view the post
+        holder.post.setOnClickListener(v -> {
+            if(!post.getPost().equals("null")){
+                Intent intent=new Intent(Intent.ACTION_VIEW);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setType("*/*");
+                intent.setData(Uri.parse(post.getPost()));
+                context.startActivity(intent);
             }
-        });*/
+        });
     }
 
     @NonNull

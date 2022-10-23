@@ -91,7 +91,7 @@ public class a_FriendProfile extends AppCompatActivity {
         String finalFriend_Email = friend_Email;
         String finalFriend_Description = friend_Description;
         String finalFriend_Name = friend_Name;
-        message_friend.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,InsideMessage.class).putExtra("receiver_id", finalFriend_Email).putExtra("receiver_username", finalFriend_Name).putExtra("receiver_description", finalFriend_Description).putExtra("receiver_profile_pic",profile_pic_url)));
+        message_friend.setOnClickListener(view -> startActivity(new Intent(a_FriendProfile.this,InsideMessage.class).putExtra("receiver_id", finalFriend_Email).putExtra("receiver_username", finalFriend_Name).putExtra("receiver_description", finalFriend_Description).putExtra("receiver_profile_pic",profile_pic_url).putExtra("came_from","a_FriendProfile")));
 
         //load friend posts content
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);

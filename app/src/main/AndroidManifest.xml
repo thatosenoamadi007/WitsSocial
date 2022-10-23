@@ -19,6 +19,13 @@
         android:theme="@style/Theme.WitsSocial_"
         tools:targetApi="31">
         <activity
+            android:name=".Archive_Users"
+            android:exported="false" />
+        <activity
+            android:name=".Messages"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".Comment_Section"
             android:exported="false" />
         <activity

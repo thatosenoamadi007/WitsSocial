@@ -88,6 +88,12 @@ public class add_post extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 return true;
             }
+            if (item.getItemId() == R.id.messages) {
+                Intent intent = new Intent (add_post.this, Messages.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
+                return true;
+            }
             return false;
         });
     }

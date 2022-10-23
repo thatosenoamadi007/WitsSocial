@@ -37,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
                 //if all is well create user with email and password and save user to database
                     mAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(task -> {
                         if(task.isSuccessful()){
-                            //DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child((Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()));
-                            //user User = new user(email.getText().toString());
+                            likers id = new likers(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+                            DatabaseReference db1 = FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users ID").child((Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail())).replace("@","").replace(".",""));
+                            db1.setValue(id);
                             DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child((Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()));
                             user_class User = new user_class(email.getText().toString(),full_name.getText().toString(),"","");
                             db.setValue(User);

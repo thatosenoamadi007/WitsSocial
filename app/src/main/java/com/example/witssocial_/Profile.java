@@ -194,6 +194,12 @@ public class Profile extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
                 return true;
             }
+            if (item.getItemId() == R.id.messages) {
+                Intent intent = new Intent (Profile.this, Messages.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
+                return true;
+            }
             return false;
         });
     }

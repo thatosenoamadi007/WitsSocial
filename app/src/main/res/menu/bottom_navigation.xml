@@ -16,6 +16,11 @@
         android:icon="@drawable/search_icon"/>
 
     <item
+        android:id="@+id/messages"
+        android:title="Chat"
+        android:icon="@drawable/message_icon"/>
+
+    <item
         android:id="@+id/account"
         android:title="Account"
         android:icon="@drawable/ic_account"/>
