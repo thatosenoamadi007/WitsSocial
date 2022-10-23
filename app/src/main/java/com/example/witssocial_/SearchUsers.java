@@ -85,7 +85,7 @@ public class SearchUsers extends AppCompatActivity {
 
         String email="";
         try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
-        catch (Exception e){email="karabol@gmail.com";}
+        catch (Exception e){email="karabo@gmail.com";}
         FirebaseRecyclerOptions<user_class> options =
                 new FirebaseRecyclerOptions.Builder<user_class>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Search History").child(email.replace("@","").replace(".","")).orderByChild("timestamp"), user_class.class)
@@ -125,7 +125,7 @@ public class SearchUsers extends AppCompatActivity {
     private void findAllFriends() {
         String email="";
         try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
-        catch (Exception e){email="karabol@gmail.com";}
+        catch (Exception e){email="karabo@gmail.com";}
         mainAdapter = new messagesAdapter(new FirebaseRecyclerOptions.Builder<user_class>()
                 .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Search History").child(email.replace("@","").replace(".","")).orderByChild("timestamp"), user_class.class)
                 .build(),getApplicationContext());

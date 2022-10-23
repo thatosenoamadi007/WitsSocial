@@ -67,7 +67,7 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
         user_class user=new user_class(email,username,description,image);
         String branch1="";
         try{branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
-        catch (Exception e){branch1="karabol@gmail.com";
+        catch (Exception e){branch1="karabo@gmail.com";
             branch1.replace("@","").replace(".","");}
         String branch2=email.replace("@","").replace(".","");
         //add to list to people im following
@@ -84,7 +84,7 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
     private void getUserDetails(String branch1, String branch2) {
         String id="";
         try{id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
-        catch (Exception e){id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";}
+        catch (Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -109,7 +109,7 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
     private void unfollowUser(String email) {
         String email1="karabol@gmail.com";
         try{email1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
-        catch (Exception e){email1="karabol@gmail.com";}
+        catch (Exception e){email1="karabo@gmail.com";}
         String branch1= email1.replace("@","").replace(".","");
         String branch2=email.replace("@","").replace(".","");
         //remove from list of people im following
@@ -151,7 +151,7 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
     private void ifFollowsUser(String email,@NonNull myViewHolder holder) {
         String email1="";
         try{email1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
-        catch (Exception e){email1="karabol@gmail.com";}
+        catch (Exception e){email1="karabo@gmail.com";}
         String branch1= email1.replace("@","").replace(".","");
         String branch2=email.replace("@","").replace(".","");
         FirebaseDatabase.getInstance().getReference()

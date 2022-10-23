@@ -96,7 +96,7 @@ public class Edit_Profile extends AppCompatActivity {
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
         String email="karabol@gmail.com";
         try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
-        catch(Exception e){email="karabol@gmail.com";}
+        catch(Exception e){email="karabo@gmail.com";}
         Query query = databaseReference.orderByChild("email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -131,7 +131,7 @@ public class Edit_Profile extends AppCompatActivity {
         super.onPause();
         String email="";
         try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
-        catch(Exception e){email="karabol@gmail.com";}
+        catch(Exception e){email="karabo@gmail.com";}
         Query query = databaseReference.orderByChild("email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -159,7 +159,7 @@ public class Edit_Profile extends AppCompatActivity {
         super.onStart();
         String email="";
         try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
-        catch(Exception e){email="karabol@gmail.com";}
+        catch(Exception e){email="karabo@gmail.com";}
         Query query = databaseReference.orderByChild("email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -308,7 +308,7 @@ public class Edit_Profile extends AppCompatActivity {
         // We are taking the filepath as storagepath + firebaseauth.getUid()+".png"
         String id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
         try{id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
-        catch(Exception e){id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";}
+        catch(Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
         String filepathname = storagepath + "" + profileOrCoverPhoto + "_" + id;
         StorageReference storageReference1 = storageReference.child(filepathname);
         String finalId = id;

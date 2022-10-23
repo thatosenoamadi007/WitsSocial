@@ -81,7 +81,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
         try {user= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
         catch(Exception e) {
             //  Block of code to handle errors
-            user="karabol@gmail.com";
+            user="karabo@gmail.com";
         }
         likers like = new likers(user);
 
