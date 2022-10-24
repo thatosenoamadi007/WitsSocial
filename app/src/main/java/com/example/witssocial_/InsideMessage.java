@@ -33,6 +33,7 @@ public class InsideMessage extends AppCompatActivity {
     RecyclerView recyclerView;
     insidemessageAdapter mainAdapter;
 
+    
     //variables used when sending message
     AppCompatEditText typed_message;
     AppCompatImageView send_message;

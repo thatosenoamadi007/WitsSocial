@@ -34,7 +34,7 @@ public class home_activity extends AppCompatActivity {
         media_post=findViewById(R.id.Media_Posts);
         text_post=findViewById(R.id.Text_Posts);
          //initlise the recycler view, layout manager and firebase recycler options
-        recyclerView =findViewById(R.id.homerecview);
+        recyclerView =findViewById(R.id.chatrecyclerview);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);

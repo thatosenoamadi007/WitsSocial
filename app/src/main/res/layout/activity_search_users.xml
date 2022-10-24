@@ -54,8 +54,6 @@
                 android:iconifiedByDefault="false"
                 android:searchIcon="@drawable/search_icon"
 
-
-
                 />
 
         </LinearLayout>

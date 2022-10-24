@@ -23,6 +23,7 @@ public class SearchUsers extends AppCompatActivity {
     SearchView searchView; 
     RecyclerView recyclerView;
     messagesAdapter mainAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +99,6 @@ public class SearchUsers extends AppCompatActivity {
     }
 
     void changeSearchHintColor(){
-
         SearchView searchView= findViewById(R.id.search_friend_chat);
         int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         TextView textView = searchView.findViewById(id);
