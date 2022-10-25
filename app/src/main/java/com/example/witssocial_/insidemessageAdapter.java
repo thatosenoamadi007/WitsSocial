@@ -22,6 +22,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,6 +59,7 @@ public class insidemessageAdapter extends FirebaseRecyclerAdapter<messageObject,
             //set the image
             Glide.with(holder.message_image.getContext())
                     .load(model.getAttachment_url())
+                    .transform(new RoundedCorners(16))
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .error(R.drawable.ic_baseline_person_24)
                     .into(holder.message_image);

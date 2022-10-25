@@ -71,6 +71,30 @@
                 tools:ignore="RtlSymmetry" />
         </LinearLayout>
 
+
+        <!--
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="3dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:background="@drawable/img16"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/show_statuses_home"
+                android:layout_gravity="center"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/homerecview"
                 android:layout_width="match_parent"

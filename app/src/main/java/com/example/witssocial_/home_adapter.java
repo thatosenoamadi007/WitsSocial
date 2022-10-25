@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,6 +50,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
             Glide.with(holder.post.getContext())
                     .load(post.getPost())
                     .fitCenter()
+                    .transform(new RoundedCorners(10))
                     .placeholder(R.drawable.ic_baseline_person_24)
                     .error(R.drawable.ic_launcher_foreground)
                     .into(holder.post);

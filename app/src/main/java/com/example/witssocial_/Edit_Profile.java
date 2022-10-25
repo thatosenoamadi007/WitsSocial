@@ -379,11 +379,22 @@ public class Edit_Profile extends AppCompatActivity {
         if(!password.getText().toString().isEmpty()){
             FirebaseAuth.getInstance().getCurrentUser().updatePassword(password.getText().toString());
         }
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child((Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()));
+                        user_class User = new user_class(email.getText().toString(),full_name.getText().toString(),description.getText().toString(), Objects.requireNonNull(snapshot.getValue(user_class.class)).getImage());//---------------------
+                        db.setValue(User)
+                                .addOnSuccessListener(unused -> Toast.makeText(Edit_Profile.this, "Saved changes", Toast.LENGTH_SHORT).show());
+                    }
 
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child((Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()));
-        user_class User = new user_class(email.getText().toString(),full_name.getText().toString(),description.getText().toString(),"dummy");//---------------------
-        db.setValue(User)
-                .addOnSuccessListener(unused -> Toast.makeText(this, "Saved changes", Toast.LENGTH_SHORT).show());
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
 
     }
