@@ -37,6 +37,7 @@ public class a_FriendProfile extends AppCompatActivity {
     String profile_pic_url;
     @SuppressLint("SetTextI18n")
     @Override
+    //on create
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_afriend_profile);
