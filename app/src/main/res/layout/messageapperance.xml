@@ -117,6 +117,7 @@ android:id="@+id/message_friend_id"
 
     -->
 
+
 <!--
  <LinearLayout
                 android:layout_width="match_parent"

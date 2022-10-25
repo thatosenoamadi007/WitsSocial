@@ -7,6 +7,60 @@
     tools:context=".Archive_Users"
     android:orientation="vertical"
     >
+    <!--Gerald Mukumba
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:elevation="10dp"
+                android:background="@color/white">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/ic_back_button"
+                    tools:ignore="ContentDescription"
+                    android:id="@+id/go_back_to_chat"
+                    android:scaleX="0.7"
+                    android:scaleY="0.7"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/top_bar_friend_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Archived"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:paddingStart="110dp"
+                    tools:ignore="RtlSymmetry"
+                    android:textAllCaps="false"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/all_friends_chat_list"
+            android:background="@color/white"
+            android:layout_marginTop="8dp"
+            >-->
 
     <LinearLayout
         android:layout_width="match_parent"
