@@ -27,7 +27,7 @@ public class Archive_Users extends AppCompatActivity {
         go_back_to_chat=findViewById(R.id.go_back_to_chat);
         go_back_to_chat.setOnClickListener(view -> startActivity(new Intent(Archive_Users.this,Messages.class)));
 
-        //list archived users
+        //display list archived users
         display();
     }
 
