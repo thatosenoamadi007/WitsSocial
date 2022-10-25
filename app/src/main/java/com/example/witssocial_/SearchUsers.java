@@ -96,6 +96,8 @@ public class SearchUsers extends AppCompatActivity {
 
     }
 
+
+    //Welcome
     void changeSearchHintColor(){
 
         SearchView searchView= findViewById(R.id.search_friend_chat);

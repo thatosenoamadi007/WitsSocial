@@ -149,6 +149,7 @@ public class add_post extends AppCompatActivity {
                         Toast.makeText(this, "Post Uploaded.", Toast.LENGTH_SHORT).show();
                         pd.dismiss();
                         caption.setText("");
+                        imageUri=null;
 
                         String tmpuri = "@drawable/icupload";
                         int imageResource = getResources().getIdentifier(tmpuri, null, getPackageName());
