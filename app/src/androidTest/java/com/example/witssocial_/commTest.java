@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 public class commTest extends TestCase {
 
-    
+ //This is a comment  
     public void setComment() {
         comment comment=new comment();
         comment.setComment("comment");
