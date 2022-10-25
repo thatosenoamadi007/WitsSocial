@@ -37,7 +37,8 @@ public class Archive_Users extends AppCompatActivity {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-
+        
+        //check if testing or user mode
         String id="";
         try{id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
         catch (Exception e){id="karabo@gmail.com";}
