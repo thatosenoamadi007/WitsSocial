@@ -48,15 +48,14 @@ public class FollowingAdapter extends FirebaseRecyclerAdapter<user_class,Followi
                 String branch2=post.getEmail().replace("@","").replace(".","");
                 //remove from list of people im following
                 FirebaseDatabase.getInstance().getReference()
-                        .child("Wits Social Database")
+                        .child("Wits Social Database1")
                         .child("User Following")
                         .child(branch1)
                         .child(branch2)
                         .removeValue();
-                //.addOnSuccessListener(unused -> Toast.makeText(a_FriendProfile.this, "Successfully unfollowed user", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Error while trying to unfollow user.", Toast.LENGTH_SHORT).show());
                 //remove from list of list of people who are following me
                 FirebaseDatabase.getInstance().getReference()
-                        .child("Wits Social Database")
+                        .child("Wits Social Database1")
                         .child("User Followers")
                         .child(branch2)
                         .child(branch1)

@@ -5,22 +5,22 @@ import junit.framework.TestCase;
 public class messageObjectTest extends TestCase {
 
     public void testGetSender_id() {
-        messageObject messageObject=new messageObject("karabo@gmail.com","thato@gmail.com","Did you setup circleci?","2022/09/06");
+        messageObject messageObject=new messageObject("karabo@gmail.com","thato@gmail.com","Did you setup circleci?","2022/09/06","null","text");
         assertEquals("karabo@gmail.com",messageObject.getSender_id());
     }
 
     public void testGetReceiver_id() {
-        messageObject messageObject=new messageObject("karabo@gmail.com","thato@gmail.com","Did you setup circleci?","2022/09/06");
+        messageObject messageObject=new messageObject("karabo@gmail.com","thato@gmail.com","Did you setup circleci?","2022/09/06","null","text");
         assertEquals("thato@gmail.com",messageObject.getReceiver_id());
     }
 
     public void testGetContent() {
-        messageObject messageObject=new messageObject("karabo@gmail.com","thato@gmail.com","Did you setup circleci?","2022/09/06");
+        messageObject messageObject=new messageObject("karabo@gmail.com","thato@gmail.com","Did you setup circleci?","2022/09/06","null","text");
         assertEquals("Did you setup circleci?",messageObject.getContent());
     }
 
     public void testGetTimestamp() {
-        messageObject messageObject=new messageObject("karabo@gmail.com","thato@gmail.com","Did you setup circleci?","2022/09/06");
+        messageObject messageObject=new messageObject("karabo@gmail.com","thato@gmail.com","Did you setup circleci?","2022/09/06","null","text");
         assertEquals("2022/09/06",messageObject.getTimestamp());
     }
 

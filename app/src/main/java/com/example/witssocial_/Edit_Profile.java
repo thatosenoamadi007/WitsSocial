@@ -91,12 +91,12 @@ public class Edit_Profile extends AppCompatActivity {
         //firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
-        databaseReference = firebaseDatabase.getReference("Wits Social Database").child("Users");
+        databaseReference = firebaseDatabase.getReference("Wits Social Database1").child("Users");
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
         String email="karabol@gmail.com";
         try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
-        catch(Exception e){email="karabol@gmail.com";}
+        catch(Exception e){email="karabo@gmail.com";}
         Query query = databaseReference.orderByChild("email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -119,22 +119,19 @@ public class Edit_Profile extends AppCompatActivity {
         });
 
 
-        my_profile_pic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pd.setMessage("Updating Profile Picture");
-                profileOrCoverPhoto = "image";
-                showImagePicDialog();
-            }
+        my_profile_pic.setOnClickListener(v -> {
+            pd.setMessage("Updating Profile Picture");
+            profileOrCoverPhoto = "image";
+            showImagePicDialog();
         });
 
     }
     @Override
     protected void onPause() {
         super.onPause();
-        String email="karabol@gmail.com";
+        String email="";
         try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
-        catch(Exception e){email="karabol@gmail.com";}
+        catch(Exception e){email="karabo@gmail.com";}
         Query query = databaseReference.orderByChild("email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -160,9 +157,9 @@ public class Edit_Profile extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        String email="karabol@gmail.com";
+        String email="";
         try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
-        catch(Exception e){email="karabol@gmail.com";}
+        catch(Exception e){email="karabo@gmail.com";}
         Query query = databaseReference.orderByChild("email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -311,7 +308,7 @@ public class Edit_Profile extends AppCompatActivity {
         // We are taking the filepath as storagepath + firebaseauth.getUid()+".png"
         String id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
         try{id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
-        catch(Exception e){id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";}
+        catch(Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
         String filepathname = storagepath + "" + profileOrCoverPhoto + "_" + id;
         StorageReference storageReference1 = storageReference.child(filepathname);
         String finalId = id;
@@ -382,11 +379,22 @@ public class Edit_Profile extends AppCompatActivity {
         if(!password.getText().toString().isEmpty()){
             FirebaseAuth.getInstance().getCurrentUser().updatePassword(password.getText().toString());
         }
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child((Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()));
+                        user_class User = new user_class(email.getText().toString(),full_name.getText().toString(),description.getText().toString(), Objects.requireNonNull(snapshot.getValue(user_class.class)).getImage());//---------------------
+                        db.setValue(User)
+                                .addOnSuccessListener(unused -> Toast.makeText(Edit_Profile.this, "Saved changes", Toast.LENGTH_SHORT).show());
+                    }
 
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child((Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()));
-        user_class User = new user_class(email.getText().toString(),full_name.getText().toString(),description.getText().toString(),"dummy");//---------------------
-        db.setValue(User)
-                .addOnSuccessListener(unused -> Toast.makeText(this, "Saved changes", Toast.LENGTH_SHORT).show());
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
 
     }

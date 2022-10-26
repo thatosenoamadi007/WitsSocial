@@ -36,7 +36,7 @@ public class CommentsAdapter extends FirebaseRecyclerAdapter<comment, CommentsAd
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull comment model) {
 
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database")
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
                 .child("Users")
                 .child(model.getId())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -49,7 +49,7 @@ public class CommentsAdapter extends FirebaseRecyclerAdapter<comment, CommentsAd
                             holder.comment_content.setText(model.getComment());
                             holder.comment_username.setText("@"+user_class.getUsername());
                             Glide.with(holder.commenter_profile_pic.getContext())
-                                    .load(R.drawable.img_1)
+                                    .load(user_class.getImage())
                                     .placeholder(R.drawable.ic_baseline_person_24)
                                     .error(R.drawable.ic_launcher_foreground)
                                     .into(holder.commenter_profile_pic);

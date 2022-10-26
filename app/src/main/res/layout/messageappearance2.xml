@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="84dp"
+    >
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_gravity="end"
+        android:id="@+id/archive_user"
+        android:layout_width="80dp"
+        android:layout_marginTop="22.5dp"
+        android:layout_marginRight="5dp"
+        android:layout_height="45dp"
+        android:text="Archive"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:background="@drawable/profile_button_bg"
+        android:textAllCaps="false"/>
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="84dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_marginTop="12.5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:id="@+id/userpropic"
+            android:background="@drawable/ic_account"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/message_friend_id"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="John Smith"
+                    android:textColor="@color/black"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/email"
+                    android:gravity="center"
+                    android:layout_marginTop="24dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My useranme"
+                    android:textColor="@color/black"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/username"
+                    android:gravity="center"
+                    android:layout_marginTop="48dp"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

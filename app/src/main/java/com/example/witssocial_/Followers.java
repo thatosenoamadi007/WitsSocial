@@ -32,35 +32,15 @@ public class Followers extends AppCompatActivity {
         String rec_desc=getIntent().getStringExtra("receiver_description");
         String friend_profile=getIntent().getStringExtra("receiver_profile_pic");
         String intent=getIntent().getStringExtra("came_from");
-        /*Toast.makeText(this, rec+"---"+rec_us+"--"+rec_desc+"--"+intent, Toast.LENGTH_SHORT).show();
-        if(intent==null){
-            Toast.makeText(this, "intent empty", Toast.LENGTH_SHORT).show();
-        }*/
         if(intent!=null && rec!=null && rec_us!=null && getIntent().getStringExtra("came_from").equals("a_FriendProfile")){
 
             go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(Followers.this,a_FriendProfile.class).putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_description",rec_desc).putExtra("receiver_profile_pic",friend_profile)));
-
-            //show list of following
-            /*show_list_of_followers=findViewById(R.id.show_list_of_followers);
-            show_list_of_followers.setLayoutManager(new LinearLayoutManager(this));//User Following
-            FirebaseRecyclerOptions<user_class> options = new FirebaseRecyclerOptions.Builder<user_class>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Followers").child(rec.replace("@","").replace(".","")),user_class.class).build();
-            mainAdapter= new FollowersAdapter(options,getApplicationContext());
-            show_list_of_followers.setAdapter(mainAdapter);*/
-            //Toast.makeText(this, rec+"--"+rec_us+"--"+rec_desc+"--"+"a_friend", Toast.LENGTH_SHORT).show();
             showFollowingList(rec);
         }
         else{
             go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(Followers.this,Profile.class)));
-            //show list of following
-            //show_list_of_followers=findViewById(R.id.show_list_of_followers);
-            //show_list_of_followers.setLayoutManager(new LinearLayoutManager(this));//User Following
-            String email="karabol@gmail.com";
+            String email="";
             try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}catch (Exception e){email="karabol@gmail.com";}
-            /*FirebaseRecyclerOptions<user_class> options = new FirebaseRecyclerOptions.Builder<user_class>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Followers").child(email.replace("@","").replace(".","")),user_class.class).build();
-            mainAdapter= new FollowersAdapter(options,getApplicationContext());
-            show_list_of_followers.setAdapter(mainAdapter);*/
-            //go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(Followers.this,Profile.class)));
-            //Toast.makeText(this, email+"---"+"profile", Toast.LENGTH_SHORT).show();
             showFollowingList(email);
         }
 
@@ -72,7 +52,7 @@ public class Followers extends AppCompatActivity {
         //show list of following
         show_list_of_followers=findViewById(R.id.show_list_of_followers);
         show_list_of_followers.setLayoutManager(new LinearLayoutManager(this));
-        FirebaseRecyclerOptions<user_class> options = new FirebaseRecyclerOptions.Builder<user_class>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Followers").child(rec.replace("@","").replace(".","")),user_class.class).build();
+        FirebaseRecyclerOptions<user_class> options = new FirebaseRecyclerOptions.Builder<user_class>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Followers").child(rec.replace("@","").replace(".","")),user_class.class).build();
         mainAdapter= new FollowersAdapter(options,getApplicationContext());
         show_list_of_followers.setAdapter(mainAdapter);
     }

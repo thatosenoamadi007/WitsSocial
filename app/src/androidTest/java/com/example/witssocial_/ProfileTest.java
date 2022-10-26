@@ -9,6 +9,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static junit.framework.TestCase.assertNotNull;
 import android.app.Instrumentation;
 import android.support.test.rule.ActivityTestRule;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -40,7 +41,12 @@ public class ProfileTest {
 
     @Test
     public void GotoEditProfileClick(){
-        Espresso.onView(withId(R.id.edit_my_profile)).perform(click());
+        //Espresso.onView(withId(R.id.edit_my_profile)).perform(click());
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            // use 'activity'.
+            Button Email = activity.findViewById(R.id.edit_my_profile);
+            assertNotNull(Email);
+        });
     }
 
 }

@@ -36,9 +36,8 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        //initialize variables
+        //initialize variables and bottom navigation
         initializeVariables();
-
         bottomNavigationbar();
 
 
@@ -65,14 +64,14 @@ public class Profile extends AppCompatActivity {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         my_account_profile_recyclerview.setLayoutManager(linearLayoutManager);
-        String email="karabol@gmail.com";
+        String email="";
         try{
             email=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
         }catch (Exception e){
-            email="karabol@gmail.com";
+            email="karabo@gmail.com";
         }
         assert email != null;
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Posts").child(email.replace("@","").replace(".","")),Post.class).build();
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Posts").child(email.replace("@","").replace(".","")),Post.class).build();
         mainAdapter= new home_adapter(options,getApplicationContext(),"my_profile","null","null","null");
         my_account_profile_recyclerview.setAdapter(mainAdapter);
 
@@ -81,22 +80,20 @@ public class Profile extends AppCompatActivity {
 
     private void editProfile() {
         String my_Email=my_email.getText().toString();
-        //String my_full_name=my_username.getText().toString();
-        //String my_full_name=my_username.getText().toString();
         final String[] my_full_name = {my_username.getText().toString()};
         final String[] my_description = {my_profile_description.getText().toString()};
-        String id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+        String id="";
         try{
             id=FirebaseAuth.getInstance().getCurrentUser().getUid();
         }catch (Exception e){
-            id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+            id="CYFstJWuF9NKirsH8GMewwB0t7m2";
         }
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child(id)
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
-                        assert user_class != null;
+                        //assert user_class != null;
                         my_description[0] =user_class.getDescription();
                         my_full_name[0]=user_class.getUsername();
                     }
@@ -112,25 +109,23 @@ public class Profile extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void setStaticValues() {
-        String name="karabol@gmail.com";
-        String id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+        String name="";
+        String id="";
         try{
             name=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
             id=FirebaseAuth.getInstance().getCurrentUser().getUid();
         }catch (Exception e){
-            name="karabol@gmail.com";
-            id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
+            name="karabo@gmail.com";
+            id="CYFstJWuF9NKirsH8GMewwB0t7m2";
         }
         my_email.setText(name);
-        //top_bar_my_name.setText(name);
         top_bar_my_name.setText("Profile");
-        //my_username.setText(name);
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child(id)
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
-                        assert user_class != null;
+                        //assert user_class != null;
                         my_username.setText(user_class.getUsername());
                         my_profile_description.setText(user_class.getDescription());
                         Glide.with(userprofile.getContext())
@@ -148,7 +143,6 @@ public class Profile extends AppCompatActivity {
 
         //set number of followers and number of following
         setNumberFollowersFollowing();
-        //my_profile_description.setText("My description");
     }
 
     private void initializeVariables() {
@@ -202,17 +196,23 @@ public class Profile extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
                 return true;
             }
+            if (item.getItemId() == R.id.messages) {
+                Intent intent = new Intent (Profile.this, Messages.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
+                return true;
+            }
             return false;
         });
     }
 
     private void setNumberFollowersFollowing() {
-        String friend_email="krabol@gmail.com";
+        String friend_email="";
         try{friend_email=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
-        catch (Exception e){friend_email="karabol@gmail.com";}
+        catch (Exception e){friend_email="karabo@gmail.com";}
         String friend_email2=friend_email;
         //Toast.makeText(Profile.this, friend_email+"-----"+friend_email.replace("@","").replace(".",""), Toast.LENGTH_SHORT).show();
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Followers")
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Followers")
                 .child(friend_email.replace("@","").replace(".",""))
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -231,7 +231,7 @@ public class Profile extends AppCompatActivity {
 
                     }
                 });
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("User Following")
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Following")
                 .child(friend_email2.replace("@","").replace(".",""))
                 .addValueEventListener(new ValueEventListener() {
                     @Override

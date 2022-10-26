@@ -19,10 +19,10 @@ public class home_activity extends AppCompatActivity {
 
    //find all views in activity
     TextView all_post,media_post,text_post;
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView,show_statuses;
     public BottomNavigationView bottomNavigationView;
     private home_adapter mainAdapter;
-
+    private Status_adapter status_adapter;
  
    
     @Override
@@ -36,25 +36,14 @@ public class home_activity extends AppCompatActivity {
          //initlise the recycler view, layout manager and firebase recycler options
         recyclerView =findViewById(R.id.chatrecyclerview);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        //linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-        //FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("All Posts"),Post.class).build();
-        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("All Posts"),Post.class).build();
+        FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("All Posts"),Post.class).build();
         mainAdapter= new home_adapter(options,getApplicationContext(),"home_activity","null","null","null");
         recyclerView.setAdapter(mainAdapter);
         bottomNavigationbar();
-
-        //----------------------------
-
-        /*RecyclerView recyclerView = findViewById(R.id.homerecview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        
-       
-       //set recyclerview to the main adapter
-        recyclerView.getRecycledViewPool().clear();
-        mainAdapter= new home_adapter(options);
-        recyclerView.setAdapter(mainAdapter);*/
 
         all_post.setOnClickListener(view -> {
             all_post.setBackgroundColor(Color.WHITE);
@@ -73,12 +62,23 @@ public class home_activity extends AppCompatActivity {
             all_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
             media_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
         });
+        /*show_statuses =findViewById(R.id.show_statuses_home);
+        LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(this);
+        linearLayoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
+        linearLayoutManager1.setReverseLayout(true);
+        linearLayoutManager1.setStackFromEnd(true);
+        show_statuses.setLayoutManager(linearLayoutManager1);
+        FirebaseRecyclerOptions<Post> options1 = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("All Posts"),Post.class).build();
+        status_adapter= new Status_adapter(options1,getApplicationContext());
+        show_statuses.setAdapter(status_adapter);*/
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         mainAdapter.startListening();
+        //status_adapter.startListening();
     }
 
      //fuction to navigate the bottom navigation menu
@@ -108,6 +108,12 @@ public class home_activity extends AppCompatActivity {
             //Navigating menu
             if (item.getItemId() == R.id.searchbtn) {
                Intent intent = new Intent (home_activity.this, SearchUsers.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
+                return true;
+            }
+            if (item.getItemId() == R.id.messages) {
+                Intent intent = new Intent (home_activity.this, Messages.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 return true;

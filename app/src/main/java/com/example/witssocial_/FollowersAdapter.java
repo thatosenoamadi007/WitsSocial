@@ -65,14 +65,14 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
 
     private void followUser(String email, String username, String description,String image) {
         user_class user=new user_class(email,username,description,image);
-        String branch1="karabol@gmail.com";
+        String branch1="";
         try{branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
-        catch (Exception e){branch1="karabol@gmail.com";
+        catch (Exception e){branch1="karabo@gmail.com";
             branch1.replace("@","").replace(".","");}
         String branch2=email.replace("@","").replace(".","");
         //add to list to people im following
         FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database")
+                .child("Wits Social Database1")
                 .child("User Following")
                 .child(branch1)
                 .child(branch2)
@@ -82,17 +82,17 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
     }
 
     private void getUserDetails(String branch1, String branch2) {
-        String id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
-        try{id= FirebaseAuth.getInstance().getCurrentUser().getUid();}
-        catch (Exception e){id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";}
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database").child("Users").child(id)
+        String id="";
+        try{id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
+        catch (Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
                         assert user_class != null;
                         FirebaseDatabase.getInstance().getReference()
-                                .child("Wits Social Database")
+                                .child("Wits Social Database1")
                                 .child("User Followers")
                                 .child(branch2)
                                 .child(branch1)
@@ -109,20 +109,19 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
     private void unfollowUser(String email) {
         String email1="karabol@gmail.com";
         try{email1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
-        catch (Exception e){email1="karabol@gmail.com";}
+        catch (Exception e){email1="karabo@gmail.com";}
         String branch1= email1.replace("@","").replace(".","");
         String branch2=email.replace("@","").replace(".","");
         //remove from list of people im following
         FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database")
+                .child("Wits Social Database1")
                 .child("User Following")
                 .child(branch1)
                 .child(branch2)
                 .removeValue();
-        //.addOnSuccessListener(unused -> Toast.makeText(a_FriendProfile.this, "Successfully unfollowed user", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Error while trying to unfollow user.", Toast.LENGTH_SHORT).show());
         //remove from list of list of people who are following me
         FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database")
+                .child("Wits Social Database1")
                 .child("User Followers")
                 .child(branch2)
                 .child(branch1)
@@ -150,13 +149,13 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
     }
 
     private void ifFollowsUser(String email,@NonNull myViewHolder holder) {
-        String email1="karabol@gmail.com";
+        String email1="";
         try{email1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
-        catch (Exception e){email1="karabol@gmail.com";}
+        catch (Exception e){email1="karabo@gmail.com";}
         String branch1= email1.replace("@","").replace(".","");
         String branch2=email.replace("@","").replace(".","");
         FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database")
+                .child("Wits Social Database1")
                 .child("User Following")
                 .child(branch1)
                 .child(branch2)
