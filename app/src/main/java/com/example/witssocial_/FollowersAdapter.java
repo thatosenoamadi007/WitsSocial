@@ -1,6 +1,4 @@
 package com.example.witssocial_;
-
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
