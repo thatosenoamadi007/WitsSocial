@@ -170,7 +170,7 @@ public class Profile extends AppCompatActivity {
         mainAdapter.startListening();
     }
 
-    //fuction to navigate the bottom navigation menu
+    //function to navigate the bottom navigation menu
     private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.account);
