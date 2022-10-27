@@ -267,6 +267,8 @@ public class InsideMessage extends AppCompatActivity {
         recyclerView.setAdapter(mainAdapter);
     }
 
+    //selecting the post
+
     private void selectPost() {
         Intent intent = new Intent();
         //intent.setType("*/*");
