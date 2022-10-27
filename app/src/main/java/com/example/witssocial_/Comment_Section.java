@@ -36,9 +36,14 @@ public class Comment_Section extends AppCompatActivity {
         String friend_Name=getIntent().getStringExtra("receiver_username");
         String friend_Description=getIntent().getStringExtra("receiver_description");
         String friend_Picture=getIntent().getStringExtra("receiver_profile_pic");
+        if(friend_Picture==null){
+            try{friend_Picture= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
+            catch (Exception e){friend_Picture="CYFstJWuF9NKirsH8GMewwB0t7m2";}
+        }
         //go back to home activity
         go_back_to_home_activity=findViewById(R.id.go_back_to_home_activity);
-        go_back_to_home_activity.setOnClickListener(new View.OnClickListener() {
+        String finalFriend_Picture = friend_Picture;
+        /*go_back_to_home_activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String came_from=getIntent().getStringExtra("came_from");
@@ -53,7 +58,7 @@ public class Comment_Section extends AppCompatActivity {
                     final String[] profile_pic = new String[1];
                     FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
                             .child("Users")
-                            .child(friend_Picture)
+                            .child(finalFriend_Picture)
                             .addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -74,7 +79,7 @@ public class Comment_Section extends AppCompatActivity {
 
                 }
             }
-        });
+        });*/
 
         //show all comments first
         show_all_comments=findViewById(R.id.show_all_comments);
@@ -89,21 +94,18 @@ public class Comment_Section extends AppCompatActivity {
         //add a comment
         add_a_comment=findViewById(R.id.add_a_comment);
         upload_comment=findViewById(R.id.upload_comment);
-        upload_comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!Objects.requireNonNull(add_a_comment.getText()).toString().isEmpty()){
+        upload_comment.setOnClickListener(view -> {
+            if(!Objects.requireNonNull(add_a_comment.getText()).toString().isEmpty()){
 
-                   String key=FirebaseDatabase.getInstance().getReference("Wits Social Database1").push().getKey();
-                    comment comment=new comment(add_a_comment.getText().toString(), Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
-                    assert key != null;
-                    FirebaseDatabase.getInstance().getReference("Wits Social Database1")
-                            .child("Comments")
-                            .child(getIntent().getStringExtra("post_id"))
-                            .child(key)
-                            .setValue(comment)
-                            .addOnSuccessListener(unused -> add_a_comment.setText("")).addOnFailureListener(e -> Toast.makeText(Comment_Section.this, "Error trying to upload comment.", Toast.LENGTH_SHORT).show());
-                }
+               String key=FirebaseDatabase.getInstance().getReference("Wits Social Database1").push().getKey();
+                comment comment=new comment(add_a_comment.getText().toString(), Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+                assert key != null;
+                FirebaseDatabase.getInstance().getReference("Wits Social Database1")
+                        .child("Comments")
+                        .child(getIntent().getStringExtra("post_id"))
+                        .child(key)
+                        .setValue(comment)
+                        .addOnSuccessListener(unused -> add_a_comment.setText("")).addOnFailureListener(e -> Toast.makeText(Comment_Section.this, "Error trying to upload comment.", Toast.LENGTH_SHORT).show());
             }
         });
 

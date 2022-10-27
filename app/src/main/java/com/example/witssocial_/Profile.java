@@ -42,14 +42,14 @@ public class Profile extends AppCompatActivity {
 
         //initialize variables and bottom navigation
         initializeVariables();
-        bottomNavigationbar();
+        //bottomNavigationbar();
 
 
         //set names and descriptions
         setStaticValues();
 
         //edit my profile
-        editProfile();
+        //editProfile();
 
         //see list of followers
         number_of_followers.setOnClickListener(view -> {startActivity(new Intent(Profile.this,Followers.class).putExtra("came_from","Profile"));});
@@ -82,7 +82,7 @@ public class Profile extends AppCompatActivity {
 
     }
 
-    private void editProfile() {
+    /*private void editProfile() {
         String my_Email=my_email.getText().toString();
         final String[] my_full_name = {my_username.getText().toString()};
         final String[] my_description = {my_profile_description.getText().toString()};
@@ -109,7 +109,7 @@ public class Profile extends AppCompatActivity {
                 });
         //Toast.makeText(this, my_description[0], Toast.LENGTH_SHORT).show();
         edit_my_profile.setOnClickListener(view -> startActivity(new Intent(Profile.this,Edit_Profile.class).putExtra("receiver_id",my_Email).putExtra("receiver_username",my_full_name[0]).putExtra("receiver_description", my_description[0])));
-    }
+    }*/
 
     @SuppressLint("SetTextI18n")
     private void setStaticValues() {
@@ -171,7 +171,7 @@ public class Profile extends AppCompatActivity {
     }
 
     //fuction to navigate the bottom navigation menu
-    private void bottomNavigationbar() {
+    /*private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.account);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -202,7 +202,7 @@ public class Profile extends AppCompatActivity {
             }
             return false;
         });
-    }
+    }*/
 
     private void setNumberFollowersFollowing() {
         String friend_email="";

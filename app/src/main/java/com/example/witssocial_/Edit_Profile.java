@@ -357,6 +357,10 @@ public class Edit_Profile extends AppCompatActivity {
         String my_email=getIntent().getStringExtra("receiver_id");
         String my_full_name=getIntent().getStringExtra("receiver_username");
         String my_profile_description=getIntent().getStringExtra("receiver_description");
+        if(my_email==null || my_full_name==null){
+            my_email="karabo@gmail.com";
+            my_full_name="This is my profile.";
+        }
         email=findViewById(R.id.Email);
         full_name=findViewById(R.id.FullName);
         description=findViewById(R.id.Description);
@@ -375,15 +379,24 @@ public class Edit_Profile extends AppCompatActivity {
     }
 
     private void update() {
-        Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).updateEmail(email.getText().toString());
-        if(!password.getText().toString().isEmpty()){
-            FirebaseAuth.getInstance().getCurrentUser().updatePassword(password.getText().toString());
+        String id="";
+        try{
+            id=FirebaseAuth.getInstance().getCurrentUser().getUid();
+            Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).updateEmail(email.getText().toString());
+            if(!password.getText().toString().isEmpty()){
+                FirebaseAuth.getInstance().getCurrentUser().updatePassword(password.getText().toString());
+            }
+        }catch (Exception e){
+            id="CYFstJWuF9NKirsH8GMewwB0t7m2";
         }
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+
+
+        String finalId = id;
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child((Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()));
+                        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(finalId);
                         user_class User = new user_class(email.getText().toString(),full_name.getText().toString(),description.getText().toString(), Objects.requireNonNull(snapshot.getValue(user_class.class)).getImage());//---------------------
                         db.setValue(User)
                                 .addOnSuccessListener(unused -> Toast.makeText(Edit_Profile.this, "Saved changes", Toast.LENGTH_SHORT).show());

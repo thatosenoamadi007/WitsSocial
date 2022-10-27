@@ -45,7 +45,7 @@ public class home_activity extends AppCompatActivity {
         FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("All Posts"),Post.class).build();
         mainAdapter= new home_adapter(options,getApplicationContext(),"home_activity","null","null","null");
         recyclerView.setAdapter(mainAdapter);
-        bottomNavigationbar();
+        //bottomNavigationbar();
 
         all_post.setOnClickListener(view -> {
             all_post.setBackgroundColor(Color.WHITE);
@@ -64,15 +64,6 @@ public class home_activity extends AppCompatActivity {
             all_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
             media_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
         });
-        /*show_statuses =findViewById(R.id.show_statuses_home);
-        LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(this);
-        linearLayoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
-        linearLayoutManager1.setReverseLayout(true);
-        linearLayoutManager1.setStackFromEnd(true);
-        show_statuses.setLayoutManager(linearLayoutManager1);
-        FirebaseRecyclerOptions<Post> options1 = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("All Posts"),Post.class).build();
-        status_adapter= new Status_adapter(options1,getApplicationContext());
-        show_statuses.setAdapter(status_adapter);*/
 
     }
 
@@ -84,7 +75,7 @@ public class home_activity extends AppCompatActivity {
     }
 
      //fuction to navigate the bottom navigation menu
-    private void bottomNavigationbar() {
+    /*private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.posts_timeline);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -115,9 +106,9 @@ public class home_activity extends AppCompatActivity {
             }
             return false;
         });
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         if(getIntent().getStringExtra("sign_out_or_not")!=null){
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -138,5 +129,5 @@ public class home_activity extends AppCompatActivity {
             super.onBackPressed();
         }
 
-    }
+    }*/
 }

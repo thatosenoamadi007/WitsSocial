@@ -44,7 +44,7 @@ public class CommentsAdapter extends FirebaseRecyclerAdapter<comment, CommentsAd
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
                             user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
-                            assert user_class != null;
+                            //assert user_class != null;
                             holder.comment_name.setText(user_class.getEmail());
                             holder.comment_content.setText(model.getComment());
                             holder.comment_username.setText("@"+user_class.getUsername());

@@ -40,7 +40,7 @@ public class Status_adapter extends FirebaseRecyclerAdapter<Post,Status_adapter.
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull Post post) {
 
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
+        /*FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
                 .child("Users")
                 .child(post.getUsername()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -56,9 +56,9 @@ public class Status_adapter extends FirebaseRecyclerAdapter<Post,Status_adapter.
                         holder.status_pic.setOnClickListener(v -> {
 
                                 Intent intent=new Intent(Intent.ACTION_VIEW);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.setType("*/*");
-                                intent.setData(Uri.parse(user_class.getImage()));
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                                //intent.setType("*/*");
+                                /*intent.setData(Uri.parse(user_class.getImage()));
                                 context.startActivity(intent);
 
                         });
@@ -68,7 +68,7 @@ public class Status_adapter extends FirebaseRecyclerAdapter<Post,Status_adapter.
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
-                });
+                });*/
 
 
 

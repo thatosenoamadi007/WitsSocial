@@ -50,13 +50,13 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 likers likers=snapshot.getValue(com.example.witssocial_.likers.class);
-                                assert likers != null;
+                                //assert likers != null;
                                 FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(likers.getLikerID())
                                         .addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 user_class model=snapshot.getValue(com.example.witssocial_.user_class.class);
-                                                assert model != null;
+                                                //assert model != null;
                                                 String email= model.getEmail();
                                                 String username=model.getUsername();
                                                 String description= model.getDescription();
@@ -68,7 +68,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                                                         .error(R.drawable.ic_baseline_person_24)
                                                         .into(holder.friend_profile);
 
-                                                holder.message_layout.setOnClickListener(view -> {
+                                                /*holder.message_layout.setOnClickListener(view -> {
                                                     Intent intent=new Intent(context,InsideMessage.class);
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                                     intent.putExtra("receiver_id",email);
@@ -77,10 +77,10 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                                                     intent.putExtra("receiver_profile_pic",model.getImage());
                                                     intent.putExtra("came_from",came_from);
                                                     context.startActivity(intent);
-                                                });
+                                                });*/
 
                                                 //archive user
-                                                holder.archive_user.setOnClickListener(view -> {
+                                                /*holder.archive_user.setOnClickListener(view -> {
                                                     if(came_from.equals("Archive_Users")) {
                                                         FirebaseDatabase.getInstance().getReference()
                                                                 .child("Wits Social Database1")
@@ -109,7 +109,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                                                                 .setValue(new likers(email));
                                                     }
 
-                                                });
+                                                });*/
                                                 //end of archive
                                             }
 

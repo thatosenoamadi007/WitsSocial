@@ -77,10 +77,10 @@ public class InsideMessage extends AppCompatActivity {
         send_message= findViewById(R.id.send_message_InsideMessage);
         typed_message= findViewById(R.id.message_to_send_InsideMessage);
 
-        send_message.setOnClickListener(view -> delegatedToSendMessage());
+        //send_message.setOnClickListener(view -> delegatedToSendMessage());
     }
 
-    void delegatedToSendMessage(){
+    /*void delegatedToSendMessage(){
         String message_content= Objects.requireNonNull(typed_message.getText()).toString();
         String name=getIntent().getStringExtra("receiver_id");
         String currentDateTime=get_CurrentDateTime();
@@ -113,12 +113,18 @@ public class InsideMessage extends AppCompatActivity {
                     });
 
         }
-    }
+    }*/
 
-    void sendMessage(String name,String currentDateTime,String message_content,String image_attachment){
+    /*void sendMessage(String name,String currentDateTime,String message_content,String image_attachment){
         //add to the database that contains all the chat history
-        messageObject messageObject=new messageObject(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail(),name.toLowerCase(Locale.ROOT),message_content,currentDateTime,image_attachment,format);
-        String branch1= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()).replace("@","").replace(".","");
+        String email="";
+        try{
+            email=FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        }catch (Exception e){
+            email="karabo@gmail.com";
+        }
+        messageObject messageObject=new messageObject(email,name.toLowerCase(Locale.ROOT),message_content,currentDateTime,image_attachment,format);
+        String branch1= Objects.requireNonNull(email.replace("@","").replace(".","");
         String branch2=name.replace("@","").replace(".","");
         saveToChatHistory(currentDateTime,messageObject,branch1,branch2);
         saveToChatHistory(currentDateTime,messageObject,branch2,branch1);
@@ -140,10 +146,16 @@ public class InsideMessage extends AppCompatActivity {
     }
 
     void sendToListOfUsers(likers user, String branch1, String branch2){
+        String id="";
+        try{
+            id=FirebaseAuth.getInstance().getCurrentUser().getUid();
+        }catch (Exception e){
+            id="CYFstJWuF9NKirsH8GMewwB0t7m2";
+        }
         FirebaseDatabase.getInstance().getReference()
                 .child("Wits Social Database1")
                 .child("Archived Users")
-                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
+                .child(id)
                 .child(branch2)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -172,14 +184,14 @@ public class InsideMessage extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.US);
         Date date = new Date();
         return dateFormat.format(date);
-    }
+    }*/
 
     void initializeTopBarElement(){
         attachement_to_send_insidemessage=findViewById(R.id.attachement_to_send_insidemessage);
         //attachement_to_send_insidemessage.setOnClickListener(view -> selectPost());
-        attachement_to_send_insidemessage.setOnClickListener(view -> popUpWindow());
+        //attachement_to_send_insidemessage.setOnClickListener(view -> popUpWindow());
         //go back to previous activity
-        go_back();
+        //go_back();
 
 
         //get friend name and display it
@@ -195,7 +207,7 @@ public class InsideMessage extends AppCompatActivity {
         show_friend_name.setText(name);
     }
 
-    private void popUpWindow() {
+    /*private void popUpWindow() {
         de.hdodenhof.circleimageview.CircleImageView image_attachment,document_attachment,audio_attachment,video_attachment;
         attachment_pop_up.setContentView(R.layout.attachment_type_popup);
         image_attachment=attachment_pop_up.findViewById(R.id.image_attachment);
@@ -224,9 +236,9 @@ public class InsideMessage extends AppCompatActivity {
         });
         attachment_pop_up.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         attachment_pop_up.show();
-    }
+    }*/
 
-    void go_back(){
+    /*void go_back(){
         String friend_Email=getIntent().getStringExtra("receiver_id");
         String friend_Name=getIntent().getStringExtra("receiver_username");
         String friend_Description=getIntent().getStringExtra("receiver_description");
@@ -243,7 +255,7 @@ public class InsideMessage extends AppCompatActivity {
             go_back.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),a_FriendProfile.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description).putExtra("receiver_profile_pic",friend_profile)));
         }
 
-    }
+    }*/
 
     private void display() {
         String name=getIntent().getStringExtra("receiver_id");
@@ -251,35 +263,41 @@ public class InsideMessage extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-
+        String email="";
+        try{
+            email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");
+        }catch (Exception e){
+            email="karabo@gmail.com";
+            email=email.replace("@","").replace(".","");
+        }
         mainAdapter = new insidemessageAdapter(new FirebaseRecyclerOptions.Builder<messageObject>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Chat history").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replaceAll("@","").replace(".","")).child(name.replace("@","").replace(".","")), messageObject.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Chat history").child(email).child(name.replace("@","").replace(".","")), messageObject.class)
                 .build(),getApplicationContext());
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);
     }
 
-    private void selectPost() {
-        Intent intent = new Intent();
+    /*private void selectPost() {
+        Intent intent = new Intent();*/
         //intent.setType("*/*");
-        if(format.equals("image")){
-            intent.setType("image/*");
-        }
+    //    if(format.equals("image")){
+            /*intent.setType("image/*");*/
+    /*    }
         else if(format.equals("documents")){
             intent.setType("application/pdf");
         }
-        else if(format.equals("audio")){
-            intent.setType("audio/*");
-        }
+        else if(format.equals("audio")){*/
+            /*intent.setType("audio/*");*/
+       // }
         //else(format.equals("video")){
-        else{
-            intent.setType("video/*");
-        }
-        final Intent intent1 = intent.setAction((Intent.ACTION_GET_CONTENT));
+        //else{
+            /*intent.setType("video/*");*/
+        //}
+    /*    final Intent intent1 = intent.setAction((Intent.ACTION_GET_CONTENT));
         startActivityForResult(Intent.createChooser(intent1,"Add Attachment"),10);
-    }
+    }*/
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==10 && resultCode==RESULT_OK && data!=null && data.getData()!=null){
@@ -288,7 +306,7 @@ public class InsideMessage extends AppCompatActivity {
             format="text";
             Toast.makeText(InsideMessage.this, "Error trying to pick attachment.", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
     @Override
     protected void onStart(){

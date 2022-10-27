@@ -44,10 +44,10 @@ public class login extends AppCompatActivity {
         signupBtn.setOnClickListener(view -> {startActivity(new Intent(login.this,MainActivity.class));});
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         moveTaskToBack(true);
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(0);
-    }
+    }*/
 }

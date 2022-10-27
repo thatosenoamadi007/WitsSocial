@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -18,7 +19,7 @@ public class Account_Settings extends AppCompatActivity {
         setContentView(R.layout.activity_account_settings);
 
         //go back to my profile
-        goBack();
+        //goBack();
 
         //sign out of my account
         sign_out=findViewById(R.id.SignOut);
@@ -29,12 +30,16 @@ public class Account_Settings extends AppCompatActivity {
     }
 
     private void signOut() {
-        FirebaseAuth.getInstance().signOut();
+        try {
+            FirebaseAuth.getInstance().signOut();
+        }catch (Exception e){
+            Toast.makeText(Account_Settings.this, "Signed out.", Toast.LENGTH_SHORT).show();
+        }
         startActivity(new Intent(Account_Settings.this,login.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
 
-    private void goBack() {
+    /*private void goBack() {
         go_back_to_my_profile=findViewById(R.id.go_back_to_my_profile);
         go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),Profile.class)));
-    }
+    }*/
 }

@@ -226,17 +226,17 @@ public class a_FriendProfile extends AppCompatActivity {
         String branch1= email.replace("@","").replace(".","");
         String branch2=friend_email.getText().toString().replace("@","").replace(".","");
         if(mode.equals("Follow")){
-            followFriend(user,branch1,branch2);
+            //followFriend(user,branch1,branch2);
             follow_friend.setText("Following");
             follow_friend.setBackgroundColor(Color.parseColor("#F6F4F4"));
         }else{
-            unfollowFriend(branch1,branch2);
+            //unfollowFriend(branch1,branch2);
             follow_friend.setText("Follow");
             follow_friend.setBackgroundColor(Color.WHITE);
         }
     }
 
-    private void unfollowFriend(String branch1, String branch2) {
+    /*private void unfollowFriend(String branch1, String branch2) {
         //remove from list of people im following
         FirebaseDatabase.getInstance().getReference()
                 .child("Wits Social Database1")
@@ -262,11 +262,11 @@ public class a_FriendProfile extends AppCompatActivity {
                 .child(branch2)
                 .setValue(user);
         //add to list of list of people who are following me
-        getUserDetails(branch1,branch2);
+        //getUserDetails(branch1,branch2);
 
-    }
+    }*/
 
-    private void getUserDetails(String branch1, String branch2){
+    /*private void getUserDetails(String branch1, String branch2){
         String id="";
         try{id=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());}
         catch (Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
@@ -289,7 +289,7 @@ public class a_FriendProfile extends AppCompatActivity {
                         Toast.makeText(a_FriendProfile.this, "Error occurred trying to retrive user details", Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
+    }*/
 
     @Override
     protected void onStart() {
