@@ -80,6 +80,8 @@ public class InsideMessage extends AppCompatActivity {
         send_message.setOnClickListener(view -> delegatedToSendMessage());
     }
 
+    //delegating to send message
+
     void delegatedToSendMessage(){
         String message_content= Objects.requireNonNull(typed_message.getText()).toString();
         String name=getIntent().getStringExtra("receiver_id");
