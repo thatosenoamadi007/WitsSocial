@@ -11,4 +11,5 @@ ignore:
   - "**/Archive_Users.java"
   - "**/InsideMessage.java"
   - "**/Status_adapter.java"
-
+  - "**/add_post.java"
+  - "**/Account_Settings.java"
