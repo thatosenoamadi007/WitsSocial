@@ -29,8 +29,8 @@ public class Account_Settings extends AppCompatActivity {
 
     }
 
-    private void signOut() {
-        /*try {
+    /*private void signOut() {
+        try {
             FirebaseAuth.getInstance().signOut();
         }catch (Exception e){
             Toast.makeText(Account_Settings.this, "Signed out.", Toast.LENGTH_SHORT).show();
