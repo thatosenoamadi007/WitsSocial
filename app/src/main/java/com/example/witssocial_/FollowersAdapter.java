@@ -63,6 +63,8 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
         });
     }
 
+    //follow other users
+
     private void followUser(String email, String username, String description,String image) {
         user_class user=new user_class(email,username,description,image);
         String branch1="";
