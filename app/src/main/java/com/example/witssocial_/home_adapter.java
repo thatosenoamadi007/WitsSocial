@@ -215,6 +215,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
         return new myViewHolder(view);
     }
 
+    //view holder
     static class myViewHolder extends RecyclerView.ViewHolder{
         TextView handle, caption, username,likeCount,commentsCount;
         ImageView  userprofile, heart,go_to_comments;
