@@ -195,7 +195,8 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
 
             context.startActivity(intent);
         });
-        //view the post
+
+        //view the post of all user
         holder.post.setOnClickListener(v -> {
             if(!post.getPost().equals("null")){
                 Intent intent=new Intent(Intent.ACTION_VIEW);
