@@ -128,7 +128,6 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.followers_list,parent,false);
         return new myViewHolder(view);
     }
-
     static class myViewHolder extends RecyclerView.ViewHolder{
         TextView email, username;
         de.hdodenhof.circleimageview.CircleImageView friend_profile_chat;
@@ -172,5 +171,4 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
                     }
                 });
     }
-
 }
