@@ -23,13 +23,15 @@ public class Account_Settings extends AppCompatActivity {
 
         //sign out of my account
         sign_out=findViewById(R.id.SignOut);
-        sign_out.setOnClickListener(view -> {signOut();});
+        sign_out.setOnClickListener(view -> {
+            signOut();
+        });
 
 
 
     }
-
-    private void signOut() {//This is for signing out of the account and going back to the sign in sheet
+    //This is for signing out of the account and going back to the sign in sheet
+    private void signOut() {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(Account_Settings.this,login.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
