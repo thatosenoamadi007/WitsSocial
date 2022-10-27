@@ -1,1 +1,9 @@
 ignore:
+  - "**/Comment_Section.java"
+  - "**/CommentsAdapter.java"
+  - "**/FollowersAdapter.java"
+  - "**/insidemessageAdapter.java"
+  - "**/chatlist_adapter.java"
+  - "**/Messages.java"
+  - "**/comment.java"
+
