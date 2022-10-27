@@ -81,7 +81,7 @@ public class Profile extends AppCompatActivity {
 
 
     }
-
+    //editing profile
     private void editProfile() {
         String my_Email=my_email.getText().toString();
         final String[] my_full_name = {my_username.getText().toString()};
