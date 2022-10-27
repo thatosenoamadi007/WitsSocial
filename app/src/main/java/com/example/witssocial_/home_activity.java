@@ -1,6 +1,7 @@
+//This activity is for the home activity and for switching through the different activities.
+
+
 package com.example.witssocial_;
-
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
