@@ -45,6 +45,7 @@
             android:id="@+id/Email"/>
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Password"
             android:layout_width="300dp"
             android:layout_height="70dp"
             android:layout_marginStart="25dp"
@@ -52,9 +53,8 @@
             android:background="@color/white"
             android:hint="@string/password_required"
             android:paddingStart="10dp"
-            tools:ignore="RtlSymmetry"
-            android:id="@+id/Password"
-            />
+            android:password="true"
+            tools:ignore="RtlSymmetry" />
 
 
         <Button
