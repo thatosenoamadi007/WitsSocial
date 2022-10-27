@@ -201,6 +201,8 @@ public class InsideMessage extends AppCompatActivity {
         show_friend_name.setText(name);
     }
 
+    //displaying popup window
+
     private void popUpWindow() {
         de.hdodenhof.circleimageview.CircleImageView image_attachment,document_attachment,audio_attachment,video_attachment;
         attachment_pop_up.setContentView(R.layout.attachment_type_popup);
