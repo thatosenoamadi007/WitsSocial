@@ -84,7 +84,7 @@ public class Edit_Profile extends AppCompatActivity {
         //save changes
         saveChanges();
 
-        //edit my photocover
+        //edit my profile photo
         pd = new ProgressDialog(this);
         pd.setCanceledOnTouchOutside(false);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -118,7 +118,7 @@ public class Edit_Profile extends AppCompatActivity {
             }
         });
 
-
+        //message showing that a photo is currently being updated
         my_profile_pic.setOnClickListener(v -> {
             pd.setMessage("Updating Profile Picture");
             profileOrCoverPhoto = "image";
@@ -189,7 +189,7 @@ public class Edit_Profile extends AppCompatActivity {
         return result;
     }
 
-    // requesting for storage permission
+    // requesting for storage permission from the user
     private void requestStoragePermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(storagePermission, STORAGE_REQUEST);
@@ -203,7 +203,7 @@ public class Edit_Profile extends AppCompatActivity {
         return result && result1;
     }
 
-    // requesting for camera permission if not given
+    // requesting for camera permission if not given from the user
     private void requestCameraPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(cameraPermission, CAMERA_REQUEST);
@@ -211,7 +211,7 @@ public class Edit_Profile extends AppCompatActivity {
     }
 
     // Here we are showing image pic dialog where we will select
-    // and image either from camera or gallery
+    // and image either from camera or gallery so the user can choose
 
     private void showImagePicDialog() {
         String options[] = {"Camera", "Gallery"};

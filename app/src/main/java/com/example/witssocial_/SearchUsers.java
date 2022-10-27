@@ -75,7 +75,7 @@ public class SearchUsers extends AppCompatActivity {
             return false;
         });
     }
-
+    // here we are displaying all your friends you are chatting with
     private void display() {
         recyclerView = findViewById(R.id.all_friends_chat);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
@@ -107,7 +107,7 @@ public class SearchUsers extends AppCompatActivity {
         textView.setHintTextColor(Color.parseColor("#C9C9C9"));
 
     }
-
+    //finding a user who is your friend
     private void findFriend(String s) {
         if(s.equals("")){
             findAllFriends();
@@ -123,7 +123,7 @@ public class SearchUsers extends AppCompatActivity {
 
 
     }
-
+    //finding all the friends
     private void findAllFriends() {
         String email="";
         try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
