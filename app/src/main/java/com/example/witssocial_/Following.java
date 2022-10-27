@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
+
 public class Following extends AppCompatActivity {
     AppCompatImageView go_back_to_my_profile;
     RecyclerView show_list_of_following;
