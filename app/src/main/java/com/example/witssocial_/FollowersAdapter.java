@@ -9,12 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -23,17 +21,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.Objects;
 
 public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,FollowersAdapter.myViewHolder> {
-
     Context context;
     public FollowersAdapter(@NonNull FirebaseRecyclerOptions<user_class> options, Context context){
         super(options);
         this.context=context;
     }
-
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull user_class post) {
         holder.email.setText(post.getEmail());
@@ -62,7 +57,6 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
     }
 
     //follow other users
-
     private void followUser(String email, String username, String description,String image) {
         user_class user=new user_class(email,username,description,image);
         String branch1="";
