@@ -1,9 +1,11 @@
 package com.example.witssocial_;
 
 public class messageObject {
+    //set variables
     String sender_id,receiver_id,content,timestamp,attachment_url,format;
+    //constructor without arguments
     public messageObject(){}
-
+    //constructor with arguments
     public messageObject(String sender_id, String receiver_id, String content, String timestamp,String attachment_url,String format){
         this.sender_id=sender_id;
         this.receiver_id=receiver_id;
@@ -12,7 +14,7 @@ public class messageObject {
         this.attachment_url=attachment_url;
         this.format=format;
     }
-
+    //getters and setter methods
     public String getSender_id() {
         return sender_id;
     }
