@@ -117,7 +117,7 @@ public class a_FriendProfile extends AppCompatActivity {
         see_list_of_following.setOnClickListener(view -> {startActivity(new Intent(a_FriendProfile.this,Following.class).putExtra("came_from","a_FriendProfile").putExtra("receiver_id",rec).putExtra("receiver_username",rec_us).putExtra("receiver_description",rec_desc).putExtra("receiver_profile_pic",profile_pic_url));});
 
     }
-
+    //setting the number of followers
     private void setNumberFollowersFollowing(String friend_email) {
         String email=friend_email;
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Followers")
@@ -157,7 +157,7 @@ public class a_FriendProfile extends AppCompatActivity {
                     }
                 });
     }
-
+    //recently searched users
     private void recentlySearched(user_class user,String branch1,String branch2) {
         String my_email="";
         try{my_email=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
@@ -169,7 +169,7 @@ public class a_FriendProfile extends AppCompatActivity {
                 .child(branch2)
                 .setValue(user);//.addOnSuccessListener(unused -> Toast.makeText(a_FriendProfile.this, "Added to recently searched.", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(a_FriendProfile.this, "Couldn't add to recently searched.", Toast.LENGTH_SHORT).show());
     }
-
+    //intialize variables
     private void initializeVariables() {
         number_of_followers=findViewById(R.id.number_of_followers);
         number_of_following=findViewById(R.id.number_of_following);
@@ -184,7 +184,7 @@ public class a_FriendProfile extends AppCompatActivity {
         see_list_of_followers=findViewById(R.id.see_list_of_followers);
         see_list_of_following=findViewById(R.id.see_list_of_following);
     }
-
+    //checking if users are following each other
     private void ifFollowsUser() {
         String email="";
         try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
@@ -235,7 +235,7 @@ public class a_FriendProfile extends AppCompatActivity {
             follow_friend.setBackgroundColor(Color.WHITE);
         }
     }
-
+    //unfollow a friend/user
     private void unfollowFriend(String branch1, String branch2) {
         //remove from list of people im following
         FirebaseDatabase.getInstance().getReference()
@@ -252,7 +252,7 @@ public class a_FriendProfile extends AppCompatActivity {
                 .child(branch1)
                 .removeValue();
     }
-
+    //follow a user
     private void followFriend(user_class user, String branch1, String branch2){
         //add to list to people im following
         FirebaseDatabase.getInstance().getReference()
