@@ -33,6 +33,8 @@ public class Account_Settings extends AppCompatActivity {
         startActivity(new Intent(Account_Settings.this,login.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
 
+    //back to my profile
+
     private void goBack() {
         go_back_to_my_profile=findViewById(R.id.go_back_to_my_profile);
         go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),Profile.class)));
