@@ -1,5 +1,5 @@
+//This is the activity for inside the chats, for when users coversate and interact with one another.
 package com.example.witssocial_;
-
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
