@@ -172,6 +172,8 @@ public class InsideMessage extends AppCompatActivity {
 
     }
 
+    //get current date time
+
     String get_CurrentDateTime(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.US);
         Date date = new Date();
