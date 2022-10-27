@@ -9,7 +9,7 @@ public class Post {
     public Post(){
 
     }
-
+    //post
     public Post(String post,String caption, String username, String id,String type){
         this.post=post;
         this.caption=caption;
