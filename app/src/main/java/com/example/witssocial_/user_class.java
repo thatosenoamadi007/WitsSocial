@@ -1,13 +1,14 @@
 package com.example.witssocial_;
 
 public class user_class {
+    //set variables
     String username,email,description,image;
-
+    //set constructor without arguments
     public user_class(){
 
     }
 
-
+    //set constructor with arguments
     public user_class(String email,String username,String description,String image){
         this.username = username;
         this.email=email;
@@ -15,7 +16,9 @@ public class user_class {
         this.image=image;
 
     }
-
+    
+    //set getter and setter methods for variables
+    
     public String getUsername(){
         return username;
     }
