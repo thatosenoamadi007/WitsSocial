@@ -6,4 +6,9 @@ ignore:
   - "**/chatlist_adapter.java"
   - "**/Messages.java"
   - "**/comment.java"
+  - "**/Edit_Profile.java"
+  - "**/InsideMessage.java"
+  - "**/Archive_Users.java"
+  - "**/InsideMessage.java"
+  - "**/Status_adapter.java"
 
