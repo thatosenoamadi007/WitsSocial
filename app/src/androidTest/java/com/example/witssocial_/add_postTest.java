@@ -11,6 +11,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static junit.framework.TestCase.assertNotNull;
 import android.app.Instrumentation;
 import android.support.test.rule.ActivityTestRule;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,22 +24,32 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
-public class SearchUsersTest {
+public class add_postTest {
     @Rule
-    public ActivityScenarioRule<SearchUsers> activityScenarioRule = new ActivityScenarioRule<>(SearchUsers.class);
+    public ActivityScenarioRule<add_post> activityScenarioRule = new ActivityScenarioRule<>(add_post.class);
 
-    //check if the search field is not null
+    //check if the post button is not nul
     @Test
-    public void ProfilePic(){
+    public void PostButton(){
         activityScenarioRule.getScenario().onActivity(activity -> {
-             SearchView search_friend_chat = activity.findViewById(R.id.search_friend_chat);
-            assertNotNull(search_friend_chat);
+            Button postBtn = activity.findViewById(R.id.postBtn);
+            assertNotNull(postBtn);
         });
     }
-    //search for a user and test if the user searched for is returned
+
+    //check if the caption field is not nul
     @Test
-    public void searchUser(){
-        Espresso.onView(withId(R.id.search_friend_chat)).perform(typeText("karabol@gmail.com")).perform(closeSoftKeyboard());
+    public void Caption(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            EditText makecaption = activity.findViewById(R.id.makecaption);
+            assertNotNull(makecaption);
+        });
+    }
+
+    //try to upload post and check if the post was uploaded
+    @Test
+    public void SubmitPost(){
+        Espresso.onView(withId(R.id.makecaption)).perform(typeText("karabol@gmail.com")).perform(closeSoftKeyboard());
     }
 
 }

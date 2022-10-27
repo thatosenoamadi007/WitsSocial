@@ -2,6 +2,7 @@ package com.example.witssocial_;
 import static android.service.autofill.Validators.not;
 //import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -26,14 +27,23 @@ public class FollowersTest {
     @Rule
     public ActivityScenarioRule<Followers> activityScenarioRule = new ActivityScenarioRule<>(Followers.class);
 
+    //check if back button is not null
     @Test
     public void GotoEditProfileClick(){
-
         activityScenarioRule.getScenario().onActivity(activity -> {
-            // use 'activity'.
             AppCompatImageView go_back_to_my_profile = activity.findViewById(R.id.go_back_to_my_profile);
             assertNotNull(go_back_to_my_profile);
         });
     }
+
+    //display list of followers and check if it is not null
+    @Test
+    public void DisplayFollowersList(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            RecyclerView show_list_of_followers = activity.findViewById(R.id.show_list_of_followers);
+            assertNotNull(show_list_of_followers);
+        });
+    }
+
 
 }

@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 
 public class messageObjectTest extends TestCase {
 
+    //check if the getter methods are working
     public void testGetSender_id() {
         messageObject messageObject=new messageObject("karabo@gmail.com","thato@gmail.com","Did you setup circleci?","2022/09/06","null","text");
         assertEquals("karabo@gmail.com",messageObject.getSender_id());
@@ -24,6 +25,7 @@ public class messageObjectTest extends TestCase {
         assertEquals("2022/09/06",messageObject.getTimestamp());
     }
 
+    //test if the setter methods are working
     public void testSetSender_id() {
         messageObject messageObject=new messageObject();
         messageObject.setSender_id("karabo@gmail.com");

@@ -3,6 +3,7 @@ import static android.service.autofill.Validators.not;
 //import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -23,22 +24,27 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
-public class SearchUsersTest {
+public class ListOfChats {
     @Rule
-    public ActivityScenarioRule<SearchUsers> activityScenarioRule = new ActivityScenarioRule<>(SearchUsers.class);
+    public ActivityScenarioRule<Messages> activityScenarioRule = new ActivityScenarioRule<>(Messages.class);
 
-    //check if the search field is not null
+    //display list of chats and check is not null
     @Test
-    public void ProfilePic(){
+    public void MyChatList(){
         activityScenarioRule.getScenario().onActivity(activity -> {
-             SearchView search_friend_chat = activity.findViewById(R.id.search_friend_chat);
-            assertNotNull(search_friend_chat);
+            RecyclerView all_friends_chat_list = activity.findViewById(R.id.all_friends_chat_list);
+            assertNotNull(all_friends_chat_list);
         });
     }
-    //search for a user and test if the user searched for is returned
+
+    //check if the archive button is not null
     @Test
-    public void searchUser(){
-        Espresso.onView(withId(R.id.search_friend_chat)).perform(typeText("karabol@gmail.com")).perform(closeSoftKeyboard());
+    public void ArchiveButton(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            de.hdodenhof.circleimageview.CircleImageView archived_icon = activity.findViewById(R.id.archived_icon);
+            assertNotNull(archived_icon);
+        });
     }
+
 
 }
