@@ -1,3 +1,4 @@
+//This activity is for editting your account and making changes where necessary
 package com.example.witssocial_;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,14 +29,14 @@ public class Account_Settings extends AppCompatActivity {
 
     }
 
-    private void signOut() {
+    private void signOut() {//This is for signing out of the account and going back to the sign in sheet
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(Account_Settings.this,login.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
 
     //back to my profile
 
-    private void goBack() {
+    private void goBack() {//this is just a button to go back from the activity
         go_back_to_my_profile=findViewById(R.id.go_back_to_my_profile);
         go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),Profile.class)));
     }
