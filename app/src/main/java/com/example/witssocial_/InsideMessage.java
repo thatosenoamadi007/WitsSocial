@@ -117,6 +117,8 @@ public class InsideMessage extends AppCompatActivity {
         }
     }
 
+    // send messages to other users
+
     void sendMessage(String name,String currentDateTime,String message_content,String image_attachment){
         //add to the database that contains all the chat history
         messageObject messageObject=new messageObject(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail(),name.toLowerCase(Locale.ROOT),message_content,currentDateTime,image_attachment,format);
