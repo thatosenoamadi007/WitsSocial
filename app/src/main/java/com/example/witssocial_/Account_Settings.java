@@ -25,6 +25,7 @@ public class Account_Settings extends AppCompatActivity {
         /*sign_out=findViewById(R.id.SignOut);
         sign_out.setOnClickListener(view -> {signOut();});*/
 
+        //
 
 
     }
