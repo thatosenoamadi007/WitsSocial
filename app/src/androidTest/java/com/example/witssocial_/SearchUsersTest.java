@@ -26,15 +26,7 @@ import org.junit.runner.RunWith;
 public class SearchUsersTest {
     @Rule
     public ActivityScenarioRule<SearchUsers> activityScenarioRule = new ActivityScenarioRule<>(SearchUsers.class);
-
-    //check if the search field is not null
-    @Test
-    public void ProfilePic(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-             SearchView search_friend_chat = activity.findViewById(R.id.search_friend_chat);
-            assertNotNull(search_friend_chat);
-        });
-    }
+    
     //search for a user and test if the user searched for is returned
     @Test
     public void searchUser(){
