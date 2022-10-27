@@ -29,7 +29,7 @@ public class Archive_Users extends AppCompatActivity {
         //display list archived users
         display();
     }
-
+    //implementation of display
     private void display() {
         recyclerView = findViewById(R.id.all_friends_chat_list);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
