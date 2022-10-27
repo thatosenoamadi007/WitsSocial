@@ -3,6 +3,7 @@ package com.example.witssocial_;
 public class comment {
     public String comment,id;
 
+    //display comment of a user
     public comment(){
 
     }
