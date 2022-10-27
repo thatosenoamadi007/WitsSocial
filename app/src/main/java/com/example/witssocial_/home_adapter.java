@@ -55,7 +55,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
                     .error(R.drawable.ic_launcher_foreground)
                     .into(holder.post);
         }
-
+        //showing the profile photo of users
         holder.caption.setText(post.getCaption());
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
                 .child("Users")
