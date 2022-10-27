@@ -82,7 +82,7 @@ public class a_FriendProfileTest {
     @Test
     public void NumberOfFollowers(){
         activityScenarioRule.getScenario().onActivity(activity -> {
-            AppCompatButton number_of_followers = activity.findViewById(R.id.number_of_followers);
+            AppCompatTextView number_of_followers = activity.findViewById(R.id.number_of_followers);
             AppCompatTextView number_of_following = activity.findViewById(R.id.number_of_following);
             assertNotNull(number_of_followers);
             assertNotNull(number_of_followers);
