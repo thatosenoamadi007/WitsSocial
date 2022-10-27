@@ -119,14 +119,14 @@ public class Edit_Profile extends AppCompatActivity {
         });
 
 
-        my_profile_pic.setOnClickListener(v -> {
+        /* here my_profile_pic.setOnClickListener(v -> {
             pd.setMessage("Updating Profile Picture");
             profileOrCoverPhoto = "image";
             showImagePicDialog();
-        });
+        });*/
 
     }
-    @Override
+    /* here @Override
     protected void onPause() {
         super.onPause();
         String email="";
@@ -292,17 +292,17 @@ public class Edit_Profile extends AppCompatActivity {
         Intent camerIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         camerIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageuri);
         startActivityForResult(camerIntent, IMAGE_PICKCAMERA_REQUEST);
-    }
+    }*/
 
     // We will select an image from gallery
-    private void pickFromGallery() {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
-        galleryIntent.setType("image/*");
-        startActivityForResult(galleryIntent, IMAGEPICK_GALLERY_REQUEST);
-    }
+    /* here private void pickFromGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK);*/
+        //galleryIntent.setType("image/*");
+        /*startActivityForResult(galleryIntent, IMAGEPICK_GALLERY_REQUEST);
+    }*/
 
     // We will upload the image from here.
-    private void uploadProfileCoverPhoto(final android.net.Uri uri) {
+    /* here private void uploadProfileCoverPhoto(final android.net.Uri uri) {
         pd.show();
 
         // We are taking the filepath as storagepath + firebaseauth.getUid()+".png"
@@ -350,7 +350,7 @@ public class Edit_Profile extends AppCompatActivity {
                 Toast.makeText(Edit_Profile.this, "Error", Toast.LENGTH_LONG).show();
             }
         });
-    }
+    }*/
 
 
     private void initializeValues() {

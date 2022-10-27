@@ -24,15 +24,15 @@ public class Archive_Users extends AppCompatActivity {
         setContentView(R.layout.activity_archive_users);
 
         //go back to search
-        go_back_to_chat=findViewById(R.id.go_back_to_chat);
+        /*go_back_to_chat=findViewById(R.id.go_back_to_chat);
         go_back_to_chat.setOnClickListener(view -> startActivity(new Intent(Archive_Users.this,Messages.class)));
 
         //display list archived users
-        display();
+        display();*/
     }
 
     private void display() {
-        recyclerView = findViewById(R.id.all_friends_chat_list);
+        /*recyclerView = findViewById(R.id.all_friends_chat_list);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
@@ -48,7 +48,7 @@ public class Archive_Users extends AppCompatActivity {
                         .build();
         mainAdapter = new chatlist_adapter(options,getApplicationContext(),"Archive_Users");
         mainAdapter.startListening();
-        recyclerView.setAdapter(mainAdapter);
+        recyclerView.setAdapter(mainAdapter);*/
 
     }
 }

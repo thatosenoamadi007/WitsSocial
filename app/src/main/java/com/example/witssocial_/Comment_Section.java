@@ -80,7 +80,7 @@ public class Comment_Section extends AppCompatActivity {
                 }
             }
         });*/
-
+        /*here
         //show all comments first
         show_all_comments=findViewById(R.id.show_all_comments);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
@@ -107,7 +107,7 @@ public class Comment_Section extends AppCompatActivity {
                         .setValue(comment)
                         .addOnSuccessListener(unused -> add_a_comment.setText("")).addOnFailureListener(e -> Toast.makeText(Comment_Section.this, "Error trying to upload comment.", Toast.LENGTH_SHORT).show());
             }
-        });
+        });*/
 
 
     }

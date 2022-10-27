@@ -181,7 +181,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
         });
 
         //view post comments
-        holder.go_to_comments.setOnClickListener(view -> {
+        /* here holder.go_to_comments.setOnClickListener(view -> {
             Intent intent=new Intent(context,Comment_Section.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("post_id",post.getId());
@@ -194,17 +194,17 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
             }
 
             context.startActivity(intent);
-        });
+        });*/
         //view the post
-        holder.post.setOnClickListener(v -> {
+        /* here holder.post.setOnClickListener(v -> {
             if(!post.getPost().equals("null")){
                 Intent intent=new Intent(Intent.ACTION_VIEW);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setType("*/*");
-                intent.setData(Uri.parse(post.getPost()));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);*/
+         //       intent.setType("*/*");
+        /*        intent.setData(Uri.parse(post.getPost()));
                 context.startActivity(intent);
             }
-        });
+        });*/
     }
 
     @NonNull

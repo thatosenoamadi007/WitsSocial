@@ -49,7 +49,7 @@ public class insidemessageAdapter extends FirebaseRecyclerAdapter<messageObject,
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull messageObject model) {
-        holder.message_content.setText(model.getContent());
+        /* here holder.message_content.setText(model.getContent());
         //check the format of the message
         if(model.getFormat().equals("image")){
             holder.attachment.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
@@ -66,9 +66,9 @@ public class insidemessageAdapter extends FirebaseRecyclerAdapter<messageObject,
             //download or view image on chrome
             holder.message_image.setOnClickListener(view -> {
                 Intent intent=new Intent(Intent.ACTION_VIEW);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setType("*/*");
-                intent.setData(Uri.parse(model.getAttachment_url()));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);*/
+          //      intent.setType("*/*");
+         /*       intent.setData(Uri.parse(model.getAttachment_url()));
                 context.startActivity(intent);
             });
         }else if(model.getFormat().equals("text")){
@@ -87,9 +87,9 @@ public class insidemessageAdapter extends FirebaseRecyclerAdapter<messageObject,
             //download or view the attachment
             holder.download_attachment.setOnClickListener(view -> {
                     Intent intent=new Intent(Intent.ACTION_VIEW);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.setType("*/*");
-                    intent.setData(Uri.parse(model.getAttachment_url()));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);*/
+          //          intent.setType("*/*");
+         /*           intent.setData(Uri.parse(model.getAttachment_url()));
                     context.startActivity(intent);
             });
             //collapse the image view since format of image is png,jpeg,etc.
@@ -132,7 +132,7 @@ public class insidemessageAdapter extends FirebaseRecyclerAdapter<messageObject,
             @SuppressLint("UseCompatLoadingForDrawables") Drawable d = context.getResources().getDrawable(R.drawable.message_contaner_bg);
             holder.change_color.setBackground(d);
             holder.change_gravity.setGravity(Gravity.START);
-        }
+        }*/
 
 
 

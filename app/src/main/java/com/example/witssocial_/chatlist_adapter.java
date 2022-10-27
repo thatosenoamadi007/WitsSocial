@@ -42,7 +42,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
 
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull likers model) {
-        if(came_from.equals("Archive_Users")){
+        /* here if(came_from.equals("Archive_Users")){
             holder.archive_user.setText("Undo");
         }
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users ID").child(model.getLikerID().replace("@","").replace(".",""))
@@ -66,7 +66,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                                                         .load(model.getImage())
                                                         .placeholder(R.drawable.ic_launcher_foreground)
                                                         .error(R.drawable.ic_baseline_person_24)
-                                                        .into(holder.friend_profile);
+                                                        .into(holder.friend_profile);*/
 
                                                 /*holder.message_layout.setOnClickListener(view -> {
                                                     Intent intent=new Intent(context,InsideMessage.class);
@@ -111,7 +111,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
 
                                                 });*/
                                                 //end of archive
-                                            }
+                         /*here                   }
 
                                             @Override
                                             public void onCancelled(@NonNull DatabaseError error) {
@@ -124,7 +124,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                             public void onCancelled(@NonNull DatabaseError error) {
 
                             }
-                        });
+                        });*/
 
 
 

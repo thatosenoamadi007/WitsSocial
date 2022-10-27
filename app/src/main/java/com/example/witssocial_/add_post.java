@@ -52,7 +52,7 @@ public class add_post extends AppCompatActivity {
         storageRef= storage.getReference();
 
         //bottomNavigationbar();
-        postBtn.setOnClickListener(view -> uploadPost());
+        //postBtn.setOnClickListener(view -> uploadPost());
         //addPost.setOnClickListener(view -> selectPost());
     }
 
@@ -109,8 +109,8 @@ public class add_post extends AppCompatActivity {
             Toast.makeText(add_post.this, "resultcode"+requestCode, Toast.LENGTH_SHORT).show();
         }
     }*/
-
-    private void uploadPost() {
+    //--------------comment out
+    /*private void uploadPost() {
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setTitle("File is loading......");
         if(!caption.getText().toString().isEmpty()) {
@@ -141,7 +141,7 @@ public class add_post extends AppCompatActivity {
                         Drawable res = getResources().getDrawable(imageResource);
                         addPost.setImageDrawable(res);
                     });*/
-        }else {
+    /*----------    }else {
             if(!caption.getText().toString().isEmpty()){
                 uploadWholePost("null",time,"text_post");
                 Toast.makeText(this, "Post Uploaded.", Toast.LENGTH_SHORT).show();
@@ -151,9 +151,9 @@ public class add_post extends AppCompatActivity {
                 Toast.makeText(this, "Cannot upload empty post.", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    private void uploadWholePost(String uri,String time,String type) {
+    }*/
+//also
+    /*private void uploadWholePost(String uri,String time,String type) {
         String id="";
         try{id=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());}
         catch (Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
@@ -175,12 +175,12 @@ public class add_post extends AppCompatActivity {
                 .child(time)
                 .setValue(post);
     }
-
+also
     String get_CurrentDateTime(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.US);
         Date date = new Date();
         return dateFormat.format(date);
-    }
+    }*/
 
 
 }

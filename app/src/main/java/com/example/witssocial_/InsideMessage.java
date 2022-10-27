@@ -63,22 +63,22 @@ public class InsideMessage extends AppCompatActivity {
         setContentView(R.layout.activity_inside_message);
         attachment_pop_up=new Dialog(this);
         //initialize elements on the top bar or action bar
-        initializeTopBarElement();
+        //initializeTopBarElement();
 
         //fetches messages from the firebase database and displays them
-        display();
+        //display();
 
         //send message to the firebase database
-        send_message();
+        //send_message();
 
     }
 
-    private void send_message() {
+    /* here private void send_message() {
         send_message= findViewById(R.id.send_message_InsideMessage);
         typed_message= findViewById(R.id.message_to_send_InsideMessage);
 
         //send_message.setOnClickListener(view -> delegatedToSendMessage());
-    }
+    }*/
 
     /*void delegatedToSendMessage(){
         String message_content= Objects.requireNonNull(typed_message.getText()).toString();
@@ -186,7 +186,7 @@ public class InsideMessage extends AppCompatActivity {
         return dateFormat.format(date);
     }*/
 
-    void initializeTopBarElement(){
+   /* here  void initializeTopBarElement(){
         attachement_to_send_insidemessage=findViewById(R.id.attachement_to_send_insidemessage);
         //attachement_to_send_insidemessage.setOnClickListener(view -> selectPost());
         //attachement_to_send_insidemessage.setOnClickListener(view -> popUpWindow());
@@ -205,7 +205,7 @@ public class InsideMessage extends AppCompatActivity {
                 .error(R.drawable.ic_baseline_person_24)
                 .into(show_friend_profile_image_insidemessage);
         show_friend_name.setText(name);
-    }
+    }*/
 
     /*private void popUpWindow() {
         de.hdodenhof.circleimageview.CircleImageView image_attachment,document_attachment,audio_attachment,video_attachment;
@@ -257,7 +257,7 @@ public class InsideMessage extends AppCompatActivity {
 
     }*/
 
-    private void display() {
+    /* here private void display() {
         String name=getIntent().getStringExtra("receiver_id");
         recyclerView = findViewById(R.id.messages_insidemessage);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
@@ -275,7 +275,7 @@ public class InsideMessage extends AppCompatActivity {
                 .build(),getApplicationContext());
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);
-    }
+    }*/
 
     /*private void selectPost() {
         Intent intent = new Intent();*/
@@ -308,10 +308,10 @@ public class InsideMessage extends AppCompatActivity {
         }
     }*/
 
-    @Override
+   /* here @Override
     protected void onStart(){
         super.onStart();
         mainAdapter.startListening();
-    }
+    }*/
 
 }

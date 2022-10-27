@@ -22,21 +22,21 @@ public class Account_Settings extends AppCompatActivity {
         //goBack();
 
         //sign out of my account
-        sign_out=findViewById(R.id.SignOut);
-        sign_out.setOnClickListener(view -> {signOut();});
+        /*sign_out=findViewById(R.id.SignOut);
+        sign_out.setOnClickListener(view -> {signOut();});*/
 
 
 
     }
 
     private void signOut() {
-        try {
+        /*try {
             FirebaseAuth.getInstance().signOut();
         }catch (Exception e){
             Toast.makeText(Account_Settings.this, "Signed out.", Toast.LENGTH_SHORT).show();
         }
         startActivity(new Intent(Account_Settings.this,login.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-    }
+    }*/
 
     /*private void goBack() {
         go_back_to_my_profile=findViewById(R.id.go_back_to_my_profile);
