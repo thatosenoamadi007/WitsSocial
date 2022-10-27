@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
-
+//This activity is the adpter for showing the people you follow
 public class FollowingAdapter extends FirebaseRecyclerAdapter<user_class,FollowingAdapter.myViewHolder> {
 
     Context context;
@@ -32,7 +32,7 @@ public class FollowingAdapter extends FirebaseRecyclerAdapter<user_class,Followi
         this.context=context;
         this.remove_delete_button=remove_delete_button;
     }
-
+    //Set the holder to user you follow
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull user_class post) {
 
@@ -69,7 +69,7 @@ public class FollowingAdapter extends FirebaseRecyclerAdapter<user_class,Followi
                 .into(holder.friend_profile_chat);
 
     }
-
+    //set the layout to follow_following
     @NonNull
     @Override
     public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
