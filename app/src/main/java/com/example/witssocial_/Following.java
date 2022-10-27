@@ -36,7 +36,7 @@ public class Following extends AppCompatActivity {
         }
         else{
             go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(Following.this,Profile.class)));
-            String email="karabo@gmail.com";
+            String email="karabo";
             try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}catch (Exception e){email="karabo@gmail.com";}
             showFollowingList(email,"no");
         }
