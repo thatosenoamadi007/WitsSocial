@@ -1,5 +1,5 @@
+//This activity is for viewing the ammount of followers a person has, this is for the person who is currently logged on through the application
 package com.example.witssocial_;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
