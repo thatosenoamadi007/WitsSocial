@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         //go to login page
         loginPage.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, login.class)));
     }
-
+    //initializing variables
     private void initialiseVariables() {
         full_name = findViewById(R.id.FullName);
         email=findViewById(R.id.Email);
