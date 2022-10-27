@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+//This is the Adapter for the comment section
+
 public class CommentsAdapter extends FirebaseRecyclerAdapter<comment, CommentsAdapter.myViewHolder> {
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
@@ -32,7 +34,7 @@ public class CommentsAdapter extends FirebaseRecyclerAdapter<comment, CommentsAd
         super(options);
         this.context=context;
     }
-
+    //Set the holder to show comment
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull comment model) {
 
@@ -67,7 +69,7 @@ public class CommentsAdapter extends FirebaseRecyclerAdapter<comment, CommentsAd
 
 
     }
-
+    //set the layout to comment
     @NonNull
     @Override
     public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
