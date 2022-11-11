@@ -57,16 +57,17 @@ public class ProfileTest {
         activityScenarioRule.getScenario().onActivity(activity -> {
             AppCompatButton log_out_of_my_out = activity.findViewById(R.id.log_out_of_my_out);
             assertNotNull(log_out_of_my_out);
+            log_out_of_my_out.performClick();
         });
     }
 
     //sign out user
-    @Test
+   /* @Test
     public void Signout(){
         Espresso.onView(withId(R.id.log_out_of_my_out)).perform(click());
                 /*.inRoot(isDialog())
                 .check(matches(isDisplayed()));*/
-    }
+    /*}*/
 
     //check if the email field is not null
     @Test
