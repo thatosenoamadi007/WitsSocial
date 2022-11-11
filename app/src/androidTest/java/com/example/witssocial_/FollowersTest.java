@@ -30,7 +30,6 @@ public class FollowersTest {
     public void GotoEditProfileClick(){
         //Espresso.onView(withId(R.id.go_back_to_my_profile)).perform(click());
         activityScenarioRule.getScenario().onActivity(activity -> {
-            // use 'activity'.
             AppCompatImageView go_back_to_my_profile = activity.findViewById(R.id.go_back_to_my_profile);
             assertNotNull(go_back_to_my_profile);
         });

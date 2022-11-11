@@ -27,46 +27,13 @@ public class home_activityTest {
     public ActivityScenarioRule<home_activity> activityScenarioRule = new ActivityScenarioRule<>(home_activity.class);
     Instrumentation.ActivityMonitor monitor = InstrumentationRegistry.getInstrumentation().addMonitor(home_activity.class.getName(),null,false);
 
-    /*@Test
-    public void AllPostscheck(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            TextView All_Posts = activity.findViewById(R.id.All_Posts);
-            assertNotNull(All_Posts);
-        });
-
-    }
-    @Test
-    public void Media_PostsCheck(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            // use 'activity'.
-            TextView Media_Posts = activity.findViewById(R.id.Media_Posts);
-            assertNotNull(Media_Posts);
-        });
-
-    }
-    @Test
-    public void Text_PostsCheck(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            TextView Text_Posts = activity.findViewById(R.id.Text_Posts);
-            assertNotNull(Text_Posts);
-        });
-
-    }
-    @Test
-    public void AllPostsClick(){
-        Espresso.onView(withId(R.id.All_Posts)).perform(click());
-    }
-
-    @Test
-    public void Media_PostsClick(){
-        Espresso.onView(withId(R.id.Media_Posts)).perform(click());
-    }*/
+    //check if the posts field is not null
     @Test
     public void Text_PostsCheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
             RecyclerView Text_Posts = activity.findViewById(R.id.homerecview);
             assertNotNull(Text_Posts);
         });
-
     }
+
 }
