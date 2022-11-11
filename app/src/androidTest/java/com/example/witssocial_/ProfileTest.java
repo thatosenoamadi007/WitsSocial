@@ -67,7 +67,7 @@ public class ProfileTest {
         Espresso.onView(withId(R.id.log_out_of_my_out)).perform(click());
                 /*.inRoot(isDialog())
                 .check(matches(isDisplayed()));*/
-    /*}*/
+    /*} */
 
     //check if the email field is not null
     @Test
