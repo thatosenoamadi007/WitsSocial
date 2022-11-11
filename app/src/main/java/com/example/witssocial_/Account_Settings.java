@@ -1,4 +1,4 @@
-//This activity is for editting your account and making changes where necessary
+//This activity is for editting your account and making changes where necessary.
 package com.example.witssocial_;
 
 import androidx.appcompat.app.AppCompatActivity;
