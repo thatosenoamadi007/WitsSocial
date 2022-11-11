@@ -6,6 +6,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+
 import static junit.framework.TestCase.assertNotNull;
 import android.app.Instrumentation;
 import android.support.test.rule.ActivityTestRule;
