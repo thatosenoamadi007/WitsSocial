@@ -93,6 +93,7 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+        <!--
         <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="84dp"
@@ -141,6 +142,7 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+        -->
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

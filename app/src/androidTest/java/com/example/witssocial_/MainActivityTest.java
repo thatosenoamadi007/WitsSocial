@@ -23,7 +23,6 @@ public class MainActivityTest {
     @Rule
     public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
     Instrumentation.ActivityMonitor monitor = InstrumentationRegistry.getInstrumentation().addMonitor(MainActivity.class.getName(),null,false);
-    //check if fullname view is not empty
     @Test
     public void FullNameCheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -32,16 +31,15 @@ public class MainActivityTest {
             assertNotNull(firstname);
         });
     }
-    //check if email view is not empty
     @Test
     public void Emailcheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
+            // use 'activity'.
             EditText Email = activity.findViewById(R.id.Email);
             assertNotNull(Email);
         });
 
     }
-    //check if password view is not empty
     @Test
     public void Password(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -51,7 +49,6 @@ public class MainActivityTest {
         });
 
     }
-    //check if confirm password view is not empty
     @Test
     public void ConPassword(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -61,7 +58,6 @@ public class MainActivityTest {
         });
 
     }
-    //enter incorrect details
     @Test
     public void enterWrongDetails(){
         Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal")).perform(closeSoftKeyboard());
@@ -70,7 +66,6 @@ public class MainActivityTest {
         Espresso.onView(withId(R.id.confirmPassword)).perform(typeText("123")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.SignUp)).perform(click());
     }
-    //enter correct details and check if program behaves as intended
     @Test
     public void enterCorrectDetails(){
         Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal Beck")).perform(closeSoftKeyboard());
@@ -79,7 +74,7 @@ public class MainActivityTest {
         Espresso.onView(withId(R.id.confirmPassword)).perform(typeText("1234567")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.SignUp)).perform(click());
     }
-    //enter existing details and check if program behaves as intended
+
     @Test
     public void enterExistingDetails(){
         Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal Beck")).perform(closeSoftKeyboard());

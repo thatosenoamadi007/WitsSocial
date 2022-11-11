@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class home_activity extends AppCompatActivity {
 
    //find all views in activity
-    TextView all_post,media_post,text_post;
+    //TextView all_post,media_post,text_post;
     private RecyclerView recyclerView,show_statuses;
     public BottomNavigationView bottomNavigationView;
     private home_adapter mainAdapter;
@@ -32,9 +32,9 @@ public class home_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        all_post=findViewById(R.id.All_Posts);
+       /* all_post=findViewById(R.id.All_Posts);
         media_post=findViewById(R.id.Media_Posts);
-        text_post=findViewById(R.id.Text_Posts);
+        text_post=findViewById(R.id.Text_Posts);*/
          //initlise the recycler view, layout manager and firebase recycler options
         recyclerView =findViewById(R.id.homerecview);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
@@ -45,9 +45,9 @@ public class home_activity extends AppCompatActivity {
         FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("All Posts"),Post.class).build();
         mainAdapter= new home_adapter(options,getApplicationContext(),"home_activity","null","null","null");
         recyclerView.setAdapter(mainAdapter);
-        //bottomNavigationbar();
+        bottomNavigationbar();
 
-        all_post.setOnClickListener(view -> {
+        /*all_post.setOnClickListener(view -> {
             all_post.setBackgroundColor(Color.WHITE);
             media_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
             text_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
@@ -63,7 +63,7 @@ public class home_activity extends AppCompatActivity {
             text_post.setBackgroundColor(Color.WHITE);
             all_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
             media_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
-        });
+        });*/
 
     }
 
@@ -75,7 +75,7 @@ public class home_activity extends AppCompatActivity {
     }
 
      //fuction to navigate the bottom navigation menu
-    /*private void bottomNavigationbar() {
+    private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.posts_timeline);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -106,9 +106,9 @@ public class home_activity extends AppCompatActivity {
             }
             return false;
         });
-    }*/
+    }
 
-    /*@Override
+    @Override
     public void onBackPressed() {
         if(getIntent().getStringExtra("sign_out_or_not")!=null){
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -129,5 +129,5 @@ public class home_activity extends AppCompatActivity {
             super.onBackPressed();
         }
 
-    }*/
+    }
 }

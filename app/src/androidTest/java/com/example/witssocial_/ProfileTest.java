@@ -26,9 +26,22 @@ public class ProfileTest {
     @Rule
     public ActivityScenarioRule<Profile> activityScenarioRule = new ActivityScenarioRule<>(Profile.class);
 
+    /*@Test
+    public void GotoAccountSettingClick(){
+        Espresso.onView(withId(R.id.my_account_settings)).perform(click());
+    }*/
+    /*@Test
+    public void SeeFollowerslist(){
+        Espresso.onView(withId(R.id.number_of_followers)).perform(click());
+    }
+    @Test
+    public void SeeFollowinglist(){
+        Espresso.onView(withId(R.id.number_of_following)).perform(click());
+    }*/
+
     @Test
     public void GotoEditProfileClick(){
-
+        //Espresso.onView(withId(R.id.edit_my_profile)).perform(click());
         activityScenarioRule.getScenario().onActivity(activity -> {
             // use 'activity'.
             Button Email = activity.findViewById(R.id.edit_my_profile);

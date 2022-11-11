@@ -36,7 +36,7 @@ public class CommentsAdapter extends FirebaseRecyclerAdapter<comment, CommentsAd
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull comment model) {
 
-        /* here FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
+         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
                 .child("Users")
                 .child(model.getId())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -62,7 +62,7 @@ public class CommentsAdapter extends FirebaseRecyclerAdapter<comment, CommentsAd
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
-                });*/
+                });
 
 
 

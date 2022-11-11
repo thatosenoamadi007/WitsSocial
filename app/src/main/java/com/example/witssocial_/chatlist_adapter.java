@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,7 +43,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
 
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull likers model) {
-        /* here if(came_from.equals("Archive_Users")){
+        if(came_from.equals("Archive_Users")){
             holder.archive_user.setText("Undo");
         }
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users ID").child(model.getLikerID().replace("@","").replace(".",""))
@@ -66,9 +67,9 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                                                         .load(model.getImage())
                                                         .placeholder(R.drawable.ic_launcher_foreground)
                                                         .error(R.drawable.ic_baseline_person_24)
-                                                        .into(holder.friend_profile);*/
+                                                        .into(holder.friend_profile);
 
-                                                /*holder.message_layout.setOnClickListener(view -> {
+                                                holder.message_layout.setOnClickListener(view -> {
                                                     Intent intent=new Intent(context,InsideMessage.class);
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                                     intent.putExtra("receiver_id",email);
@@ -77,10 +78,10 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                                                     intent.putExtra("receiver_profile_pic",model.getImage());
                                                     intent.putExtra("came_from",came_from);
                                                     context.startActivity(intent);
-                                                });*/
+                                                });
 
                                                 //archive user
-                                                /*holder.archive_user.setOnClickListener(view -> {
+                                                holder.archive_user.setOnClickListener(view -> {
                                                     if(came_from.equals("Archive_Users")) {
                                                         FirebaseDatabase.getInstance().getReference()
                                                                 .child("Wits Social Database1")
@@ -109,9 +110,17 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                                                                 .setValue(new likers(email));
                                                     }
 
-                                                });*/
+                                                });
                                                 //end of archive
-                         /*here                   }
+                                                //delete whole chat
+                                                holder.delete_whole_chat.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        deleteChat(model.getEmail(),model.getEmail());
+                                                    }
+                                                });
+                                                //end of archive
+                                           }
 
                                             @Override
                                             public void onCancelled(@NonNull DatabaseError error) {
@@ -124,7 +133,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                             public void onCancelled(@NonNull DatabaseError error) {
 
                             }
-                        });*/
+                        });
 
 
 
@@ -143,6 +152,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
         de.hdodenhof.circleimageview.CircleImageView friend_profile;
         RelativeLayout message_layout;
         AppCompatButton archive_user;
+        AppCompatImageView delete_whole_chat;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
             friend_name= itemView.findViewById(R.id.email);
@@ -150,8 +160,43 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
             friend_profile= itemView.findViewById(R.id.userpropic);
             message_layout= itemView.findViewById(R.id.message_friend_id);
             archive_user=itemView.findViewById(R.id.archive_user);
+            delete_whole_chat=itemView.findViewById(R.id.delete_whole_chat);
         }
 
+    }
+
+    //delete chat with user
+    private void deleteChat(String branch1,String branch2) {
+        //Toast.makeText(context, "eeeeeeeeeeee", Toast.LENGTH_SHORT).show();
+        String id="";
+        try{
+            id=FirebaseAuth.getInstance().getCurrentUser().getUid();
+        }catch (Exception e){
+            id="CYFstJWuF9NKirsH8GMewwB0t7m2";
+        }
+        String my_email="";
+        try{my_email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
+        catch (Exception e){my_email=branch1;}
+        FirebaseDatabase.getInstance().getReference()
+                .child("Wits Social Database1")
+                .child("Chat history")
+                .child(my_email.replace("@","").replace(".",""))
+                .child(branch2.replace("@","").replace(".",""))
+                .removeValue();
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("Wits Social Database1")
+                .child("Archived Users")
+                .child(id)
+                .child(branch2.replace("@","").replace(".",""))
+                .removeValue();
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("Wits Social Database1")
+                .child("List of friends")
+                .child(my_email.replace("@","").replace(".",""))
+                .child(branch2.replace("@","").replace(".",""))
+                .removeValue();
     }
 
 }

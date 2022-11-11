@@ -31,7 +31,7 @@ public class SearchUsers extends AppCompatActivity {
         initializeSearchView();
 
         //enable navigation bar
-        //bottomNavigationbar();
+        bottomNavigationbar();
 
         //Enters fullscreen mode when the app is launched
         //EnterFullSreenMode();
@@ -44,7 +44,7 @@ public class SearchUsers extends AppCompatActivity {
 
     }
 
-    /*private void bottomNavigationbar() {
+    private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.chat);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -74,7 +74,7 @@ public class SearchUsers extends AppCompatActivity {
             }
             return false;
         });
-    }*/
+    }
 
     private void display() {
         recyclerView = findViewById(R.id.all_friends_chat);
@@ -90,7 +90,7 @@ public class SearchUsers extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<user_class>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Search History").child(email.replace("@","").replace(".","")).orderByChild("timestamp"), user_class.class)
                         .build();
-        mainAdapter = new messagesAdapter(options,getApplicationContext());
+        mainAdapter = new messagesAdapter(options,getApplicationContext(),"false");
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);
 
@@ -108,13 +108,13 @@ public class SearchUsers extends AppCompatActivity {
 
     private void findFriend(String s) {
         if(s.equals("")){
-            //findAllFriends();
+            findAllFriends();
         }else{
             FirebaseRecyclerOptions<user_class> options =
                     new FirebaseRecyclerOptions.Builder<user_class>()
                             .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").orderByChild("email").startAt(s.toLowerCase(Locale.ROOT)).endAt(s.toLowerCase(Locale.ROOT)+"~"), user_class.class)//.orderByChild("modName").equalTo("APHY8010")
                             .build();
-            mainAdapter = new messagesAdapter(options,getApplicationContext());
+            mainAdapter = new messagesAdapter(options,getApplicationContext(),"true");
             mainAdapter.startListening();
             recyclerView.setAdapter(mainAdapter);
         }
@@ -122,16 +122,16 @@ public class SearchUsers extends AppCompatActivity {
 
     }
 
-    /*private void findAllFriends() {
+    private void findAllFriends() {
         String email="";
         try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
         catch (Exception e){email="karabo@gmail.com";}
         mainAdapter = new messagesAdapter(new FirebaseRecyclerOptions.Builder<user_class>()
                 .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Search History").child(email.replace("@","").replace(".","")).orderByChild("timestamp"), user_class.class)
-                .build(),getApplicationContext());
+                .build(),getApplicationContext(),"false");
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);
-    }*/
+    }
 
     void initializeSearchView(){
         searchView=findViewById(R.id.search_friend_chat);

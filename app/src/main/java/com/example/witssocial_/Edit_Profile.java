@@ -76,13 +76,13 @@ public class Edit_Profile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         //initialize contents
-        //initializeValues();
+        initializeValues();
 
         //go back to my profile or cancel changes
-        //goBack();
+        goBack();
 
         //save changes
-        //saveChanges();
+        saveChanges();
 
         //edit my photocover
         pd = new ProgressDialog(this);
@@ -94,7 +94,7 @@ public class Edit_Profile extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("Wits Social Database1").child("Users");
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        /* hereString email="karabol@gmail.com";
+        String email="karabol@gmail.com";
         try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
         catch(Exception e){email="karabo@gmail.com";}
         Query query = databaseReference.orderByChild("email").equalTo(email);
@@ -116,17 +116,17 @@ public class Edit_Profile extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
 
 
-        /* here my_profile_pic.setOnClickListener(v -> {
+        my_profile_pic.setOnClickListener(v -> {
             pd.setMessage("Updating Profile Picture");
             profileOrCoverPhoto = "image";
             showImagePicDialog();
-        });*/
+        });
 
     }
-    /* here @Override
+    @Override
     protected void onPause() {
         super.onPause();
         String email="";
@@ -292,17 +292,17 @@ public class Edit_Profile extends AppCompatActivity {
         Intent camerIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         camerIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageuri);
         startActivityForResult(camerIntent, IMAGE_PICKCAMERA_REQUEST);
-    }*/
+    }
 
     // We will select an image from gallery
-    /* here private void pickFromGallery() {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK);*/
-        //galleryIntent.setType("image/*");
-        /*startActivityForResult(galleryIntent, IMAGEPICK_GALLERY_REQUEST);
-    }*/
+     private void pickFromGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setType("image/*");
+        startActivityForResult(galleryIntent, IMAGEPICK_GALLERY_REQUEST);
+    }
 
     // We will upload the image from here.
-    /* here private void uploadProfileCoverPhoto(final android.net.Uri uri) {
+    private void uploadProfileCoverPhoto(final android.net.Uri uri) {
         pd.show();
 
         // We are taking the filepath as storagepath + firebaseauth.getUid()+".png"
@@ -350,10 +350,10 @@ public class Edit_Profile extends AppCompatActivity {
                 Toast.makeText(Edit_Profile.this, "Error", Toast.LENGTH_LONG).show();
             }
         });
-    }*/
+    }
 
 
-    /* here private void initializeValues() {
+    private void initializeValues() {
         String my_email=getIntent().getStringExtra("receiver_id");
         String my_full_name=getIntent().getStringExtra("receiver_username");
         String my_profile_description=getIntent().getStringExtra("receiver_description");
@@ -417,7 +417,7 @@ public class Edit_Profile extends AppCompatActivity {
         cancel_any_changes=findViewById(R.id.cancel_any_changes);
         cancel_any_changes.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),Profile.class)));
         go_back_to_my_profile.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),Profile.class)));
-    }*/
+    }
 
 
 }

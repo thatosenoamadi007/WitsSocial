@@ -26,8 +26,7 @@ public class home_activityTest {
     public ActivityScenarioRule<home_activity> activityScenarioRule = new ActivityScenarioRule<>(home_activity.class);
     Instrumentation.ActivityMonitor monitor = InstrumentationRegistry.getInstrumentation().addMonitor(home_activity.class.getName(),null,false);
 
-    //check if posts are displayed and not null
-    @Test
+    /*@Test
     public void AllPostscheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
             TextView All_Posts = activity.findViewById(R.id.All_Posts);
@@ -35,16 +34,15 @@ public class home_activityTest {
         });
 
     }
-    //check if image posts are displayed
     @Test
     public void Media_PostsCheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
+            // use 'activity'.
             TextView Media_Posts = activity.findViewById(R.id.Media_Posts);
             assertNotNull(Media_Posts);
         });
 
     }
-    //check if text posts are displayed
     @Test
     public void Text_PostsCheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -53,17 +51,14 @@ public class home_activityTest {
         });
 
     }
-
-    //check if the filter posts is working
     @Test
     public void AllPostsClick(){
         Espresso.onView(withId(R.id.All_Posts)).perform(click());
     }
 
-    //check if the filter posts by images is working
     @Test
     public void Media_PostsClick(){
         Espresso.onView(withId(R.id.Media_Posts)).perform(click());
-    }
+    }*/
 
 }

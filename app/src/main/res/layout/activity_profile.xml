@@ -12,6 +12,220 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:elevation="10dp"
+            android:background="@color/white"
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/top_bar_my_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                tools:ignore="RtlSymmetry"
+                android:textAllCaps="false"
+                android:layout_gravity="center"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/log_out_of_my_out"
+                android:layout_width="35dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/log_out"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/img_1"
+                    android:id="@+id/userprofile"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="15dp"
+                    android:paddingBottom="4dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:id="@+id/number_of_followers"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text=""
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:id="@+id/number_of_following"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="20dp"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/see_list_of_followers"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/followers"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            tools:ignore="InvalidId" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/see_list_of_following"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/following"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="2dp">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/edit_my_profile"
+                            android:layout_width="105dp"
+                            android:layout_height="40dp"
+                            android:text="@string/edit_profile"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/profile_button_bg"
+                            android:textAllCaps="false"/>
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="105dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="27dp"
+                            android:text="Saved"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textAllCaps="false"
+                            android:background="@drawable/profile_button_bg"
+                            android:id="@+id/my_account_settings"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_marginStart="15dp"
+                android:id="@+id/my_email"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textStyle="normal"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"
+                android:id="@+id/my_username"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/my_profile_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:layout_marginBottom="9dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/my_account_profile_recyclerview"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/white"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/bottom_navigation"
+        app:itemHorizontalTranslationEnabled = "false"
+        android:layout_gravity="bottom"
+        />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Profile"
+    android:orientation="vertical"
+    android:background="#F6F4F4">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -26,7 +240,7 @@
                 android:id="@+id/top_bar_my_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/my_account_name"
+                android:text=""
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 tools:ignore="RtlSymmetry"
@@ -68,7 +282,7 @@
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:text="@string/_30k"
+                            android:text=""
                             android:gravity="center"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -78,7 +292,7 @@
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:text="@string/_1k"
+                            android:text=""
                             android:gravity="center"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -149,7 +363,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/karabogmailcom"
+                android:text=""
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="22sp"
@@ -158,7 +372,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/karabo_sepuru"
+                android:text=""
                 android:textStyle="normal"
                 android:textSize="18sp"
                 android:layout_marginStart="15dp"
@@ -197,120 +411,5 @@
         android:layout_gravity="bottom"
         />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-<!--
-                android:text="@string/god_save_our_gracious_king_long_live_our_noble_king_god_save_the_king_send_him_victorious_happy_and_glorious_long_to_reign_over_us_god_save_the_king"
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/wall"
-    tools:context=".Profile">
-
-    <TextView
-        android:layout_width="380dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="350dp"
-        android:text="Posts                 Followers         Following"
-        android:textSize="20sp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/blue"
-        android:fontFamily="@font/ubuntu_bold"/>
-
-    <TextView
-        android:layout_width="380dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="320dp"
-        android:text=" 375K                    20M                     5K"
-        android:textSize="20sp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/blue"
-        android:fontFamily="@font/ubuntu_bold"/>
-
-    <Button
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:text="Posts"
-        android:background="@drawable/my_button"
-        android:textColor="@color/greyLight"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="400dp"
-        android:id="@+id/OtherProfilePostButton"
-        android:fontFamily="@font/ubuntu_bold"/>
-    <Button
-        android:layout_width="130dp"
-        android:layout_height="40dp"
-        android:id="@+id/OtherProfileCommentButton"
-        android:layout_toRightOf="@+id/OtherProfilePostButton"
-        android:layout_marginTop="400dp"
-        android:text="Comments"
-        android:background="@drawable/my_button"
-        android:textColor="@color/greyLight"
-        android:layout_marginLeft="10dp"
-        android:fontFamily="@font/ubuntu_bold"/>
-    <Button
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:id="@+id/OtherProfileMessageButton"
-        android:layout_marginTop="400dp"
-        android:text="Message"
-        android:background="@drawable/my_button"
-        android:textColor="@color/greyLight"
-        android:layout_marginLeft="280dp"
-        android:fontFamily="@font/ubuntu_bold"/>
-
-    <TextView
-        android:id="@+id/userEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/blue"
-        android:layout_centerHorizontal="true"
-        android:textSize="17sp"
-        android:text="userEmailAccount@gmail.com"
-        android:fontFamily="@font/ubuntu_bold"/>
-    <TextView
-        android:id="@+id/userUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:textColor="@color/blue"
-        android:layout_centerHorizontal="true"
-        android:textSize="17sp"
-        android:layout_marginTop="10dp"
-        android:text=".@Username Surname"
-        android:fontFamily="@font/ubuntu_bold"/>
-    <TextView
-        android:id="@+id/userDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/userUsername"
-        android:textColor="@color/blue"
-        android:layout_centerHorizontal="true"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="The description of the user will go on this spot right here and detail everything about them"
-        android:fontFamily="@font/ubuntu_bold"/>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/account_circle_24" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:layout_marginTop="460dp" />
-
-
-</RelativeLayout>
 
 -->

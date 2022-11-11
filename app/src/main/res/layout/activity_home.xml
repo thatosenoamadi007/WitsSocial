@@ -31,7 +31,7 @@
                 tools:ignore="RtlSymmetry"
                 android:textAllCaps="false"/>
         </RelativeLayout>
-
+        <!--
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="35dp"
@@ -70,7 +70,7 @@
                 android:paddingTop="4dp"
                 tools:ignore="RtlSymmetry" />
         </LinearLayout>
-
+        -->
 
         <!--
         <androidx.appcompat.widget.LinearLayoutCompat

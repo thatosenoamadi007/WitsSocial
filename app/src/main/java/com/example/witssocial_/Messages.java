@@ -29,7 +29,7 @@ public class Messages extends AppCompatActivity {
         setContentView(R.layout.activity_messages);
 
         //enable navigation bar
-        //bottomNavigationbar();
+        bottomNavigationbar();
 
         //fetches data from the firebase database and displays them
         display();
@@ -59,7 +59,7 @@ public class Messages extends AppCompatActivity {
 
     }
 
-    /*private void bottomNavigationbar() {
+    private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.messages);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -89,7 +89,7 @@ public class Messages extends AppCompatActivity {
             }
             return false;
         });
-    }*/
+    }
 
     @Override
     protected void onStart() {

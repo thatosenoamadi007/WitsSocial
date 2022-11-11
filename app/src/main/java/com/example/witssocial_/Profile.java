@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -30,6 +31,7 @@ import java.util.Objects;
 public class Profile extends AppCompatActivity {
     AppCompatTextView top_bar_my_name,my_email,my_username,number_of_followers,number_of_following,my_profile_description,see_list_of_followers,see_list_of_following;
     AppCompatButton edit_my_profile,my_account_settings;
+    AppCompatImageView log_out_of_my_out;
     RecyclerView my_account_profile_recyclerview;
     de.hdodenhof.circleimageview.CircleImageView userprofile;
     home_adapter mainAdapter;
@@ -42,14 +44,16 @@ public class Profile extends AppCompatActivity {
 
         //initialize variables and bottom navigation
         initializeVariables();
-        //bottomNavigationbar();
+        bottomNavigationbar();
 
+        //sign out of account
+        signOut();
 
         //set names and descriptions
         setStaticValues();
 
         //edit my profile
-        //editProfile();
+        editProfile();
 
         //see list of followers
         number_of_followers.setOnClickListener(view -> {startActivity(new Intent(Profile.this,Followers.class).putExtra("came_from","Profile"));});
@@ -81,8 +85,27 @@ public class Profile extends AppCompatActivity {
 
 
     }
+    //sign out from account
+    private void signOut() {
+        log_out_of_my_out.setOnClickListener(view -> {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Profile.this);
+            alertDialogBuilder.setTitle("Are you sure you want to sign out?");
+            alertDialogBuilder.setCancelable(true)
+                    .setPositiveButton("Yes",
+                            (dialog, id) -> {
+                                try {
+                                    FirebaseAuth.getInstance().signOut();
+                                }catch (Exception e){
+                                    Toast.makeText(Profile.this, "Signed out.", Toast.LENGTH_SHORT).show();
+                                }
+                                startActivity(new Intent(Profile.this,login.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                            }).setNegativeButton("No", (dialog, id) -> dialog.cancel());
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        });
+    }
 
-    /*private void editProfile() {
+    private void editProfile() {
         String my_Email=my_email.getText().toString();
         final String[] my_full_name = {my_username.getText().toString()};
         final String[] my_description = {my_profile_description.getText().toString()};
@@ -109,7 +132,7 @@ public class Profile extends AppCompatActivity {
                 });
         //Toast.makeText(this, my_description[0], Toast.LENGTH_SHORT).show();
         edit_my_profile.setOnClickListener(view -> startActivity(new Intent(Profile.this,Edit_Profile.class).putExtra("receiver_id",my_Email).putExtra("receiver_username",my_full_name[0]).putExtra("receiver_description", my_description[0])));
-    }*/
+    }
 
     @SuppressLint("SetTextI18n")
     private void setStaticValues() {
@@ -162,6 +185,7 @@ public class Profile extends AppCompatActivity {
         see_list_of_followers=findViewById(R.id.see_list_of_followers);
         see_list_of_following=findViewById(R.id.see_list_of_following);
         userprofile=findViewById(R.id.userprofile);
+        log_out_of_my_out=findViewById(R.id.log_out_of_my_out);
     }
 
     @Override
@@ -171,7 +195,7 @@ public class Profile extends AppCompatActivity {
     }
 
     //fuction to navigate the bottom navigation menu
-    /*private void bottomNavigationbar() {
+    private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.account);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -202,7 +226,7 @@ public class Profile extends AppCompatActivity {
             }
             return false;
         });
-    }*/
+    }
 
     private void setNumberFollowersFollowing() {
         String friend_email="";

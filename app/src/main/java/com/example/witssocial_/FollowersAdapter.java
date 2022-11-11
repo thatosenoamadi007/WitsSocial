@@ -48,19 +48,19 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
                 .into(holder.friend_profile_chat);
         holder.follow_friend_in_list_of_followers.setOnClickListener(view -> {
             if(holder.follow_friend_in_list_of_followers.getText().toString().equals("Following")){
-                //unfollowUser(post.getEmail());
+                unfollowUser(post.getEmail());
                 holder.follow_friend_in_list_of_followers.setText("Follow");
                 holder.follow_friend_in_list_of_followers.setBackgroundColor(Color.WHITE);
             }
             else{
-                //followUser(post.getEmail(),post.getUsername(),post.getDescription(),post.getImage());
+                //
+                followUser(post.getEmail(),post.getUsername(),post.getDescription(),post.getImage());
                 holder.follow_friend_in_list_of_followers.setText("Following");
                 holder.follow_friend_in_list_of_followers.setBackgroundColor(Color.parseColor("#F6F4F4"));
             }
         });
     }
-
-    /*private void followUser(String email, String username, String description,String image) {
+    private void followUser(String email, String username, String description,String image) {
         user_class user=new user_class(email,username,description,image);
         String branch1="";
         try{branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
@@ -76,9 +76,9 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
                 .setValue(user);
         //add to list of list of people who are following me
         getUserDetails(branch1,branch2);
-    }*/
+    }
 
-    /*private void getUserDetails(String branch1, String branch2) {
+    private void getUserDetails(String branch1, String branch2) {
         String id="";
         try{id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
         catch (Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
@@ -101,9 +101,9 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
                         Toast.makeText(context, "Error getDetails", Toast.LENGTH_SHORT).show();
                     }
                 });
-    }*/
+    }
 
-    /*private void unfollowUser(String email) {
+    private void unfollowUser(String email) {
         String email1="karabol@gmail.com";
         try{email1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
         catch (Exception e){email1="karabo@gmail.com";}
@@ -123,7 +123,7 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
                 .child(branch2)
                 .child(branch1)
                 .removeValue();
-    }*/
+    }
 
     @NonNull
     @Override

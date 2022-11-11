@@ -46,7 +46,7 @@
                             android:id="@+id/attachment_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Archived"
+                            android:text="Document"
                             android:textColor="@color/black"
                             android:textStyle="bold"
                             android:textAllCaps="false"
@@ -94,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="How are you"
+                android:text=""
                 android:textColor="#535252"
                 android:textSize="15sp"
                 />

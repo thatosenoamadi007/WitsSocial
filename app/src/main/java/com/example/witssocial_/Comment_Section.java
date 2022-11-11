@@ -43,7 +43,7 @@ public class Comment_Section extends AppCompatActivity {
         //go back to home activity
         go_back_to_home_activity=findViewById(R.id.go_back_to_home_activity);
         String finalFriend_Picture = friend_Picture;
-        /*go_back_to_home_activity.setOnClickListener(new View.OnClickListener() {
+        go_back_to_home_activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String came_from=getIntent().getStringExtra("came_from");
@@ -79,8 +79,7 @@ public class Comment_Section extends AppCompatActivity {
 
                 }
             }
-        });*/
-        /*here
+        });
         //show all comments first
         show_all_comments=findViewById(R.id.show_all_comments);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
@@ -107,7 +106,7 @@ public class Comment_Section extends AppCompatActivity {
                         .setValue(comment)
                         .addOnSuccessListener(unused -> add_a_comment.setText("")).addOnFailureListener(e -> Toast.makeText(Comment_Section.this, "Error trying to upload comment.", Toast.LENGTH_SHORT).show());
             }
-        });*/
+        });
 
 
     }
