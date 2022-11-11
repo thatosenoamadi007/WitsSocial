@@ -31,7 +31,7 @@ import java.util.Objects;
 public class Profile extends AppCompatActivity {
     AppCompatTextView top_bar_my_name,my_email,my_username,number_of_followers,number_of_following,my_profile_description,see_list_of_followers,see_list_of_following;
     AppCompatButton edit_my_profile,my_account_settings;
-    AppCompatImageView log_out_of_my_out;
+    AppCompatButton log_out_of_my_out;
     RecyclerView my_account_profile_recyclerview;
     de.hdodenhof.circleimageview.CircleImageView userprofile;
     home_adapter mainAdapter;
@@ -64,7 +64,7 @@ public class Profile extends AppCompatActivity {
         see_list_of_following.setOnClickListener(view -> {startActivity(new Intent(Profile.this,Following.class).putExtra("came_from","Profile"));});
 
         //go to settings
-        my_account_settings.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),Account_Settings.class)));
+        //my_account_settings.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),Account_Settings.class)));
 
 
         //load my posts content
@@ -176,7 +176,7 @@ public class Profile extends AppCompatActivity {
         number_of_followers=findViewById(R.id.number_of_followers);
         number_of_following=findViewById(R.id.number_of_following);
         edit_my_profile=findViewById(R.id.edit_my_profile);
-        my_account_settings=findViewById(R.id.my_account_settings);
+        //my_account_settings=findViewById(R.id.my_account_settings);
         my_username=findViewById(R.id.my_username);
         my_email=findViewById(R.id.my_email);
         top_bar_my_name=findViewById(R.id.top_bar_my_name);

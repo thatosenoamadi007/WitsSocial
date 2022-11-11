@@ -1,6 +1,7 @@
 package com.example.witssocial_;
 import static android.service.autofill.Validators.not;
 //import static android.support.test.InstrumentationRegistry.getInstrumentation;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -60,5 +61,12 @@ public class home_activityTest {
     public void Media_PostsClick(){
         Espresso.onView(withId(R.id.Media_Posts)).perform(click());
     }*/
+    @Test
+    public void Text_PostsCheck(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            RecyclerView Text_Posts = activity.findViewById(R.id.homerecview);
+            assertNotNull(Text_Posts);
+        });
 
+    }
 }

@@ -33,15 +33,7 @@
                 android:textAllCaps="false"
                 android:layout_gravity="center"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/log_out_of_my_out"
-                android:layout_width="35dp"
-                android:layout_height="40dp"
-                android:layout_gravity="end"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/log_out"
-                />
+
 
         </androidx.cardview.widget.CardView>
 
@@ -151,7 +143,7 @@
                             android:textStyle="bold"
                             android:textAllCaps="false"
                             android:background="@drawable/profile_button_bg"
-                            android:id="@+id/my_account_settings"/>
+                            android:id="@+id/log_out_of_my_out"/>
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -353,7 +345,7 @@
                             android:textStyle="bold"
                             android:textAllCaps="false"
                             android:background="@drawable/profile_button_bg"
-                            android:id="@+id/my_account_settings"/>
+                            android:id="@+id/saved_posts"/>
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>

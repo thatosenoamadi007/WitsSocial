@@ -44,12 +44,12 @@
         </LinearLayout>
         <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="120dp"
             android:id="@+id/show_list_of_archived_messages"
             >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="120dp"
                 android:orientation="horizontal"
                 android:background="@color/white">
 
