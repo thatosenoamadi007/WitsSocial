@@ -31,6 +31,7 @@ public class MainActivityTest {
             assertNotNull(firstname);
         });
     }
+    
     @Test
     public void Emailcheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
