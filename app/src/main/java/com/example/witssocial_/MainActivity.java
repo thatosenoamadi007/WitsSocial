@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                  }
         });
 
-        //go to login page
+        //go to login page.
         loginPage.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, login.class)));
     }
     //initializing variables
