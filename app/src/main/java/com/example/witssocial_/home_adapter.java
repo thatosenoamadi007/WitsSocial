@@ -155,26 +155,10 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
         String finalUser = user;
         holder.heart.setOnClickListener(view -> {
 
-            if(!check[0]){
-
-
-                FirebaseDatabase.getInstance().getReference("Wits Social Database1")
-                        .child("ID")
-                        .child(ID)
-                        .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()).replace("@","").replace(".",""))
-                        .setValue(like);
-                holder.heart.setImageResource(R.drawable.img_5);
-                check[0] =true;
-
-            }else{
-                /*Remove like frome database*/
-                FirebaseDatabase.getInstance().getReference()
-                        .child("Wits Social Database1")
-                        .child("ID")
-                        .child(ID)
-                        .child(finalUser.replace("@","").replace(".",""))
-                        .removeValue();
-                holder.heart.setImageResource(R.drawable.heart2);
+            if(!check[0]){FirebaseDatabase.getInstance().getReference("Wits Social Database1").child("ID").child(ID).child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()).replace("@","").replace(".","")).setValue(like);holder.heart.setImageResource(R.drawable.img_5);check[0] =true;
+            }
+            /*Remove like frome database*/
+            else{FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("ID").child(ID).child(finalUser.replace("@","").replace(".","")).removeValue();holder.heart.setImageResource(R.drawable.heart2);
                 check[0] =false;
 
             }
@@ -182,15 +166,9 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
 
         //view post comments
         holder.go_to_comments.setOnClickListener(view -> {
-            Intent intent=new Intent(context,Comment_Section.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("post_id",post.getId());
-            intent.putExtra("came_from",came_from);
+            Intent intent=new Intent(context,Comment_Section.class);intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);intent.putExtra("post_id",post.getId());intent.putExtra("came_from",came_from);
             if(came_from.equals("friend_profile")){
-                intent.putExtra("receiver_id",email);
-                intent.putExtra("receiver_username",username);
-                intent.putExtra("receiver_description",description);
-                intent.putExtra("receiver_profile_pic",post.getUsername());
+                intent.putExtra("receiver_id",email);intent.putExtra("receiver_username",username);intent.putExtra("receiver_description",description);intent.putExtra("receiver_profile_pic",post.getUsername());
             }
 
             context.startActivity(intent);
