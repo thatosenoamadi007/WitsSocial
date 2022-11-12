@@ -47,13 +47,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
         holder.post.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0));
         if(!post.getType().equals("text_post")){
             holder.post.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 385));
-            Glide.with(holder.post.getContext())
-                    .load(post.getPost())
-                    .fitCenter()
-                    .transform(new RoundedCorners(10))
-                    .placeholder(R.drawable.ic_baseline_person_24)
-                    .error(R.drawable.ic_launcher_foreground)
-                    .into(holder.post);
+            Glide.with(holder.post.getContext()).load(post.getPost()).fitCenter().transform(new RoundedCorners(10)).placeholder(R.drawable.ic_baseline_person_24).error(R.drawable.ic_launcher_foreground).into(holder.post);
         }
 
         holder.caption.setText(post.getCaption());
@@ -158,8 +152,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
             if(!check[0]){FirebaseDatabase.getInstance().getReference("Wits Social Database1").child("ID").child(ID).child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getEmail()).replace("@","").replace(".","")).setValue(like);holder.heart.setImageResource(R.drawable.img_5);check[0] =true;
             }
             /*Remove like frome database*/
-            else{FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("ID").child(ID).child(finalUser.replace("@","").replace(".","")).removeValue();holder.heart.setImageResource(R.drawable.heart2);
-                check[0] =false;
+            else{FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("ID").child(ID).child(finalUser.replace("@","").replace(".","")).removeValue();holder.heart.setImageResource(R.drawable.heart2);check[0] =false;
 
             }
         });
@@ -167,12 +160,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
         //view post comments
         holder.go_to_comments.setOnClickListener(view -> {
             Intent intent=new Intent(context,Comment_Section.class);intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);intent.putExtra("post_id",post.getId());intent.putExtra("came_from",came_from);
-            if(came_from.equals("friend_profile")){
-                intent.putExtra("receiver_id",email);intent.putExtra("receiver_username",username);intent.putExtra("receiver_description",description);intent.putExtra("receiver_profile_pic",post.getUsername());
-            }
-
-            context.startActivity(intent);
-        });
+            if(came_from.equals("friend_profile")){intent.putExtra("receiver_id",email);intent.putExtra("receiver_username",username);intent.putExtra("receiver_description",description);intent.putExtra("receiver_profile_pic",post.getUsername());}context.startActivity(intent);});
 
     }
 
