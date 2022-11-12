@@ -16,6 +16,9 @@ import android.widget.TextView;
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -34,6 +37,52 @@ public class home_activityTest {
             RecyclerView Text_Posts = activity.findViewById(R.id.homerecview);
             assertNotNull(Text_Posts);
         });
+    }
+
+    //test the bottom navigation bar
+    @Test
+    public void CheckNavigationBar(){
+
+        //go to posts activity from navigation bar
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
+
+            //click on the posts icon activity
+            bottomNavigationView.findViewById(R.id.account)
+                    .performClick();
+
+        });
+
+        //go to add post activity from navigation bar
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
+
+            //click on the add post activity icon
+            bottomNavigationView.findViewById(R.id.add_post)
+                    .performClick();
+
+        });
+
+        //go to search users activity from navigation bar
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
+
+            //click on the search users activity icon
+            bottomNavigationView.findViewById(R.id.chat)
+                    .performClick();
+
+        });
+
+        //go to list of chats activity from navigation bar
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
+
+            //click on the messages activity
+            bottomNavigationView.findViewById(R.id.messages)
+                    .performClick();
+
+        });
+
     }
 
 }

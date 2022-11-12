@@ -1,15 +1,2 @@
 ignore:
-  - "**/Comment_Section.java"
-  - "**/CommentsAdapter.java"
-  - "**/FollowersAdapter.java"
-  - "**/insidemessageAdapter.java"
-  - "**/chatlist_adapter.java"
-  - "**/Messages.java"
-  - "**/comment.java"
-  - "**/Edit_Profile.java"
-  - "**/InsideMessage.java"
-  - "**/Archive_Users.java"
-  - "**/InsideMessage.java"
-  - "**/Status_adapter.java"
-  - "**/add_post.java"
-  - "**/Account_Settings.java"
+

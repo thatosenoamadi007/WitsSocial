@@ -33,73 +33,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
-public class ProfileTest {
+public class add_PostTest {
     @Rule
-    public ActivityScenarioRule<Profile> activityScenarioRule = new ActivityScenarioRule<>(Profile.class);
-
-    //check if profile pic field is not null
-    @Test
-    public void CheckUserProfilePic(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            de.hdodenhof.circleimageview.CircleImageView userprofilepic = activity.findViewById(R.id.userprofile);
-            assertNotNull(userprofilepic);
-        });
-    }
-
-    //check if edit profile button is not null
-    @Test
-    public void CheckEditProfile(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            AppCompatButton edit_my_profile = activity.findViewById(R.id.edit_my_profile);
-            assertNotNull(edit_my_profile);
-        });
-    }
-
-    //check if sign out buttin is not null
-    @Test
-    public void CheckSignout(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            AppCompatButton log_out_of_my_out = activity.findViewById(R.id.log_out_of_my_out);
-            assertNotNull(log_out_of_my_out);
-            log_out_of_my_out.performClick();
-        });
-    }
-
-    //check if the email field is not null
-    @Test
-    public void CheckEmail(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            AppCompatTextView my_email = activity.findViewById(R.id.my_email);
-            assertNotNull(my_email);
-        });
-    }
-
-    //check if the username field is not null
-    @Test
-    public void CheckUsername(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            AppCompatTextView my_username = activity.findViewById(R.id.my_username);
-            assertNotNull(my_username);
-        });
-    }
-
-    //check if the description field is not null
-    @Test
-    public void CheckDescription(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            AppCompatTextView my_profile_description = activity.findViewById(R.id.my_profile_description);
-            assertNotNull(my_profile_description);
-        });
-    }
-
-    //check if the posts field is not null
-    @Test
-    public void CheckPosts(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            RecyclerView my_account_profile_recyclerview = activity.findViewById(R.id.my_account_profile_recyclerview);
-            assertNotNull(my_account_profile_recyclerview);
-        });
-    }
+    public ActivityScenarioRule<add_post> activityScenarioRule = new ActivityScenarioRule<>(add_post.class);
 
     //testing the navigation bar
 
@@ -122,7 +58,7 @@ public class ProfileTest {
             BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
 
             //click on the add post activity icon
-            bottomNavigationView.findViewById(R.id.add_post)
+            bottomNavigationView.findViewById(R.id.account)
                     .performClick();
 
         });
@@ -134,7 +70,6 @@ public class ProfileTest {
             //click on the search users activity icon
             bottomNavigationView.findViewById(R.id.chat)
                     .performClick();
-
         });
 
         //go to list of chats activity from navigation bar
@@ -148,9 +83,5 @@ public class ProfileTest {
         });
 
     }
-
-
-
-
 
 }
