@@ -43,23 +43,12 @@ public class FollowingAdapter extends FirebaseRecyclerAdapter<user_class,Followi
         }else{
             holder.unfollow_user_in_list_of_following.setOnClickListener(view -> {
                 String email="karabol@gmail.com";
-                try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}catch (Exception e){email="karabo@gmail.com";}
-                String branch1= email.replace("@","").replace(".","");
-                String branch2=post.getEmail().replace("@","").replace(".","");
+                try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}catch (Exception e){email="karabo@gmail.com";}String branch1= email.replace("@","").replace(".","");String branch2=post.getEmail().replace("@","").replace(".","");
+
                 //remove from list of people im following
-                FirebaseDatabase.getInstance().getReference()
-                        .child("Wits Social Database1")
-                        .child("User Following")
-                        .child(branch1)
-                        .child(branch2)
-                        .removeValue();
+                FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Following").child(branch1).child(branch2).removeValue();
                 //remove from list of list of people who are following me
-                FirebaseDatabase.getInstance().getReference()
-                        .child("Wits Social Database1")
-                        .child("User Followers")
-                        .child(branch2)
-                        .child(branch1)
-                        .removeValue();
+                FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Followers").child(branch2).child(branch1).removeValue();
             });
         }
         Glide.with(holder.friend_profile_chat.getContext())

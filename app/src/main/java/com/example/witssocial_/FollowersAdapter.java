@@ -47,33 +47,17 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
                 .error(R.drawable.ic_baseline_person_24)
                 .into(holder.friend_profile_chat);
         holder.follow_friend_in_list_of_followers.setOnClickListener(view -> {
-            if(holder.follow_friend_in_list_of_followers.getText().toString().equals("Following")){
-                unfollowUser(post.getEmail());
-                holder.follow_friend_in_list_of_followers.setText("Follow");
-                holder.follow_friend_in_list_of_followers.setBackgroundColor(Color.WHITE);
+            if(holder.follow_friend_in_list_of_followers.getText().toString().equals("Following")){unfollowUser(post.getEmail());holder.follow_friend_in_list_of_followers.setText("Follow");holder.follow_friend_in_list_of_followers.setBackgroundColor(Color.WHITE);
             }
-            else{
-                //
-                followUser(post.getEmail(),post.getUsername(),post.getDescription(),post.getImage());
-                holder.follow_friend_in_list_of_followers.setText("Following");
-                holder.follow_friend_in_list_of_followers.setBackgroundColor(Color.parseColor("#F6F4F4"));
-            }
+            else{followUser(post.getEmail(),post.getUsername(),post.getDescription(),post.getImage());holder.follow_friend_in_list_of_followers.setText("Following");holder.follow_friend_in_list_of_followers.setBackgroundColor(Color.parseColor("#F6F4F4"));}
         });
     }
     private void followUser(String email, String username, String description,String image) {
-        user_class user=new user_class(email,username,description,image);
-        String branch1="";
-        try{branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
-        catch (Exception e){branch1="karabo@gmail.com";
-            branch1.replace("@","").replace(".","");}
+        user_class user=new user_class(email,username,description,image);String branch1="";
+        try{branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");} catch (Exception e){branch1="karabo@gmail.com";branch1.replace("@","").replace(".","");}
         String branch2=email.replace("@","").replace(".","");
         //add to list to people im following
-        FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database1")
-                .child("User Following")
-                .child(branch1)
-                .child(branch2)
-                .setValue(user);
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Following").child(branch1).child(branch2).setValue(user);
         //add to list of list of people who are following me
         getUserDetails(branch1,branch2);
     }
@@ -82,47 +66,25 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
         String id="";
         try{id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
         catch (Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(id)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
-                        assert user_class != null;
-                        FirebaseDatabase.getInstance().getReference()
-                                .child("Wits Social Database1")
-                                .child("User Followers")
-                                .child(branch2)
-                                .child(branch1)
-                                .setValue(user_class);
+                        user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);assert user_class != null;
+                        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Followers").child(branch2).child(branch1).setValue(user_class);
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(context, "Error getDetails", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    public void onCancelled(@NonNull DatabaseError error) {Toast.makeText(context, "Error getDetails", Toast.LENGTH_SHORT).show();}});
     }
 
     private void unfollowUser(String email) {
         String email1="karabol@gmail.com";
-        try{email1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");}
-        catch (Exception e){email1="karabo@gmail.com";}
-        String branch1= email1.replace("@","").replace(".","");
-        String branch2=email.replace("@","").replace(".","");
+        try{email1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");} catch (Exception e){email1="karabo@gmail.com";}
+        String branch1= email1.replace("@","").replace(".","");String branch2=email.replace("@","").replace(".","");
         //remove from list of people im following
-        FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database1")
-                .child("User Following")
-                .child(branch1)
-                .child(branch2)
-                .removeValue();
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Following").child(branch1).child(branch2).removeValue();
         //remove from list of list of people who are following me
-        FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database1")
-                .child("User Followers")
-                .child(branch2)
-                .child(branch1)
-                .removeValue();
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Followers").child(branch2).child(branch1).removeValue();
     }
 
     @NonNull

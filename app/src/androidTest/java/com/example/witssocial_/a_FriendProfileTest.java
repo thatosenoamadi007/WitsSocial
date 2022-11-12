@@ -30,9 +30,7 @@ public class a_FriendProfileTest {
 
     @Test
     public void GotoEditProfileClick(){
-        //Espresso.onView(withId(R.id.go_back_to_my_profile)).perform(click());
         activityScenarioRule.getScenario().onActivity(activity -> {
-            // use 'activity'.
             de.hdodenhof.circleimageview.CircleImageView friend_profile = activity.findViewById(R.id.friend_profile);
             assertNotNull(friend_profile);
         });
