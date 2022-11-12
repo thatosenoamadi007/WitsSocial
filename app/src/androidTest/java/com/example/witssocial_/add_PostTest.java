@@ -54,7 +54,7 @@ public class add_PostTest {
             TextView caption = activity.findViewById(R.id.makecaption);
             caption.setText("Whats good!.");
 
-            //upload post
+            //submit post
             Button postBtn = activity.findViewById(R.id.postBtn);
             postBtn.performClick();
 
