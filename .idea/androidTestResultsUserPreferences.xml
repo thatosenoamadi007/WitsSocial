@@ -172,7 +172,9 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_6_API_30" value="120" />
+                  <entry key="R9JN619KA7J" value="120" />
                   <entry key="Tests" value="360" />
+                  <entry key="samsung&#10; SM-A115F" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>

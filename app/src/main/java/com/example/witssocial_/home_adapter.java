@@ -195,16 +195,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
 
             context.startActivity(intent);
         });
-        //view the post
-        holder.post.setOnClickListener(v -> {
-            if(!post.getPost().equals("null")){
-                Intent intent=new Intent(Intent.ACTION_VIEW);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setType("*/*");
-                intent.setData(Uri.parse(post.getPost()));
-                context.startActivity(intent);
-            }
-        });
+
     }
 
     @NonNull

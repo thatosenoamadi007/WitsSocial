@@ -36,6 +36,10 @@ public class home_activityTest {
         activityScenarioRule.getScenario().onActivity(activity -> {
             RecyclerView Text_Posts = activity.findViewById(R.id.homerecview);
             assertNotNull(Text_Posts);
+
+            //like post
+            //Text_Posts.findViewById(R.id.heart).performClick();
+            
         });
     }
 

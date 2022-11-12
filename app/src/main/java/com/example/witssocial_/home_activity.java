@@ -32,9 +32,6 @@ public class home_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-       /* all_post=findViewById(R.id.All_Posts);
-        media_post=findViewById(R.id.Media_Posts);
-        text_post=findViewById(R.id.Text_Posts);*/
          //initlise the recycler view, layout manager and firebase recycler options
         recyclerView =findViewById(R.id.homerecview);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
@@ -47,23 +44,6 @@ public class home_activity extends AppCompatActivity {
         recyclerView.setAdapter(mainAdapter);
         bottomNavigationbar();
 
-        /*all_post.setOnClickListener(view -> {
-            all_post.setBackgroundColor(Color.WHITE);
-            media_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
-            text_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
-        });
-
-        media_post.setOnClickListener(view -> {
-            media_post.setBackgroundColor(Color.WHITE);
-            all_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
-            text_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
-        });
-
-        text_post.setOnClickListener(view -> {
-            text_post.setBackgroundColor(Color.WHITE);
-            all_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
-            media_post.setBackgroundColor(Color.parseColor("#F6F4F4"));
-        });*/
 
     }
 
@@ -71,7 +51,6 @@ public class home_activity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         mainAdapter.startListening();
-        //status_adapter.startListening();
     }
 
      //fuction to navigate the bottom navigation menu
@@ -108,7 +87,7 @@ public class home_activity extends AppCompatActivity {
         });
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         if(getIntent().getStringExtra("sign_out_or_not")!=null){
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -129,5 +108,5 @@ public class home_activity extends AppCompatActivity {
             super.onBackPressed();
         }
 
-    }
+    }*/
 }

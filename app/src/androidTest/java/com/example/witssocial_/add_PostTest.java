@@ -57,7 +57,6 @@ public class add_PostTest {
             //submit post
             Button postBtn = activity.findViewById(R.id.postBtn);
             postBtn.performClick();
-
         });
     }
 
