@@ -103,7 +103,7 @@ public class ProfileTest {
 
     //testing the navigation bar
 
-    //tests the bottom navigation bar
+    //test the bottom navigation bar
     @Test
     public void CheckNavigationBar(){
 
