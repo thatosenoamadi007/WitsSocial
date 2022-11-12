@@ -111,7 +111,7 @@ public class ProfileTest {
         activityScenarioRule.getScenario().onActivity(activity -> {
             BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
 
-            //click on the posts activity icon
+            //click on the posts icon activity
             bottomNavigationView.findViewById(R.id.posts_timeline)
                     .performClick();
 
