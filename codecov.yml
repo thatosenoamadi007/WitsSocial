@@ -1,2 +1,5 @@
 ignore:
+  - "**/Edit_Profile.java"
+  - "**/InsideMessage.java"
+  - "**/insidemessageAdapter.java"
 
