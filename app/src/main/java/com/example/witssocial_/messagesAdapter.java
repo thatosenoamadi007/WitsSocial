@@ -82,12 +82,12 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user_class, message
                     }
                 });
         //delete recently searched user
-        if (BusySearching=="false") {
+        /*if (BusySearching=="false") {
             holder.delete_recently_searched_user.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {RemoverecentlySearched(model.getEmail(), model.getEmail());}
             });
-        }
+        }*/
     }
 
     @NonNull
@@ -125,11 +125,11 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user_class, message
 
     }
 
-    private void RemoverecentlySearched(String branch1,String branch2) {
+    /*private void RemoverecentlySearched(String branch1,String branch2) {
         String my_email="";
         try{my_email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();} catch (Exception e){my_email=branch1;}
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Search History").child(my_email.replace("@","").replace(".","")).child(branch2.replace("@","").replace(".","")).removeValue();
-    }
+    }*/
 
 }
 

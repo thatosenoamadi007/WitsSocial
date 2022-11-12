@@ -40,12 +40,8 @@ public class Archive_Users extends AppCompatActivity {
         
         //check if testing or user mode
         String id="";
-        try{id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
-        catch (Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
-        FirebaseRecyclerOptions<likers> options =
-                new FirebaseRecyclerOptions.Builder<likers>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Archived Users").child(id), likers.class)
-                        .build();
+        try{id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();} catch (Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
+        FirebaseRecyclerOptions<likers> options = new FirebaseRecyclerOptions.Builder<likers>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Archived Users").child(id), likers.class).build();
         mainAdapter = new chatlist_adapter(options,getApplicationContext(),"Archive_Users");
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);

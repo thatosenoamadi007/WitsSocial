@@ -87,10 +87,10 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                                                 });
                                                 //end of archive
                                                 //delete whole chat
-                                                holder.delete_whole_chat.setOnClickListener(new View.OnClickListener() {
+                                                /*holder.delete_whole_chat.setOnClickListener(new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View view) {deleteChat(model.getEmail(),model.getEmail());}
-                                                });
+                                                });*/
                                                 //end of archive
                                            }
 
@@ -134,7 +134,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
     }
 
     //delete chat with user
-    private void deleteChat(String branch1,String branch2) {
+    /*private void deleteChat(String branch1,String branch2) {
 
         String id="";
         try{id=FirebaseAuth.getInstance().getCurrentUser().getUid();}catch (Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
@@ -146,7 +146,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Archived Users").child(id).child(branch2.replace("@","").replace(".","")).removeValue();
 
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("List of friends").child(my_email.replace("@","").replace(".","")).child(branch2.replace("@","").replace(".","")).removeValue();
-    }
+    }*/
 
 }
 
