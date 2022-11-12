@@ -46,7 +46,7 @@ public class ProfileTest {
         });
     }
 
-    //check if profile pic field is not null
+    //check if edit profile button is not null
     @Test
     public void CheckEditProfile(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -55,7 +55,7 @@ public class ProfileTest {
         });
     }
 
-    //check if profile pic field is not null
+    //check if sign out buttin is not null
     @Test
     public void CheckSignout(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -103,11 +103,11 @@ public class ProfileTest {
 
     //testing the navigation bar
 
-    //test bottom navigation bar
+    //tests the bottom navigation bar
     @Test
     public void CheckNavigationBar(){
 
-        //
+        //go to posts activity from navigation bar
         activityScenarioRule.getScenario().onActivity(activity -> {
             BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
 
@@ -120,6 +120,7 @@ public class ProfileTest {
                     .performClick();*/
         });
 
+        //go to add post activity from navigation bar
         activityScenarioRule.getScenario().onActivity(activity -> {
             BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
 
@@ -132,6 +133,7 @@ public class ProfileTest {
                     .performClick();*/
         });
 
+        //go to search users activity from navigation bar
         activityScenarioRule.getScenario().onActivity(activity -> {
             BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
 
@@ -144,6 +146,7 @@ public class ProfileTest {
                     .performClick();*/
         });
 
+        //go to list of chats activity from navigation bar
         activityScenarioRule.getScenario().onActivity(activity -> {
             BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
 

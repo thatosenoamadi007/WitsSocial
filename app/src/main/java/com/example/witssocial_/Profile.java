@@ -49,7 +49,7 @@ public class Profile extends AppCompatActivity {
         //sign out of account
         signOut();
 
-        //set names and descriptions
+        //set email,username and description
         setStaticValues();
 
         //edit my profile
