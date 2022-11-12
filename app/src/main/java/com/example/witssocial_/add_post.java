@@ -101,13 +101,7 @@ public class add_post extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==10 && resultCode==RESULT_OK && data!=null && data.getData()!=null){
-            imageUri = data.getData();
-            addPost.setImageURI(imageUri);
-            //postBtn.setOnClickListener(view -> uploadPost());
-        }else{
-            Toast.makeText(add_post.this, "resultcode"+requestCode, Toast.LENGTH_SHORT).show();
-        }
+        if(requestCode==10 && resultCode==RESULT_OK && data!=null && data.getData()!=null){imageUri = data.getData();addPost.setImageURI(imageUri);}else{Toast.makeText(add_post.this, "resultcode"+requestCode, Toast.LENGTH_SHORT).show();}
     }
     //--------------comment out
     private void uploadPost() {
@@ -121,25 +115,8 @@ public class add_post extends AppCompatActivity {
         String currentDateTime=get_CurrentDateTime();
         time=currentDateTime.replaceAll("/", "|");
 
-        if(imageUri!=null) {
-            final String userkey= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-            StorageReference galleryPictures = storageRef.child("Post/" + userkey).child(time);
-            galleryPictures.putFile(imageUri)
-                    .addOnSuccessListener(taskSnapshot -> {
-                        Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                        while (!uriTask.isComplete()) ;
-                        Uri uri = uriTask.getResult();
-
-                        uploadWholePost(uri.toString(),time,"media_post");
-                        Toast.makeText(this, "Post Uploaded.", Toast.LENGTH_SHORT).show();
-                        pd.dismiss();
-                        caption.setText("");
-                        imageUri=null;
-
-                        String tmpuri = "@drawable/icupload";
-                        int imageResource = getResources().getIdentifier(tmpuri, null, getPackageName());
-                        Drawable res = getResources().getDrawable(imageResource);
-                        addPost.setImageDrawable(res);
+        if(imageUri!=null) {final String userkey= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+            StorageReference galleryPictures = storageRef.child("Post/" + userkey).child(time);galleryPictures.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();while (!uriTask.isComplete()) ;Uri uri = uriTask.getResult();uploadWholePost(uri.toString(),time,"media_post");Toast.makeText(this, "Post Uploaded.", Toast.LENGTH_SHORT).show();pd.dismiss();caption.setText("");imageUri=null;String tmpuri = "@drawable/icupload";int imageResource = getResources().getIdentifier(tmpuri, null, getPackageName());Drawable res = getResources().getDrawable(imageResource);addPost.setImageDrawable(res);
                     });
     }else {
             if(!caption.getText().toString().isEmpty()){

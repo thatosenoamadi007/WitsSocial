@@ -90,16 +90,7 @@ public class Profile extends AppCompatActivity {
         log_out_of_my_out.setOnClickListener(view -> {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Profile.this);
             alertDialogBuilder.setTitle("Are you sure you want to sign out?");
-            alertDialogBuilder.setCancelable(true)
-                    .setPositiveButton("Yes",
-                            (dialog, id) -> {
-                                try {
-                                    FirebaseAuth.getInstance().signOut();
-                                }catch (Exception e){
-                                    Toast.makeText(Profile.this, "Signed out.", Toast.LENGTH_SHORT).show();
-                                }
-                                startActivity(new Intent(Profile.this,login.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                            }).setNegativeButton("No", (dialog, id) -> dialog.cancel());
+            alertDialogBuilder.setCancelable(true).setPositiveButton("Yes", (dialog, id) -> {try {FirebaseAuth.getInstance().signOut();}catch (Exception e){Toast.makeText(Profile.this, "Signed out.", Toast.LENGTH_SHORT).show();}startActivity(new Intent(Profile.this,login.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));}).setNegativeButton("No", (dialog, id) -> dialog.cancel());
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
         });
@@ -110,10 +101,7 @@ public class Profile extends AppCompatActivity {
         final String[] my_full_name = {my_username.getText().toString()};
         final String[] my_description = {my_profile_description.getText().toString()};
         String id="";
-        try{
-            id=FirebaseAuth.getInstance().getCurrentUser().getUid();
-        }catch (Exception e){
-            id="CYFstJWuF9NKirsH8GMewwB0t7m2";
+        try{id=FirebaseAuth.getInstance().getCurrentUser().getUid();}catch (Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";
         }
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -138,9 +126,7 @@ public class Profile extends AppCompatActivity {
     private void setStaticValues() {
         String name="";
         String id="";
-        try{
-            name=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
-            id=FirebaseAuth.getInstance().getCurrentUser().getUid();
+        try{name=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();id=FirebaseAuth.getInstance().getCurrentUser().getUid();
         }catch (Exception e){
             name="karabo@gmail.com";
             id="CYFstJWuF9NKirsH8GMewwB0t7m2";
@@ -163,9 +149,7 @@ public class Profile extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(Profile.this, "Error occurred trying to update username and description", Toast.LENGTH_SHORT).show();
-                    }
+                    public void onCancelled(@NonNull DatabaseError error) {Toast.makeText(Profile.this, "Error occurred trying to update username and description", Toast.LENGTH_SHORT).show();}
                 });
 
         //set number of followers and number of following

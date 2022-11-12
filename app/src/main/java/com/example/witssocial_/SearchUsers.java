@@ -83,7 +83,7 @@ public class SearchUsers extends AppCompatActivity {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        String email="";
+        /*String email="";
         try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
         catch (Exception e){email="karabo@gmail.com";}
         FirebaseRecyclerOptions<user_class> options =
@@ -92,7 +92,9 @@ public class SearchUsers extends AppCompatActivity {
                         .build();
         mainAdapter = new messagesAdapter(options,getApplicationContext(),"false");
         mainAdapter.startListening();
-        recyclerView.setAdapter(mainAdapter);
+        recyclerView.setAdapter(mainAdapter);*/
+        findAllFriends();
+
 
     }
 
@@ -139,14 +141,12 @@ public class SearchUsers extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                findFriend(s);
-                return true;
+                findFriend(s);return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                findFriend(s);
-                return true;
+                findFriend(s);return true;
             }
         });
     }

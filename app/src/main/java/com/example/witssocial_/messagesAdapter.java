@@ -66,20 +66,13 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user_class, message
                                                 .into(holder.friend_profile);
 
                                         holder.message_layout.setOnClickListener(view -> {
-                                            Intent intent=new Intent(context,a_FriendProfile.class);
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                            intent.putExtra("receiver_id",email);
-                                            intent.putExtra("receiver_username",username);
-                                            intent.putExtra("receiver_description",description);
-                                            intent.putExtra("receiver_profile_pic",model2.getImage());
+                                            Intent intent=new Intent(context,a_FriendProfile.class);intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);intent.putExtra("receiver_id",email);intent.putExtra("receiver_username",username);intent.putExtra("receiver_description",description);intent.putExtra("receiver_profile_pic",model2.getImage());
                                             context.startActivity(intent);
                                         });
                                     }
 
                                     @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
+                                    public void onCancelled(@NonNull DatabaseError error) {}
                                 });
                     }
 
@@ -92,9 +85,7 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user_class, message
         if (BusySearching=="false") {
             holder.delete_recently_searched_user.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    RemoverecentlySearched(model.getEmail(), model.getEmail());
-                }
+                public void onClick(View view) {RemoverecentlySearched(model.getEmail(), model.getEmail());}
             });
         }
     }
@@ -136,14 +127,8 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user_class, message
 
     private void RemoverecentlySearched(String branch1,String branch2) {
         String my_email="";
-        try{my_email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
-        catch (Exception e){my_email=branch1;}
-        FirebaseDatabase.getInstance().getReference()
-                .child("Wits Social Database1")
-                .child("Search History")
-                .child(my_email.replace("@","").replace(".",""))
-                .child(branch2.replace("@","").replace(".",""))
-                .removeValue();
+        try{my_email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();} catch (Exception e){my_email=branch1;}
+        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Search History").child(my_email.replace("@","").replace(".","")).child(branch2.replace("@","").replace(".","")).removeValue();
     }
 
 }
