@@ -37,6 +37,30 @@ public class add_PostTest {
     @Rule
     public ActivityScenarioRule<add_post> activityScenarioRule = new ActivityScenarioRule<>(add_post.class);
 
+    //check if caption field is not null
+    @Test
+    public void CheckCaption(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            TextView caption = activity.findViewById(R.id.makecaption);
+            assertNotNull(caption);
+        });
+    }
+
+    //type caption or text post and submit
+    @Test
+    public void TypeCaption(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            //type caption
+            TextView caption = activity.findViewById(R.id.makecaption);
+            caption.setText("Whats good!.");
+
+            //upload post
+            Button postBtn = activity.findViewById(R.id.postBtn);
+            postBtn.performClick();
+
+        });
+    }
+
     //testing the navigation bar
 
     //test the bottom navigation bar
