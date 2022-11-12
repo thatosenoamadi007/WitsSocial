@@ -16,6 +16,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.TestCase.assertNotNull;
 import android.app.Instrumentation;
 import android.support.test.rule.ActivityTestRule;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +24,9 @@ import android.widget.TextView;
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -61,14 +65,6 @@ public class ProfileTest {
         });
     }
 
-    //sign out user
-   /* @Test
-    public void Signout(){
-        Espresso.onView(withId(R.id.log_out_of_my_out)).perform(click());
-                /*.inRoot(isDialog())
-                .check(matches(isDisplayed()));*/
-    /*}*/
-
     //check if the email field is not null
     @Test
     public void CheckEmail(){
@@ -104,5 +100,66 @@ public class ProfileTest {
             assertNotNull(my_account_profile_recyclerview);
         });
     }
+
+    //testing the navigation bar
+
+    //test bottom navigation bar
+    @Test
+    public void CheckNavigationBar(){
+
+        //
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
+
+            //click on the posts activity icon
+            bottomNavigationView.findViewById(R.id.posts_timeline)
+                    .performClick();
+
+            //go back to account activity
+            /*bottomNavigationView.findViewById(R.id.account)
+                    .performClick();*/
+        });
+
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
+
+            //click on the add post activity icon
+            bottomNavigationView.findViewById(R.id.add_post)
+                    .performClick();
+
+            //go back to account activity
+            /*bottomNavigationView.findViewById(R.id.account)
+                    .performClick();*/
+        });
+
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
+
+            //click on the search users activity icon
+            bottomNavigationView.findViewById(R.id.chat)
+                    .performClick();
+
+            //go back to account activity
+            /*bottomNavigationView.findViewById(R.id.account)
+                    .performClick();*/
+        });
+
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
+
+            //click on the messages activity
+            bottomNavigationView.findViewById(R.id.messages)
+                    .performClick();
+
+            //go back to account activity
+            /*bottomNavigationView.findViewById(R.id.account)
+                    .performClick();*/
+        });
+
+    }
+
+
+
+
 
 }
