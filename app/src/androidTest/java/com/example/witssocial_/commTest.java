@@ -18,7 +18,7 @@ public class commTest extends TestCase {
     public void testsetId() {
         comment comment=new comment();
         comment.setId("id");
-        assertEquals("id",comment.getComment());
+        assertEquals("id",comment.getId());
     }
     //tests getter id method
     public void testgetId() {
