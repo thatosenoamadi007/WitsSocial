@@ -95,9 +95,9 @@ public class Comment_Section extends AppCompatActivity {
         //show all comments first
         String post_id="",id="";
         try {
-            id=FirebaseAuth.getInstance().getCurrentUser().getUid();
+            id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
             post_id=getIntent().getStringExtra("post_id");
-        }catch (Exception e){post_id="-NF16IpLTT3quNA6OvGp";}
+        }catch (Exception e){post_id="-NF16IpLTT3quNA6OvGp";id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
 
         show_all_comments=findViewById(R.id.show_all_comments);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
