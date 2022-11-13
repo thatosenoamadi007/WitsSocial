@@ -61,8 +61,8 @@ public class MainActivityTest {
     //enter password with short lengh and check if account is not registered
     @Test
     public void enterWrongDetails(){
-        Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal")).perform(closeSoftKeyboard());
-        Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal1@gmail.com")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal2")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal12@gmail.com")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.Password)).perform(typeText("123")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.confirmPassword)).perform(typeText("123")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.SignUp)).perform(click());
@@ -70,10 +70,10 @@ public class MainActivityTest {
     //enter correct details and check if the account has been registered
     @Test
     public void enterCorrectDetails(){
-        Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal Beck")).perform(closeSoftKeyboard());
-        Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal2@gmail.com")).perform(closeSoftKeyboard());
-        Espresso.onView(withId(R.id.Password)).perform(typeText("1234567")).perform(closeSoftKeyboard());
-        Espresso.onView(withId(R.id.confirmPassword)).perform(typeText("1234567")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal Beck2")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.Email)).perform(typeText("nealnealback2@gmail.com")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.Password)).perform(typeText("12345678")).perform(closeSoftKeyboard());
+        Espresso.onView(withId(R.id.confirmPassword)).perform(typeText("12345678")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.SignUp)).perform(click());
     }
     //enter existing details and check if account is not registered
