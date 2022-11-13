@@ -24,6 +24,7 @@ public class loginTest {
     public ActivityScenarioRule<login> activityScenarioRule = new ActivityScenarioRule<>(login.class);
     Instrumentation.ActivityMonitor monitor = InstrumentationRegistry.getInstrumentation().addMonitor(login.class.getName(),null,false);
 
+    //check is the email field is not null
     @Test
     public void Emailcheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -33,6 +34,7 @@ public class loginTest {
         });
 
     }
+    //checks if the pasword field is not null
     @Test
     public void Password(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -42,12 +44,16 @@ public class loginTest {
         });
 
     }
+
+    //enter existing details and check if we are not logged in
     @Test
     public void enterWrongDetails(){
         Espresso.onView(withId(R.id.Email)).perform(typeText("nealneal1@gmail.com")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.Password)).perform(typeText("123")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.SignIn)).perform(click());
     }
+
+    //enter correct details and check if we are logged in
     @Test
     public void enterCorrectDetails(){
         Espresso.onView(withId(R.id.Email)).perform(typeText("karabol@gmail.com")).perform(closeSoftKeyboard());

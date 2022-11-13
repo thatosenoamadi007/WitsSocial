@@ -23,27 +23,27 @@ public class MainActivityTest {
     @Rule
     public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
     Instrumentation.ActivityMonitor monitor = InstrumentationRegistry.getInstrumentation().addMonitor(MainActivity.class.getName(),null,false);
+    //check if the fullname field is not null
     @Test
     public void FullNameCheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
-            // use 'activity'.
             EditText firstname = activity.findViewById(R.id.FullName);
             assertNotNull(firstname);
         });
     }
+    //checks if the email field is not null
     @Test
     public void Emailcheck(){
         activityScenarioRule.getScenario().onActivity(activity -> {
-            // use 'activity'.
             EditText Email = activity.findViewById(R.id.Email);
             assertNotNull(Email);
         });
 
     }
+    //checks
     @Test
     public void Password(){
         activityScenarioRule.getScenario().onActivity(activity -> {
-            // use 'activity'.
             EditText Password = activity.findViewById(R.id.Password);
             assertNotNull(Password);
         });
@@ -52,7 +52,6 @@ public class MainActivityTest {
     @Test
     public void ConPassword(){
         activityScenarioRule.getScenario().onActivity(activity -> {
-            // use 'activity'.
             EditText ConnPassowrd = activity.findViewById(R.id.confirmPassword);
             assertNotNull(ConnPassowrd);
         });

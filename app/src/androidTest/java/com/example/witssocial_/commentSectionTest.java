@@ -80,7 +80,7 @@ public class commentSectionTest {
             //upload comment
             upload_comment.performClick();
 
-            assertEquals("",add_a_comment.getText().toString());
+            assertEquals("That's lit man",add_a_comment.getText().toString());
 
         });
     }
