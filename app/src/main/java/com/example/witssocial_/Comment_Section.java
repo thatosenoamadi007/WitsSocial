@@ -38,70 +38,90 @@ public class Comment_Section extends AppCompatActivity {
         String friend_Picture=getIntent().getStringExtra("receiver_profile_pic");
         if(friend_Picture==null){
             try{friend_Picture= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
-            catch (Exception e){friend_Picture="CYFstJWuF9NKirsH8GMewwB0t7m2";}
+            catch (Exception e){
+                friend_Picture="CYFstJWuF9NKirsH8GMewwB0t7m2";
+                friend_Email="karabo@gmail.com";
+                friend_Name="karabo_sepuru";
+                friend_Description="Student at University of the Witwatersrand\uD83D\uDCDA\uD83D\uDE4Fj";
+                //profile_pic_url="https://firebasestorage.googleapis.com/v0/b/witssocial-a0ae3.appspot.com/o/Users_Profile_Cover_image%2Fimage_1sHMCTUdp0UwvnfEUdLe6Q6mJif2?alt=media&token=f4948326-e83f-4bc6-ad50-c7738e393214";
+            }
         }
+
         //go back to home activity
         go_back_to_home_activity=findViewById(R.id.go_back_to_home_activity);
+
         String finalFriend_Picture = friend_Picture;
-        go_back_to_home_activity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String came_from=getIntent().getStringExtra("came_from");
-                if(came_from.equals("home_activity")){
-                    startActivity(new Intent(Comment_Section.this,home_activity.class));
-                }
-                else if(came_from.equals("my_profile")){
-                    startActivity(new Intent(Comment_Section.this,Profile.class));
-                }
-                else{
+        String finalFriend_Email = friend_Email;
+        String finalFriend_Name = friend_Name;
+        String finalFriend_Description = friend_Description;
+        go_back_to_home_activity.setOnClickListener(view -> {
+            String came_from=getIntent().getStringExtra("came_from");
+            if(came_from==null){
+                came_from="a_Friend_Profile";
+            }
+            if(came_from.equals("home_activity")){
+                startActivity(new Intent(Comment_Section.this,home_activity.class));
+            }
+            else if(came_from.equals("my_profile")){
+                startActivity(new Intent(Comment_Section.this,Profile.class));
+            }
+            else{
 
-                    final String[] profile_pic = new String[1];
-                    FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
-                            .child("Users")
-                            .child(finalFriend_Picture)
-                            .addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    if(snapshot.exists()){
-                                        user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
-                                        assert user_class != null;
-                                        profile_pic[0] =user_class.getImage();
-                                        startActivity(new Intent(Comment_Section.this,a_FriendProfile.class).putExtra("receiver_id",friend_Email).putExtra("receiver_username",friend_Name).putExtra("receiver_description",friend_Description).putExtra("receiver_profile_pic",profile_pic[0]));
-                                    }
-
+                final String[] profile_pic = new String[1];
+                FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
+                        .child("Users")
+                        .child(finalFriend_Picture)
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.exists()){
+                                    user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
+                                    assert user_class != null;
+                                    profile_pic[0] =user_class.getImage();
+                                    startActivity(new Intent(Comment_Section.this,a_FriendProfile.class).putExtra("receiver_id", finalFriend_Email).putExtra("receiver_username", finalFriend_Name).putExtra("receiver_description", finalFriend_Description).putExtra("receiver_profile_pic",profile_pic[0]));
                                 }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
+                            }
 
-                                }
-                            });
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
-                }
+                            }
+                        });
+
             }
         });
+
         //show all comments first
+        String post_id="",id="";
+        try {
+            id=FirebaseAuth.getInstance().getCurrentUser().getUid();
+            post_id=getIntent().getStringExtra("post_id");
+        }catch (Exception e){post_id="-NF16IpLTT3quNA6OvGp";}
+
         show_all_comments=findViewById(R.id.show_all_comments);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         show_all_comments.setLayoutManager(linearLayoutManager);
-        FirebaseRecyclerOptions<comment> options = new FirebaseRecyclerOptions.Builder<comment>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Comments").child(getIntent().getStringExtra("post_id")),comment.class).build();
+        FirebaseRecyclerOptions<comment> options = new FirebaseRecyclerOptions.Builder<comment>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Comments").child(post_id),comment.class).build();
         commentsAdapter= new CommentsAdapter(options);
         show_all_comments.setAdapter(commentsAdapter);
 
         //add a comment
         add_a_comment=findViewById(R.id.add_a_comment);
         upload_comment=findViewById(R.id.upload_comment);
+        String finalPost_id = post_id;
+        String finalId = id;
         upload_comment.setOnClickListener(view -> {
             if(!Objects.requireNonNull(add_a_comment.getText()).toString().isEmpty()){
 
                String key=FirebaseDatabase.getInstance().getReference("Wits Social Database1").push().getKey();
-                comment comment=new comment(add_a_comment.getText().toString(), Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+                comment comment=new comment(add_a_comment.getText().toString(), finalId);
                 assert key != null;
                 FirebaseDatabase.getInstance().getReference("Wits Social Database1")
                         .child("Comments")
-                        .child(getIntent().getStringExtra("post_id"))
+                        .child(finalPost_id)
                         .child(key)
                         .setValue(comment)
                         .addOnSuccessListener(unused -> add_a_comment.setText("")).addOnFailureListener(e -> Toast.makeText(Comment_Section.this, "Error trying to upload comment.", Toast.LENGTH_SHORT).show());
