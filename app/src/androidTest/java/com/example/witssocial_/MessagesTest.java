@@ -3,6 +3,7 @@ import static android.service.autofill.Validators.not;
 //import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -37,8 +38,25 @@ public class MessagesTest {
     @Rule
     public ActivityScenarioRule<Messages> activityScenarioRule = new ActivityScenarioRule<>(Messages.class);
 
-    //testing the navigation bar
+    //check if posts field is not null
+    @Test
+    public void PostFieldTest(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            RecyclerView all_friends_chat_list = activity.findViewById(R.id.all_friends_chat_list);
+            assertNotNull(all_friends_chat_list);
+        });
+    }
 
+    //check if archive user field is not null
+    @Test
+    public void ArchiveUserTest(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            CardView show_list_of_archived_messages = activity.findViewById(R.id.show_list_of_archived_messages);
+            assertNotNull(show_list_of_archived_messages);
+        });
+    }
+
+    //testing the navigation bar
     //test the bottom navigation bar
     @Test
     public void CheckNavigationBar(){

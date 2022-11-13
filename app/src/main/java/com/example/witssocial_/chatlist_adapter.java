@@ -63,11 +63,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                                                 String description= model.getDescription();
                                                 holder.friend_name.setText(email);
                                                 holder.friend_username.setText(username);
-                                                Glide.with(holder.friend_profile.getContext())
-                                                        .load(model.getImage())
-                                                        .placeholder(R.drawable.ic_launcher_foreground)
-                                                        .error(R.drawable.ic_baseline_person_24)
-                                                        .into(holder.friend_profile);
+                                                Glide.with(holder.friend_profile.getContext()).load(model.getImage()).placeholder(R.drawable.ic_launcher_foreground).error(R.drawable.ic_baseline_person_24).into(holder.friend_profile);
 
                                                 holder.message_layout.setOnClickListener(view -> {
                                                     Intent intent=new Intent(context,InsideMessage.class);intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);intent.putExtra("receiver_id",email);intent.putExtra("receiver_username",username);intent.putExtra("receiver_description",description);intent.putExtra("receiver_profile_pic",model.getImage());intent.putExtra("came_from",came_from);
@@ -85,13 +81,7 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                                                     }
 
                                                 });
-                                                //end of archive
-                                                //delete whole chat
-                                                /*holder.delete_whole_chat.setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View view) {deleteChat(model.getEmail(),model.getEmail());}
-                                                });*/
-                                                //end of archive
+
                                            }
 
                                             @Override
@@ -133,20 +123,6 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
 
     }
 
-    //delete chat with user
-    /*private void deleteChat(String branch1,String branch2) {
-
-        String id="";
-        try{id=FirebaseAuth.getInstance().getCurrentUser().getUid();}catch (Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
-        String my_email="";
-        try{my_email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();} catch (Exception e){my_email=branch1;}
-
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Chat history").child(my_email.replace("@","").replace(".","")).child(branch2.replace("@","").replace(".","")).removeValue();
-
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Archived Users").child(id).child(branch2.replace("@","").replace(".","")).removeValue();
-
-        FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("List of friends").child(my_email.replace("@","").replace(".","")).child(branch2.replace("@","").replace(".","")).removeValue();
-    }*/
 
 }
 

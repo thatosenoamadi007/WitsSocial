@@ -28,12 +28,23 @@ public class ArchiveUsersTest {
     @Rule
     public ActivityScenarioRule<Archive_Users> activityScenarioRule = new ActivityScenarioRule<>(Archive_Users.class);
 
+    //checks if the back button is not nulll
     @Test
-    public void GoBackToMessages(){
+    public void GoBackToMessagesTest(){
         activityScenarioRule.getScenario().onActivity(activity -> {
             AppCompatImageView go_back_to_chat = activity.findViewById(R.id.go_back_to_chat);
             assertNotNull(go_back_to_chat);
         });
     }
+
+    //click the back button to go to previous activity
+    @Test
+    public void ClickGoBackToMessagesTest(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            AppCompatImageView go_back_to_chat = activity.findViewById(R.id.go_back_to_chat);
+            go_back_to_chat.performClick();
+        });
+    }
+
 
 }

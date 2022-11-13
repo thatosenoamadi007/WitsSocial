@@ -40,7 +40,7 @@ public class MainActivityTest {
         });
 
     }
-    //checks
+    //checks if the pasword field is not null
     @Test
     public void Password(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -49,6 +49,7 @@ public class MainActivityTest {
         });
 
     }
+    //checks if the confirm password field is not null
     @Test
     public void ConPassword(){
         activityScenarioRule.getScenario().onActivity(activity -> {
@@ -57,6 +58,7 @@ public class MainActivityTest {
         });
 
     }
+    //enter password with short lengh and check if account is not registered
     @Test
     public void enterWrongDetails(){
         Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal")).perform(closeSoftKeyboard());
@@ -65,6 +67,7 @@ public class MainActivityTest {
         Espresso.onView(withId(R.id.confirmPassword)).perform(typeText("123")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.SignUp)).perform(click());
     }
+    //enter correct details and check if the account has been registered
     @Test
     public void enterCorrectDetails(){
         Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal Beck")).perform(closeSoftKeyboard());
@@ -73,7 +76,7 @@ public class MainActivityTest {
         Espresso.onView(withId(R.id.confirmPassword)).perform(typeText("1234567")).perform(closeSoftKeyboard());
         Espresso.onView(withId(R.id.SignUp)).perform(click());
     }
-
+    //enter existing details and check if account is not registered
     @Test
     public void enterExistingDetails(){
         Espresso.onView(withId(R.id.FullName)).perform(typeText("Neal Beck")).perform(closeSoftKeyboard());

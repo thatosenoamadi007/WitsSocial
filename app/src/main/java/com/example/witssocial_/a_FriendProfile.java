@@ -51,10 +51,8 @@ public class a_FriendProfile extends AppCompatActivity {
         friend_Description=getIntent().getStringExtra("receiver_description");
         profile_pic_url=getIntent().getStringExtra("receiver_profile_pic");
         if(friend_Email!=null && friend_Name!=null){
-            //Toast.makeText(this, "user mode", Toast.LENGTH_SHORT).show();
         }
         else{
-            //Toast.makeText(this, "testing mode", Toast.LENGTH_SHORT).show();
             friend_Email="karabo@gmail.com";
             friend_Name="karabo_sepuru";
             friend_Description="Student at University of the Witwatersrand\uD83D\uDCDA\uD83D\uDE4Fj";

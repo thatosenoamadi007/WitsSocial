@@ -29,6 +29,7 @@ public class SearchUsersTest {
     @Rule
     public ActivityScenarioRule<SearchUsers> activityScenarioRule = new ActivityScenarioRule<>(SearchUsers.class);
 
+    //tests the search functionality by type a user email and checks if it appears
     @Test
     public void searchUser(){
         Espresso.onView(withId(R.id.search_friend_chat)).perform(typeText("karabol@gmail.com")).perform(closeSoftKeyboard());
