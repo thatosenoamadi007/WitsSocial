@@ -36,7 +36,7 @@ public class Comment_Section extends AppCompatActivity {
         String friend_Name=getIntent().getStringExtra("receiver_username");
         String friend_Description=getIntent().getStringExtra("receiver_description");
         String friend_Picture=getIntent().getStringExtra("receiver_profile_pic");
-        if(friend_Picture==null){
+        if(friend_Picture==null || friend_Email==null || friend_Name==null){
             try{friend_Picture= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
             catch (Exception e){
                 friend_Picture="CYFstJWuF9NKirsH8GMewwB0t7m2";
