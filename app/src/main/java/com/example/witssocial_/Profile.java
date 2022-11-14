@@ -96,6 +96,7 @@ public class Profile extends AppCompatActivity {
         });
     }
 
+    //navigating back to previous activity
     private void editProfile() {
         String my_Email=my_email.getText().toString();
         final String[] my_full_name = {my_username.getText().toString()};
@@ -118,10 +119,10 @@ public class Profile extends AppCompatActivity {
                         Toast.makeText(Profile.this, "Error occurred trying to retrieve description", Toast.LENGTH_SHORT).show();
                     }
                 });
-        //Toast.makeText(this, my_description[0], Toast.LENGTH_SHORT).show();
         edit_my_profile.setOnClickListener(view -> startActivity(new Intent(Profile.this,Edit_Profile.class).putExtra("receiver_id",my_Email).putExtra("receiver_username",my_full_name[0]).putExtra("receiver_description", my_description[0])));
     }
 
+    //set initial values of name,email,description,no folllowers and following when activiyt loads
     @SuppressLint("SetTextI18n")
     private void setStaticValues() {
         String name="";
@@ -138,7 +139,6 @@ public class Profile extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
-                        //assert user_class != null;
                         my_username.setText(user_class.getUsername());
                         my_profile_description.setText(user_class.getDescription());
                         Glide.with(userprofile.getContext())
@@ -155,12 +155,11 @@ public class Profile extends AppCompatActivity {
         //set number of followers and number of following
         setNumberFollowersFollowing();
     }
-
+    //initializes variables
     private void initializeVariables() {
         number_of_followers=findViewById(R.id.number_of_followers);
         number_of_following=findViewById(R.id.number_of_following);
         edit_my_profile=findViewById(R.id.edit_my_profile);
-        //my_account_settings=findViewById(R.id.my_account_settings);
         my_username=findViewById(R.id.my_username);
         my_email=findViewById(R.id.my_email);
         top_bar_my_name=findViewById(R.id.top_bar_my_name);
@@ -170,12 +169,6 @@ public class Profile extends AppCompatActivity {
         see_list_of_following=findViewById(R.id.see_list_of_following);
         userprofile=findViewById(R.id.userprofile);
         log_out_of_my_out=findViewById(R.id.log_out_of_my_out);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mainAdapter.startListening();
     }
 
     //fuction to navigate the bottom navigation menu
@@ -212,12 +205,14 @@ public class Profile extends AppCompatActivity {
         });
     }
 
+    //initialize the number of followers and following
     private void setNumberFollowersFollowing() {
         String friend_email="";
         try{friend_email=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
         catch (Exception e){friend_email="karabo@gmail.com";}
         String friend_email2=friend_email;
-        //Toast.makeText(Profile.this, friend_email+"-----"+friend_email.replace("@","").replace(".",""), Toast.LENGTH_SHORT).show();
+
+        //sets the number of followers counter
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Followers")
                 .child(friend_email.replace("@","").replace(".",""))
                 .addValueEventListener(new ValueEventListener() {
@@ -237,6 +232,8 @@ public class Profile extends AppCompatActivity {
 
                     }
                 });
+
+        //sets the number of following counter
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Following")
                 .child(friend_email2.replace("@","").replace(".",""))
                 .addValueEventListener(new ValueEventListener() {
@@ -255,5 +252,11 @@ public class Profile extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mainAdapter.startListening();
     }
 }

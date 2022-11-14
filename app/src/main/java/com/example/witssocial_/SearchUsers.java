@@ -27,6 +27,7 @@ public class SearchUsers extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_users);
+
         //enable searchView
         initializeSearchView();
 
@@ -43,7 +44,7 @@ public class SearchUsers extends AppCompatActivity {
         display();
 
     }
-
+    //listens for clicks on the navigation bar
     private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.chat);
@@ -75,7 +76,7 @@ public class SearchUsers extends AppCompatActivity {
             return false;
         });
     }
-
+    //diplay histrory of searches made
     private void display() {
         recyclerView = findViewById(R.id.all_friends_chat);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
@@ -83,21 +84,11 @@ public class SearchUsers extends AppCompatActivity {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        /*String email="";
-        try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
-        catch (Exception e){email="karabo@gmail.com";}
-        FirebaseRecyclerOptions<user_class> options =
-                new FirebaseRecyclerOptions.Builder<user_class>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Search History").child(email.replace("@","").replace(".","")).orderByChild("timestamp"), user_class.class)
-                        .build();
-        mainAdapter = new messagesAdapter(options,getApplicationContext(),"false");
-        mainAdapter.startListening();
-        recyclerView.setAdapter(mainAdapter);*/
         findAllFriends();
 
 
     }
-
+    //change background color of the hint section
     void changeSearchHintColor(){
 
         SearchView searchView= findViewById(R.id.search_friend_chat);
@@ -107,7 +98,7 @@ public class SearchUsers extends AppCompatActivity {
         textView.setHintTextColor(Color.parseColor("#C9C9C9"));
 
     }
-
+    //filer search results by the enter string
     private void findFriend(String s) {
         if(s.equals("")){
             findAllFriends();
@@ -123,7 +114,7 @@ public class SearchUsers extends AppCompatActivity {
 
 
     }
-
+    //unfilter results and return all users
     private void findAllFriends() {
         String email="";
         try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
@@ -135,6 +126,7 @@ public class SearchUsers extends AppCompatActivity {
         recyclerView.setAdapter(mainAdapter);
     }
 
+    //start listening for searches and filter results according to the searches
     void initializeSearchView(){
         searchView=findViewById(R.id.search_friend_chat);
         searchView.clearFocus();

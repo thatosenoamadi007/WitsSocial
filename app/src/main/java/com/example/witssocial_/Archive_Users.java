@@ -31,6 +31,7 @@ public class Archive_Users extends AppCompatActivity {
         display();
     }
 
+    //when activity loads show my list of archived users
     private void display() {
         recyclerView = findViewById(R.id.all_friends_chat_list);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);

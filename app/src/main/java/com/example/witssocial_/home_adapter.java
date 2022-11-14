@@ -45,11 +45,12 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull Post post) {
         holder.post.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0));
+        //checks tyoe of post text post or image post
         if(!post.getType().equals("text_post")){
             holder.post.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 385));
             Glide.with(holder.post.getContext()).load(post.getPost()).fitCenter().transform(new RoundedCorners(10)).placeholder(R.drawable.ic_baseline_person_24).error(R.drawable.ic_launcher_foreground).into(holder.post);
         }
-
+        //initializes the user details on top of the post
         holder.caption.setText(post.getCaption());
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
                 .child("Users")
@@ -124,6 +125,7 @@ public class home_adapter extends FirebaseRecyclerAdapter<Post,home_adapter.myVi
 
                     }
                 });
+
         //count number of comments
         FirebaseDatabase.getInstance().getReference()
                 .child("Wits Social Database1")

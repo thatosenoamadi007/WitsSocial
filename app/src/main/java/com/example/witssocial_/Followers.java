@@ -27,6 +27,8 @@ public class Followers extends AppCompatActivity {
 
         //go back to profile
         go_back_to_my_profile=findViewById(R.id.go_back_to_my_profile);
+
+        //navigating back to profile activity
         String rec=getIntent().getStringExtra("receiver_id");
         String rec_us=getIntent().getStringExtra("receiver_username");
         String rec_desc=getIntent().getStringExtra("receiver_description");
@@ -48,8 +50,8 @@ public class Followers extends AppCompatActivity {
 
     }
 
+    //show list of following
     private void showFollowingList(String rec) {
-        //show list of following
         show_list_of_followers=findViewById(R.id.show_list_of_followers);
         show_list_of_followers.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<user_class> options = new FirebaseRecyclerOptions.Builder<user_class>().setQuery(FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Followers").child(rec.replace("@","").replace(".","")),user_class.class).build();

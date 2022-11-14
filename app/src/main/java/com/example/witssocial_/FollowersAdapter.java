@@ -41,17 +41,15 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
         holder.email.setText(post.getEmail());
         holder.username.setText(post.getUsername());
         ifFollowsUser(post.getEmail(),holder);
-        Glide.with(holder.friend_profile_chat.getContext())
-                .load(post.getImage())
-                .placeholder(R.drawable.ic_launcher_foreground)
-                .error(R.drawable.ic_baseline_person_24)
-                .into(holder.friend_profile_chat);
+        Glide.with(holder.friend_profile_chat.getContext()).load(post.getImage()).placeholder(R.drawable.ic_launcher_foreground).error(R.drawable.ic_baseline_person_24).into(holder.friend_profile_chat);
         holder.follow_friend_in_list_of_followers.setOnClickListener(view -> {
             if(holder.follow_friend_in_list_of_followers.getText().toString().equals("Following")){unfollowUser(post.getEmail());holder.follow_friend_in_list_of_followers.setText("Follow");holder.follow_friend_in_list_of_followers.setBackgroundColor(Color.WHITE);
             }
             else{followUser(post.getEmail(),post.getUsername(),post.getDescription(),post.getImage());holder.follow_friend_in_list_of_followers.setText("Following");holder.follow_friend_in_list_of_followers.setBackgroundColor(Color.parseColor("#F6F4F4"));}
         });
     }
+
+    //add user to followers list
     private void followUser(String email, String username, String description,String image) {
         user_class user=new user_class(email,username,description,image);String branch1="";
         try{branch1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");} catch (Exception e){branch1="karabo@gmail.com";branch1.replace("@","").replace(".","");}
@@ -62,6 +60,7 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
         getUserDetails(branch1,branch2);
     }
 
+    //sets the user details on the item
     private void getUserDetails(String branch1, String branch2) {
         String id="";
         try{id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
@@ -77,6 +76,7 @@ public class FollowersAdapter extends FirebaseRecyclerAdapter<user_class,Followe
                     public void onCancelled(@NonNull DatabaseError error) {Toast.makeText(context, "Error getDetails", Toast.LENGTH_SHORT).show();}});
     }
 
+    //remove user from the followers list
     private void unfollowUser(String email) {
         String email1="karabol@gmail.com";
         try{email1= Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","");} catch (Exception e){email1="karabo@gmail.com";}

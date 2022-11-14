@@ -79,7 +79,7 @@ public class InsideMessage extends AppCompatActivity {
 
         send_message.setOnClickListener(view -> delegatedToSendMessage());
     }
-
+    //send message typed to the database
     void delegatedToSendMessage(){
         String message_content= Objects.requireNonNull(typed_message.getText()).toString();
         String name=getIntent().getStringExtra("receiver_id");
@@ -134,7 +134,7 @@ public class InsideMessage extends AppCompatActivity {
         sendToListOfUsers(user,branch1,branch2);
 
     }
-
+    //updates the chat history with the users
     void saveToChatHistory(String currentDateTime, messageObject messageObject, String branch1, String branch2){
             FirebaseDatabase.getInstance().getReference()
                     .child("Wits Social Database1")
@@ -145,6 +145,7 @@ public class InsideMessage extends AppCompatActivity {
                 .setValue(messageObject).addOnSuccessListener(unused -> typed_message.setText("")).addOnFailureListener(e -> Toast.makeText(InsideMessage.this, "Message not sent, try again.", Toast.LENGTH_SHORT).show());
     }
 
+    //updates list of people messaging,if first time
     void sendToListOfUsers(likers user, String branch1, String branch2){
         String id="";
         try{
@@ -180,6 +181,7 @@ public class InsideMessage extends AppCompatActivity {
 
     }
 
+    //return current time in the correct format
     String get_CurrentDateTime(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.US);
         Date date = new Date();
@@ -207,6 +209,7 @@ public class InsideMessage extends AppCompatActivity {
         show_friend_name.setText(name);
     }
 
+    //select type of attachment to send
     private void popUpWindow() {
         de.hdodenhof.circleimageview.CircleImageView image_attachment,document_attachment,audio_attachment,video_attachment;
         attachment_pop_up.setContentView(R.layout.attachment_type_popup);
@@ -237,7 +240,7 @@ public class InsideMessage extends AppCompatActivity {
         attachment_pop_up.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         attachment_pop_up.show();
     }
-
+    //navigation back to friend profile
     void go_back(){
         String friend_Email=getIntent().getStringExtra("receiver_id");
         String friend_Name=getIntent().getStringExtra("receiver_username");
@@ -256,6 +259,8 @@ public class InsideMessage extends AppCompatActivity {
         }
 
     }
+
+    //display history of messages with user
     private void display() {
         String name=getIntent().getStringExtra("receiver_id");
         recyclerView = findViewById(R.id.messages_insidemessage);
@@ -276,6 +281,7 @@ public class InsideMessage extends AppCompatActivity {
         recyclerView.setAdapter(mainAdapter);
     }
 
+    //selects attachment from phone
     private void selectPost() {
         Intent intent = new Intent();
         intent.setType("*/*");
@@ -295,7 +301,7 @@ public class InsideMessage extends AppCompatActivity {
         final Intent intent1 = intent.setAction((Intent.ACTION_GET_CONTENT));
         startActivityForResult(Intent.createChooser(intent1,"Add Attachment"),10);
     }
-
+    //after attachemnt is selected from file
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

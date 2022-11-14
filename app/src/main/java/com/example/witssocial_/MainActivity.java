@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         signUpBtn = findViewById(R.id.SignUp);
         mAuth = FirebaseAuth.getInstance();
     }
-
+    //check for error when submit button is clicked
     public static String checkErrors(String full_name,String email,String password,String confirmPassword){
         if(full_name.isEmpty()) return "Please enter your full name.";
         else if(email.isEmpty()) return "Email address format is invalid.";

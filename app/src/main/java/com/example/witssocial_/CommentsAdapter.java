@@ -36,6 +36,8 @@ public class CommentsAdapter extends FirebaseRecyclerAdapter<comment, CommentsAd
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull comment model) {
 
+        //sets the name,email and profile pic of the person who commented
+        //also sets the comment
          FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
                 .child("Users")
                 .child(model.getId())
@@ -44,15 +46,10 @@ public class CommentsAdapter extends FirebaseRecyclerAdapter<comment, CommentsAd
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
                             user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
-                            //assert user_class != null;
                             holder.comment_name.setText(user_class.getEmail());
                             holder.comment_content.setText(model.getComment());
                             holder.comment_username.setText("@"+user_class.getUsername());
-                            Glide.with(holder.commenter_profile_pic.getContext())
-                                    .load(user_class.getImage())
-                                    .placeholder(R.drawable.ic_baseline_person_24)
-                                    .error(R.drawable.ic_launcher_foreground)
-                                    .into(holder.commenter_profile_pic);
+                            Glide.with(holder.commenter_profile_pic.getContext()).load(user_class.getImage()).placeholder(R.drawable.ic_baseline_person_24).error(R.drawable.ic_launcher_foreground).into(holder.commenter_profile_pic);
 
                         }
 

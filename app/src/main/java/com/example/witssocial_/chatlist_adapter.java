@@ -43,21 +43,24 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
 
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull likers model) {
+        //diplay coorect text on button depending on the activity it came from
+        //if came from Archive_Users set button text to "undo"
+        //else set button to archive
         if(came_from.equals("Archive_Users")){
             holder.archive_user.setText("Undo");
         }
+        //sets name,email,profile pic of each users
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users ID").child(model.getLikerID().replace("@","").replace(".",""))
                         .addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 likers likers=snapshot.getValue(com.example.witssocial_.likers.class);
-                                //assert likers != null;
+
                                 FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(likers.getLikerID())
                                         .addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 user_class model=snapshot.getValue(com.example.witssocial_.user_class.class);
-                                                //assert model != null;
                                                 String email= model.getEmail();
                                                 String username=model.getUsername();
                                                 String description= model.getDescription();
@@ -70,12 +73,16 @@ public class chatlist_adapter extends FirebaseRecyclerAdapter<likers, chatlist_a
                                                     context.startActivity(intent);
                                                 });
 
-                                                //archive user
+                                                //archive and save users to list of archived users
+                                                //or remove user from list of archived users
                                                 holder.archive_user.setOnClickListener(view -> {
+                                                    //add user to list of archived
                                                     if(came_from.equals("Archive_Users")) {
                                                         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("List of friends").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@", "").replace(".", "")).child(email.replace("@", "").replace(".", "")).setValue(new likers(email));
                                                         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Archived Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(email.replace("@", "").replace(".", "")).removeValue();
-                                                    }else{
+                                                    }
+                                                    //remove user from list of archived users
+                                                    else{
                                                         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("List of friends").child(Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()).replace("@","").replace(".","")).child(email.replace("@","").replace(".","")).removeValue();
                                                         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Archived Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(email.replace("@","").replace(".","")).setValue(new likers(email));
                                                     }

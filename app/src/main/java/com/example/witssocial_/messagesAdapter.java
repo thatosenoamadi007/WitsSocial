@@ -42,29 +42,25 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user_class, message
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull user_class model) {
 
+        //sets the values of each item in the list of messages recycler view
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users ID").child(model.getEmail().replace("@","").replace(".",""))
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         likers likers=snapshot.getValue(com.example.witssocial_.likers.class);
-                        //assert likers != null;
                         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("Users").child(likers.getLikerID())
                                 .addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         user_class model2=snapshot.getValue(com.example.witssocial_.user_class.class);
-                                        //assert model2 != null;
                                         String email= model2.getEmail();
                                         String username=model2.getUsername();
                                         String description= model2.getDescription();
                                         holder.friend_name.setText(email);
                                         holder.friend_username.setText(username);
-                                        Glide.with(holder.friend_profile.getContext())
-                                                .load(model2.getImage())
-                                                .placeholder(R.drawable.ic_launcher_foreground)
-                                                .error(R.drawable.ic_baseline_person_24)
-                                                .into(holder.friend_profile);
+                                        Glide.with(holder.friend_profile.getContext()).load(model2.getImage()).placeholder(R.drawable.ic_launcher_foreground).error(R.drawable.ic_baseline_person_24).into(holder.friend_profile);
 
+                                        //navigsation to insidemessage when item is clicked
                                         holder.message_layout.setOnClickListener(view -> {
                                             Intent intent=new Intent(context,a_FriendProfile.class);intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);intent.putExtra("receiver_id",email);intent.putExtra("receiver_username",username);intent.putExtra("receiver_description",description);intent.putExtra("receiver_profile_pic",model2.getImage());
                                             context.startActivity(intent);
@@ -81,26 +77,20 @@ public class messagesAdapter extends FirebaseRecyclerAdapter<user_class, message
 
                     }
                 });
-        //delete recently searched user
-        /*if (BusySearching=="false") {
-            holder.delete_recently_searched_user.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {RemoverecentlySearched(model.getEmail(), model.getEmail());}
-            });
-        }*/
+
     }
 
     @NonNull
     @Override
     public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.messageapperance,parent,false);
+
         View view = null;
         if (BusySearching=="false") {
-            //view = LayoutInflater.from(parent.getContext()).inflate(R.layout.teacher_course_pdf,parent,false);
+
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.messageapperance,parent,false);
         }
         else {
-            //view = LayoutInflater.from(parent.getContext()).inflate(R.layout.student_enrolled_course_pdf,parent,false);
+
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.messageappearance3,parent,false);
         }
 

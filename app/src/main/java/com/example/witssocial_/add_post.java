@@ -51,11 +51,17 @@ public class add_post extends AppCompatActivity {
         postBtn = findViewById(R.id.postBtn);
         storageRef= storage.getReference();
 
+        //enable navigation bat
         bottomNavigationbar();
+
+        //selecting an image from device
         postBtn.setOnClickListener(view -> uploadPost());
+
+        //uploading post to database
         addPost.setOnClickListener(view -> selectPost());
     }
 
+    //selects image attachment from device
     private void selectPost() {
         Intent intent = new Intent();
         intent.setType("*/*");
@@ -63,6 +69,7 @@ public class add_post extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent1,"SELECT POST"),10);
     }
 
+    //navigating the menu bar
     private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.add_post);
@@ -103,7 +110,8 @@ public class add_post extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==10 && resultCode==RESULT_OK && data!=null && data.getData()!=null){imageUri = data.getData();addPost.setImageURI(imageUri);}else{Toast.makeText(add_post.this, "resultcode"+requestCode, Toast.LENGTH_SHORT).show();}
     }
-    //--------------comment out
+
+    //determine the type of post(text,image,text and image)
     private void uploadPost() {
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setTitle("File is loading......");
@@ -115,10 +123,16 @@ public class add_post extends AppCompatActivity {
         String currentDateTime=get_CurrentDateTime();
         time=currentDateTime.replaceAll("/", "|");
 
+        //if type of post if image or text and image,
+        //send image to the media storage first and save link to image
+        //under text storage along with the post detais
         if(imageUri!=null) {final String userkey= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
             StorageReference galleryPictures = storageRef.child("Post/" + userkey).child(time);galleryPictures.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();while (!uriTask.isComplete()) ;Uri uri = uriTask.getResult();uploadWholePost(uri.toString(),time,"media_post");Toast.makeText(this, "Post Uploaded.", Toast.LENGTH_SHORT).show();pd.dismiss();caption.setText("");imageUri=null;String tmpuri = "@drawable/icupload";int imageResource = getResources().getIdentifier(tmpuri, null, getPackageName());Drawable res = getResources().getDrawable(imageResource);addPost.setImageDrawable(res);
                     });
-    }else {
+         }
+        //if type of post is text,
+        //save directly to text storage and link of image set to null
+        else {
             if(!caption.getText().toString().isEmpty()){
                 uploadWholePost("null",time,"text_post");
                 Toast.makeText(this, "Post Uploaded.", Toast.LENGTH_SHORT).show();
@@ -130,29 +144,34 @@ public class add_post extends AppCompatActivity {
         }
     }
 
+    //save post to the database
     private void uploadWholePost(String uri,String time,String type) {
+
         String id="";
         try{id=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());}
         catch (Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
         String email="karabol@gmail.com";
         try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
         catch (Exception e){email="karabo@gmail.com";}
-        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         String key = database.getReference("All Posts").push().getKey();
-        //assert user != null;
         Post post = new Post(uri, caption.getText().toString(), id, key, type);
+
+        //adds post to my list of posts
         FirebaseDatabase.getInstance().getReference("Wits Social Database1")
                 .child("Posts")
                 .child(Objects.requireNonNull(email.replace("@", "").replace(".", "")))
                 .child(time)
                 .setValue(post);
+        //add post to global list of posts
         FirebaseDatabase.getInstance().getReference("Wits Social Database1")
                 .child("All Posts")
                 .child(time)
                 .setValue(post);
     }
 
+    //return current time in the correct format "yyyy/MM/dd HH:mm:ss"
     String get_CurrentDateTime(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.US);
         Date date = new Date();

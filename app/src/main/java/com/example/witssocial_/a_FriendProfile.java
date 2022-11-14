@@ -44,7 +44,8 @@ public class a_FriendProfile extends AppCompatActivity {
         //initialize variables
         initializeVariables();
 
-        //set variables
+        //recieve data passed back from calling activity
+        //if no data pass back,initialize with approarite values
         String friend_Email,friend_Name,friend_Description;
         friend_Email=getIntent().getStringExtra("receiver_id");
         friend_Name=getIntent().getStringExtra("receiver_username");
@@ -118,6 +119,7 @@ public class a_FriendProfile extends AppCompatActivity {
 
     private void setNumberFollowersFollowing(String friend_email) {
         String email=friend_email;
+        //sets user's number of followers count
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Followers")
                 .child(email.replace("@","").replace(".",""))
                 .addValueEventListener(new ValueEventListener() {
@@ -136,6 +138,8 @@ public class a_FriendProfile extends AppCompatActivity {
 
             }
         });
+
+        //sets the user's number of following count
         FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Following")
                 .child(friend_email.replace("@","").replace(".",""))
                 .addValueEventListener(new ValueEventListener() {
@@ -156,6 +160,7 @@ public class a_FriendProfile extends AppCompatActivity {
                 });
     }
 
+    //adds user to my recently searched list
     private void recentlySearched(user_class user,String branch1,String branch2) {
         String my_email="";
         try{my_email=Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
@@ -182,7 +187,9 @@ public class a_FriendProfile extends AppCompatActivity {
         see_list_of_followers=findViewById(R.id.see_list_of_followers);
         see_list_of_following=findViewById(R.id.see_list_of_following);
     }
-
+    //checks if im already following the user
+    //and sets the correct text "unfollow" on the button
+    //else set button to "follow"
     private void ifFollowsUser() {
         String email="";
         try{email=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());}
@@ -214,6 +221,8 @@ public class a_FriendProfile extends AppCompatActivity {
                 });
     }
 
+    //if button is set to "follow" perform unfollow operation when button is clicked
+    //else perform follow operation
     @SuppressLint("SetTextI18n")
     private void follow_Unfollow_friend() {
         String mode=follow_friend.getText().toString();
@@ -234,6 +243,7 @@ public class a_FriendProfile extends AppCompatActivity {
         }
     }
 
+    //unfollow and remove user from my friends list
     private void unfollowFriend(String branch1, String branch2) {
         //remove from list of people im following
         FirebaseDatabase.getInstance().getReference()
@@ -251,8 +261,8 @@ public class a_FriendProfile extends AppCompatActivity {
                 .removeValue();
     }
 
+    //add to list to people im following
     private void followFriend(user_class user, String branch1, String branch2){
-        //add to list to people im following
         FirebaseDatabase.getInstance().getReference()
                 .child("Wits Social Database1")
                 .child("User Following")
@@ -264,6 +274,7 @@ public class a_FriendProfile extends AppCompatActivity {
 
     }
 
+    //get details of friend
     private void getUserDetails(String branch1, String branch2){
         String id="";
         try{id=Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());}

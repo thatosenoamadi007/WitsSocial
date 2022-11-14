@@ -35,7 +35,6 @@ public class home_activity extends AppCompatActivity {
          //initlise the recycler view, layout manager and firebase recycler options
         recyclerView =findViewById(R.id.homerecview);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        //linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -87,26 +86,4 @@ public class home_activity extends AppCompatActivity {
         });
     }
 
-    /*@Override
-    public void onBackPressed() {
-        if(getIntent().getStringExtra("sign_out_or_not")!=null){
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setTitle("Are you sure you want to log out?");
-            alertDialogBuilder
-                    //.setMessage("Click yes to sign out!")
-                    .setCancelable(true)
-                    .setPositiveButton("Yes",
-                            (dialog, id) -> {
-                                startActivity(new Intent(home_activity.this,login.class));
-                            })
-                    .setNegativeButton("No", (dialog, id) -> dialog.cancel());
-
-            AlertDialog alertDialog = alertDialogBuilder.create();
-            alertDialog.show();
-        }
-        else{
-            super.onBackPressed();
-        }
-
-    }*/
 }

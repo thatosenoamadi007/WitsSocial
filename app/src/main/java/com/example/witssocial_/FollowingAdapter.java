@@ -51,6 +51,8 @@ public class FollowingAdapter extends FirebaseRecyclerAdapter<user_class,Followi
                 FirebaseDatabase.getInstance().getReference().child("Wits Social Database1").child("User Followers").child(branch2).child(branch1).removeValue();
             });
         }
+
+        //sets the image on the item
         Glide.with(holder.friend_profile_chat.getContext())
                 .load(post.getImage())
                 .placeholder(R.drawable.ic_launcher_foreground)

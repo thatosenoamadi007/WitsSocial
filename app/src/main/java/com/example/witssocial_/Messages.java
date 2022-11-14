@@ -38,7 +38,7 @@ public class Messages extends AppCompatActivity {
         show_list_of_archived_messages=findViewById(R.id.show_list_of_archived_messages);
         show_list_of_archived_messages.setOnClickListener(view -> startActivity(new Intent(Messages.this,Archive_Users.class)));
     }
-
+    //displays list of chats when activity loads
     private void display() {
         recyclerView = findViewById(R.id.all_friends_chat_list);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
@@ -58,7 +58,7 @@ public class Messages extends AppCompatActivity {
         recyclerView.setAdapter(mainAdapter);
 
     }
-
+    //navigating the menu
     private void bottomNavigationbar() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.messages);

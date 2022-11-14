@@ -88,12 +88,12 @@ public class Edit_Profile extends AppCompatActivity {
         pd = new ProgressDialog(this);
         pd.setCanceledOnTouchOutside(false);
         firebaseAuth = FirebaseAuth.getInstance();
-        //firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = firebaseDatabase.getReference("Wits Social Database1").child("Users");
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
         String email="karabol@gmail.com";
         try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
         catch(Exception e){email="karabo@gmail.com";}
@@ -126,34 +126,7 @@ public class Edit_Profile extends AppCompatActivity {
         });
 
     }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        String email="";
-        try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
-        catch(Exception e){email="karabo@gmail.com";}
-        Query query = databaseReference.orderByChild("email").equalTo(email);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-
-                    String image = "" + dataSnapshot1.child("image").getValue();
-
-                    try {
-                        Glide.with(Edit_Profile.this).load(image).into(my_profile_pic);
-                    } catch (Exception e) {
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
+    //download profile pic and display it when activity loads
     @Override
     protected void onStart() {
         super.onStart();
@@ -183,6 +156,37 @@ public class Edit_Profile extends AppCompatActivity {
         });
 
     }
+
+    //continue loading the profile pic if a pause/error occurs when activity loads
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String email="";
+        try{email= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();}
+        catch(Exception e){email="karabo@gmail.com";}
+        Query query = databaseReference.orderByChild("email").equalTo(email);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
+                    String image = "" + dataSnapshot1.child("image").getValue();
+
+                    try {
+                        Glide.with(Edit_Profile.this).load(image).into(my_profile_pic);
+                    } catch (Exception e) {
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     // checking storage permission ,if given then we can add something in our storage
     private Boolean checkStoragePermission() {
         boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
@@ -305,7 +309,6 @@ public class Edit_Profile extends AppCompatActivity {
     private void uploadProfileCoverPhoto(final android.net.Uri uri) {
         pd.show();
 
-        // We are taking the filepath as storagepath + firebaseauth.getUid()+".png"
         String id="1sHMCTUdp0UwvnfEUdLe6Q6mJif2";
         try{id= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();}
         catch(Exception e){id="CYFstJWuF9NKirsH8GMewwB0t7m2";}
@@ -331,28 +334,13 @@ public class Edit_Profile extends AppCompatActivity {
                             pd.dismiss();
                             Toast.makeText(Edit_Profile.this, "Updated", Toast.LENGTH_LONG).show();
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            pd.dismiss();
-                            Toast.makeText(Edit_Profile.this, "Error Updating ", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                } else {
-                    pd.dismiss();
-                    Toast.makeText(Edit_Profile.this, "Error", Toast.LENGTH_LONG).show();
-                }
+                    }).addOnFailureListener(e -> {pd.dismiss();Toast.makeText(Edit_Profile.this, "Error Updating ", Toast.LENGTH_LONG).show();});
+                } else {pd.dismiss();Toast.makeText(Edit_Profile.this, "Error", Toast.LENGTH_LONG).show();}
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                pd.dismiss();
-                Toast.makeText(Edit_Profile.this, "Error", Toast.LENGTH_LONG).show();
-            }
-        });
+        }).addOnFailureListener(e -> {pd.dismiss();Toast.makeText(Edit_Profile.this, "Error", Toast.LENGTH_LONG).show();});
     }
 
-
+    //initiallizes value of email,password,fullname,description and profile pic when activity loads
     private void initializeValues() {
         String my_email=getIntent().getStringExtra("receiver_id");
         String my_full_name=getIntent().getStringExtra("receiver_username");
@@ -368,16 +356,17 @@ public class Edit_Profile extends AppCompatActivity {
         password=findViewById(R.id.Password);
         email.setText(my_email);
         full_name.setText(my_full_name);
-        //Toast.makeText(this, my_profile_description, Toast.LENGTH_SHORT).show();
         description.setText(my_profile_description);
-        //password.setText(FirebaseAuth.getInstance().getCurrentUser().updatePassword());
+
     }
 
+    //save changes made
     private void saveChanges() {
         save_profile_changes=findViewById(R.id.save_profile_changes);
         save_profile_changes.setOnClickListener(view -> update());
     }
 
+    //update changes made to email,password,fullname or description
     private void update() {
         String id="";
         try{
@@ -412,6 +401,7 @@ public class Edit_Profile extends AppCompatActivity {
 
     }
 
+    //navigating back to the profile activity
     private void goBack() {
         go_back_to_my_profile=findViewById(R.id.go_back_to_my_profile);
         cancel_any_changes=findViewById(R.id.cancel_any_changes);

@@ -40,35 +40,6 @@ public class Status_adapter extends FirebaseRecyclerAdapter<Post,Status_adapter.
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull Post post) {
 
-        /*FirebaseDatabase.getInstance().getReference().child("Wits Social Database1")
-                .child("Users")
-                .child(post.getUsername()).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        user_class user_class=snapshot.getValue(com.example.witssocial_.user_class.class);
-                        assert user_class != null;
-                        Glide.with(holder.status_pic.getContext())
-                                .load(user_class.getImage())
-                                .placeholder(R.drawable.ic_launcher_foreground)
-                                .error(R.drawable.ic_baseline_person_24)
-                                .into(holder.status_pic);
-
-                        holder.status_pic.setOnClickListener(v -> {
-
-                                Intent intent=new Intent(Intent.ACTION_VIEW);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);*/
-                                //intent.setType("*/*");
-                                /*intent.setData(Uri.parse(user_class.getImage()));
-                                context.startActivity(intent);
-
-                        });
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });*/
 
 
 
